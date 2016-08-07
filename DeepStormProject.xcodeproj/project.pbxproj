@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		021F5A9D1729A7167A19FCC4 /* libPods-DeepStormProject.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A247E37AF19F7EFCC536BE8 /* libPods-DeepStormProject.a */; };
 		6B36930F1D57571700ED4578 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36930E1D57571700ED4578 /* main.m */; };
 		6B3693121D57571700ED4578 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693111D57571700ED4578 /* AppDelegate.m */; };
 		6B3693151D57571700ED4578 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693141D57571700ED4578 /* ViewController.m */; };
@@ -65,6 +66,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		01CC489F6CDAD90327E81896 /* Pods-DeepStormProject.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeepStormProject.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DeepStormProject/Pods-DeepStormProject.debug.xcconfig"; sourceTree = "<group>"; };
+		2A247E37AF19F7EFCC536BE8 /* libPods-DeepStormProject.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DeepStormProject.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		63779CC6EF14A3B79BB69764 /* Pods-DeepStormProject.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DeepStormProject.release.xcconfig"; path = "Pods/Target Support Files/Pods-DeepStormProject/Pods-DeepStormProject.release.xcconfig"; sourceTree = "<group>"; };
 		6B36930A1D57571700ED4578 /* DeepStormProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeepStormProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B36930E1D57571700ED4578 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		6B3693101D57571700ED4578 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -186,17 +190,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				021F5A9D1729A7167A19FCC4 /* libPods-DeepStormProject.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2E5F2544C68ABDA291057B94 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				01CC489F6CDAD90327E81896 /* Pods-DeepStormProject.debug.xcconfig */,
+				63779CC6EF14A3B79BB69764 /* Pods-DeepStormProject.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		68BC63A60C6261D84379B77D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2A247E37AF19F7EFCC536BE8 /* libPods-DeepStormProject.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6B3693011D57571700ED4578 = {
 			isa = PBXGroup;
 			children = (
 				6B36930C1D57571700ED4578 /* DeepStormProject */,
 				6B36930B1D57571700ED4578 /* Products */,
+				2E5F2544C68ABDA291057B94 /* Pods */,
+				68BC63A60C6261D84379B77D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -503,9 +527,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B3693211D57571700ED4578 /* Build configuration list for PBXNativeTarget "DeepStormProject" */;
 			buildPhases = (
+				2BFD0995F908E77B7DB84675 /* 📦 Check Pods Manifest.lock */,
 				6B3693061D57571700ED4578 /* Sources */,
 				6B3693071D57571700ED4578 /* Frameworks */,
 				6B3693081D57571700ED4578 /* Resources */,
+				61E356609AC6136EE23F4AB1 /* 📦 Embed Pods Frameworks */,
+				64807C4DCD2C9523E12A129B /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -564,6 +591,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2BFD0995F908E77B7DB84675 /* 📦 Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		61E356609AC6136EE23F4AB1 /* 📦 Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeepStormProject/Pods-DeepStormProject-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		64807C4DCD2C9523E12A129B /* 📦 Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "📦 Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeepStormProject/Pods-DeepStormProject-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6B3693061D57571700ED4578 /* Sources */ = {
@@ -730,6 +805,7 @@
 		};
 		6B3693221D57571700ED4578 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01CC489F6CDAD90327E81896 /* Pods-DeepStormProject.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -742,6 +818,7 @@
 		};
 		6B3693231D57571700ED4578 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 63779CC6EF14A3B79BB69764 /* Pods-DeepStormProject.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -771,6 +848,7 @@
 				6B3693231D57571700ED4578 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
