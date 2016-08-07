@@ -63,6 +63,7 @@
 		6B3693C91D5759D700ED4578 /* DSEmailHiddenReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693C71D5759D700ED4578 /* DSEmailHiddenReporter.m */; };
 		6B3693CF1D575A0E00ED4578 /* NSString+DSEmailValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693CC1D575A0E00ED4578 /* NSString+DSEmailValidation.m */; };
 		6B3693D01D575A0E00ED4578 /* UIWindow+DSControllerDetermination.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693CE1D575A0E00ED4578 /* UIWindow+DSControllerDetermination.m */; };
+		6B3693D21D575D7800ED4578 /* DeepStorm.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 6B3693D11D575D7800ED4578 /* DeepStorm.podspec */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -183,6 +184,7 @@
 		6B3693CC1D575A0E00ED4578 /* NSString+DSEmailValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DSEmailValidation.m"; sourceTree = "<group>"; };
 		6B3693CD1D575A0E00ED4578 /* UIWindow+DSControllerDetermination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+DSControllerDetermination.h"; sourceTree = "<group>"; };
 		6B3693CE1D575A0E00ED4578 /* UIWindow+DSControllerDetermination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+DSControllerDetermination.m"; sourceTree = "<group>"; };
+		6B3693D11D575D7800ED4578 /* DeepStorm.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = DeepStorm.podspec; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -267,6 +269,7 @@
 				6B36932A1D57575E00ED4578 /* LICENSE.txt */,
 				6B36932B1D57575E00ED4578 /* NOTICE.txt */,
 				6B36932C1D57575E00ED4578 /* README.md */,
+				6B3693D11D575D7800ED4578 /* DeepStorm.podspec */,
 				6B36932D1D57575E00ED4578 /* DS_ECreds.plist */,
 				6B3693321D57576D00ED4578 /* Streaming */,
 				6B36933E1D5757A200ED4578 /* Top Level Abstractions */,
@@ -587,6 +590,7 @@
 				6B36931D1D57571700ED4578 /* LaunchScreen.storyboard in Resources */,
 				6B36931A1D57571700ED4578 /* Assets.xcassets in Resources */,
 				6B3693181D57571700ED4578 /* Main.storyboard in Resources */,
+				6B3693D21D575D7800ED4578 /* DeepStorm.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
