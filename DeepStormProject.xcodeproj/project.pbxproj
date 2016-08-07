@@ -13,6 +13,55 @@
 		6B3693181D57571700ED4578 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B3693161D57571700ED4578 /* Main.storyboard */; };
 		6B36931A1D57571700ED4578 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6B3693191D57571700ED4578 /* Assets.xcassets */; };
 		6B36931D1D57571700ED4578 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6B36931B1D57571700ED4578 /* LaunchScreen.storyboard */; };
+		6B3693261D57574300ED4578 /* TSVCLocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693251D57574300ED4578 /* TSVCLocationManager.m */; };
+		6B36932E1D57575E00ED4578 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6B36932A1D57575E00ED4578 /* LICENSE.txt */; };
+		6B36932F1D57575E00ED4578 /* NOTICE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 6B36932B1D57575E00ED4578 /* NOTICE.txt */; };
+		6B3693301D57575E00ED4578 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 6B36932C1D57575E00ED4578 /* README.md */; };
+		6B3693311D57575E00ED4578 /* DS_ECreds.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6B36932D1D57575E00ED4578 /* DS_ECreds.plist */; };
+		6B3693361D57577800ED4578 /* DSStreamingQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693351D57577800ED4578 /* DSStreamingQueue.m */; };
+		6B36933C1D57579100ED4578 /* DSBasePeriodicStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693391D57579100ED4578 /* DSBasePeriodicStreamer.m */; };
+		6B36933D1D57579100ED4578 /* DSBaseObservableStreamer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36933B1D57579100ED4578 /* DSBaseObservableStreamer.m */; };
+		6B3693491D5757B600ED4578 /* DSServiceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693401D5757B600ED4578 /* DSServiceManager.m */; };
+		6B36934A1D5757B600ED4578 /* DSBaseLoggedService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693421D5757B600ED4578 /* DSBaseLoggedService.m */; };
+		6B36934B1D5757B600ED4578 /* DSExternalJournalCloud.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693441D5757B600ED4578 /* DSExternalJournalCloud.m */; };
+		6B36934C1D5757B600ED4578 /* DSStreamerDaemon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693461D5757B600ED4578 /* DSStreamerDaemon.m */; };
+		6B36934D1D5757B600ED4578 /* DSLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693481D5757B600ED4578 /* DSLogger.m */; };
+		6B3693531D5757DC00ED4578 /* DSStreamingComplexEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693521D5757DC00ED4578 /* DSStreamingComplexEvent.m */; };
+		6B36935A1D57581900ED4578 /* DSFileEventFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693571D57581900ED4578 /* DSFileEventFactory.m */; };
+		6B36935B1D57581900ED4578 /* DSStreamingFileEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693591D57581900ED4578 /* DSStreamingFileEvent.m */; };
+		6B3693601D57581E00ED4578 /* DSEmailEventFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36935D1D57581E00ED4578 /* DSEmailEventFactory.m */; };
+		6B3693611D57581E00ED4578 /* DSStreamingEmailEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36935F1D57581E00ED4578 /* DSStreamingEmailEvent.m */; };
+		6B3693661D57583900ED4578 /* DSJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693641D57583900ED4578 /* DSJournal.m */; };
+		6B3693711D57585D00ED4578 /* DSMappingHelpfulFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36936A1D57585D00ED4578 /* DSMappingHelpfulFunctions.m */; };
+		6B3693721D57585D00ED4578 /* DSJournalJSONMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36936C1D57585D00ED4578 /* DSJournalJSONMapper.m */; };
+		6B3693731D57585D00ED4578 /* DSJournalXMLMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36936E1D57585D00ED4578 /* DSJournalXMLMapper.m */; };
+		6B3693741D57585D00ED4578 /* DSJournalStringDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693701D57585D00ED4578 /* DSJournalStringDescriptor.m */; };
+		6B36937C1D5758A800ED4578 /* DSBaseMappingReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693791D5758A800ED4578 /* DSBaseMappingReporter.m */; };
+		6B36937D1D5758A800ED4578 /* DSBaseEventBuiltInReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36937B1D5758A800ED4578 /* DSBaseEventBuiltInReporter.m */; };
+		6B3693831D5758C900ED4578 /* DSBaseEmailReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693801D5758C900ED4578 /* DSBaseEmailReporter.m */; };
+		6B3693841D5758C900ED4578 /* DSEventSupportedEmailReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693821D5758C900ED4578 /* DSEventSupportedEmailReporter.m */; };
+		6B36938E1D5758EC00ED4578 /* DSOutputConsoleReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693871D5758EC00ED4578 /* DSOutputConsoleReporter.m */; };
+		6B36938F1D5758EC00ED4578 /* DSFileReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693891D5758EC00ED4578 /* DSFileReporter.m */; };
+		6B3693901D5758EC00ED4578 /* DSNetworkReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36938B1D5758EC00ED4578 /* DSNetworkReporter.m */; };
+		6B3693911D5758EC00ED4578 /* DSRemoteTelnetReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36938D1D5758EC00ED4578 /* DSRemoteTelnetReporter.m */; };
+		6B36939A1D57591700ED4578 /* DSStreamingDatabaseEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693941D57591700ED4578 /* DSStreamingDatabaseEvent.m */; };
+		6B36939B1D57591700ED4578 /* DSAdaptedObjectsFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693961D57591700ED4578 /* DSAdaptedObjectsFactory.m */; };
+		6B36939C1D57591700ED4578 /* DSLocalSQLEntitiesProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693981D57591700ED4578 /* DSLocalSQLEntitiesProvider.m */; };
+		6B3693A61D57593D00ED4578 /* DSAdaptedDBJournal.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36939F1D57593D00ED4578 /* DSAdaptedDBJournal.m */; };
+		6B3693A71D57593D00ED4578 /* DSAdaptedDBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693A11D57593D00ED4578 /* DSAdaptedDBService.m */; };
+		6B3693A81D57593D00ED4578 /* DSAdaptedDBJournalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693A31D57593D00ED4578 /* DSAdaptedDBJournalRecord.m */; };
+		6B3693A91D57593D00ED4578 /* DSAdaptedDBError.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693A51D57593D00ED4578 /* DSAdaptedDBError.m */; };
+		6B3693B31D57596000ED4578 /* DSAdaptedDBJournal+Convertation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693AC1D57596000ED4578 /* DSAdaptedDBJournal+Convertation.m */; };
+		6B3693B41D57596000ED4578 /* DSAdaptedDBService+Convertation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693AE1D57596000ED4578 /* DSAdaptedDBService+Convertation.m */; };
+		6B3693B51D57596000ED4578 /* DSAdaptedDBJournalRecord+Convertation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693B01D57596000ED4578 /* DSAdaptedDBJournalRecord+Convertation.m */; };
+		6B3693B61D57596000ED4578 /* DSAdaptedDBError+Convertation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693B21D57596000ED4578 /* DSAdaptedDBError+Convertation.m */; };
+		6B3693BB1D57596F00ED4578 /* DSLocalSQLDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693B81D57596F00ED4578 /* DSLocalSQLDatabase.m */; };
+		6B3693BC1D57596F00ED4578 /* DSLocalSQLDatabaseReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693BA1D57596F00ED4578 /* DSLocalSQLDatabaseReporter.m */; };
+		6B3693C11D5759B300ED4578 /* BBAES.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693C01D5759B300ED4578 /* BBAES.m */; };
+		6B3693C81D5759D700ED4578 /* DSPresentingEmailReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693C51D5759D700ED4578 /* DSPresentingEmailReporter.m */; };
+		6B3693C91D5759D700ED4578 /* DSEmailHiddenReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693C71D5759D700ED4578 /* DSEmailHiddenReporter.m */; };
+		6B3693CF1D575A0E00ED4578 /* NSString+DSEmailValidation.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693CC1D575A0E00ED4578 /* NSString+DSEmailValidation.m */; };
+		6B3693D01D575A0E00ED4578 /* UIWindow+DSControllerDetermination.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693CE1D575A0E00ED4578 /* UIWindow+DSControllerDetermination.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +75,110 @@
 		6B3693191D57571700ED4578 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6B36931C1D57571700ED4578 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6B36931E1D57571700ED4578 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6B3693241D57574200ED4578 /* TSVCLocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TSVCLocationManager.h; sourceTree = "<group>"; };
+		6B3693251D57574300ED4578 /* TSVCLocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TSVCLocationManager.m; sourceTree = "<group>"; };
+		6B3693281D57575E00ED4578 /* DeepStorm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeepStorm.h; sourceTree = "<group>"; };
+		6B3693291D57575E00ED4578 /* DSIdeaHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSIdeaHeader.h; sourceTree = "<group>"; };
+		6B36932A1D57575E00ED4578 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		6B36932B1D57575E00ED4578 /* NOTICE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = NOTICE.txt; sourceTree = "<group>"; };
+		6B36932C1D57575E00ED4578 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		6B36932D1D57575E00ED4578 /* DS_ECreds.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DS_ECreds.plist; sourceTree = "<group>"; };
+		6B3693331D57577800ED4578 /* DSStreamingInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSStreamingInterfaces.h; sourceTree = "<group>"; };
+		6B3693341D57577800ED4578 /* DSStreamingQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSStreamingQueue.h; sourceTree = "<group>"; };
+		6B3693351D57577800ED4578 /* DSStreamingQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSStreamingQueue.m; sourceTree = "<group>"; };
+		6B3693381D57579100ED4578 /* DSBasePeriodicStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBasePeriodicStreamer.h; sourceTree = "<group>"; };
+		6B3693391D57579100ED4578 /* DSBasePeriodicStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBasePeriodicStreamer.m; sourceTree = "<group>"; };
+		6B36933A1D57579100ED4578 /* DSBaseObservableStreamer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBaseObservableStreamer.h; sourceTree = "<group>"; };
+		6B36933B1D57579100ED4578 /* DSBaseObservableStreamer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBaseObservableStreamer.m; sourceTree = "<group>"; };
+		6B36933F1D5757B600ED4578 /* DSServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSServiceManager.h; sourceTree = "<group>"; };
+		6B3693401D5757B600ED4578 /* DSServiceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSServiceManager.m; sourceTree = "<group>"; };
+		6B3693411D5757B600ED4578 /* DSBaseLoggedService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBaseLoggedService.h; sourceTree = "<group>"; };
+		6B3693421D5757B600ED4578 /* DSBaseLoggedService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBaseLoggedService.m; sourceTree = "<group>"; };
+		6B3693431D5757B600ED4578 /* DSExternalJournalCloud.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSExternalJournalCloud.h; sourceTree = "<group>"; };
+		6B3693441D5757B600ED4578 /* DSExternalJournalCloud.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSExternalJournalCloud.m; sourceTree = "<group>"; };
+		6B3693451D5757B600ED4578 /* DSStreamerDaemon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSStreamerDaemon.h; sourceTree = "<group>"; };
+		6B3693461D5757B600ED4578 /* DSStreamerDaemon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSStreamerDaemon.m; sourceTree = "<group>"; };
+		6B3693471D5757B600ED4578 /* DSLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLogger.h; sourceTree = "<group>"; };
+		6B3693481D5757B600ED4578 /* DSLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLogger.m; sourceTree = "<group>"; };
+		6B36934F1D5757DC00ED4578 /* DSSendingEventInterfaces.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSSendingEventInterfaces.h; sourceTree = "<group>"; };
+		6B3693501D5757DC00ED4578 /* DSEventFactoryProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSEventFactoryProtocol.h; sourceTree = "<group>"; };
+		6B3693511D5757DC00ED4578 /* DSStreamingComplexEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSStreamingComplexEvent.h; sourceTree = "<group>"; };
+		6B3693521D5757DC00ED4578 /* DSStreamingComplexEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSStreamingComplexEvent.m; sourceTree = "<group>"; };
+		6B3693561D57581900ED4578 /* DSFileEventFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFileEventFactory.h; sourceTree = "<group>"; };
+		6B3693571D57581900ED4578 /* DSFileEventFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFileEventFactory.m; sourceTree = "<group>"; };
+		6B3693581D57581900ED4578 /* DSStreamingFileEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSStreamingFileEvent.h; sourceTree = "<group>"; };
+		6B3693591D57581900ED4578 /* DSStreamingFileEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSStreamingFileEvent.m; sourceTree = "<group>"; };
+		6B36935C1D57581E00ED4578 /* DSEmailEventFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSEmailEventFactory.h; sourceTree = "<group>"; };
+		6B36935D1D57581E00ED4578 /* DSEmailEventFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSEmailEventFactory.m; sourceTree = "<group>"; };
+		6B36935E1D57581E00ED4578 /* DSStreamingEmailEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSStreamingEmailEvent.h; sourceTree = "<group>"; };
+		6B36935F1D57581E00ED4578 /* DSStreamingEmailEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSStreamingEmailEvent.m; sourceTree = "<group>"; };
+		6B3693631D57583900ED4578 /* DSJournal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSJournal.h; sourceTree = "<group>"; };
+		6B3693641D57583900ED4578 /* DSJournal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSJournal.m; sourceTree = "<group>"; };
+		6B3693651D57583900ED4578 /* DSJournalDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSJournalDefines.h; sourceTree = "<group>"; };
+		6B3693681D57585D00ED4578 /* DSJournalMappingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSJournalMappingProtocol.h; sourceTree = "<group>"; };
+		6B3693691D57585D00ED4578 /* DSMappingHelpfulFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSMappingHelpfulFunctions.h; sourceTree = "<group>"; };
+		6B36936A1D57585D00ED4578 /* DSMappingHelpfulFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSMappingHelpfulFunctions.m; sourceTree = "<group>"; };
+		6B36936B1D57585D00ED4578 /* DSJournalJSONMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSJournalJSONMapper.h; sourceTree = "<group>"; };
+		6B36936C1D57585D00ED4578 /* DSJournalJSONMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSJournalJSONMapper.m; sourceTree = "<group>"; };
+		6B36936D1D57585D00ED4578 /* DSJournalXMLMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSJournalXMLMapper.h; sourceTree = "<group>"; };
+		6B36936E1D57585D00ED4578 /* DSJournalXMLMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSJournalXMLMapper.m; sourceTree = "<group>"; };
+		6B36936F1D57585D00ED4578 /* DSJournalStringDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSJournalStringDescriptor.h; sourceTree = "<group>"; };
+		6B3693701D57585D00ED4578 /* DSJournalStringDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSJournalStringDescriptor.m; sourceTree = "<group>"; };
+		6B3693761D57588600ED4578 /* DSReporting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSReporting.h; sourceTree = "<group>"; };
+		6B3693781D5758A800ED4578 /* DSBaseMappingReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBaseMappingReporter.h; sourceTree = "<group>"; };
+		6B3693791D5758A800ED4578 /* DSBaseMappingReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBaseMappingReporter.m; sourceTree = "<group>"; };
+		6B36937A1D5758A800ED4578 /* DSBaseEventBuiltInReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBaseEventBuiltInReporter.h; sourceTree = "<group>"; };
+		6B36937B1D5758A800ED4578 /* DSBaseEventBuiltInReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBaseEventBuiltInReporter.m; sourceTree = "<group>"; };
+		6B36937F1D5758C900ED4578 /* DSBaseEmailReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBaseEmailReporter.h; sourceTree = "<group>"; };
+		6B3693801D5758C900ED4578 /* DSBaseEmailReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBaseEmailReporter.m; sourceTree = "<group>"; };
+		6B3693811D5758C900ED4578 /* DSEventSupportedEmailReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSEventSupportedEmailReporter.h; sourceTree = "<group>"; };
+		6B3693821D5758C900ED4578 /* DSEventSupportedEmailReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSEventSupportedEmailReporter.m; sourceTree = "<group>"; };
+		6B3693861D5758EC00ED4578 /* DSOutputConsoleReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSOutputConsoleReporter.h; sourceTree = "<group>"; };
+		6B3693871D5758EC00ED4578 /* DSOutputConsoleReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSOutputConsoleReporter.m; sourceTree = "<group>"; };
+		6B3693881D5758EC00ED4578 /* DSFileReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFileReporter.h; sourceTree = "<group>"; };
+		6B3693891D5758EC00ED4578 /* DSFileReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSFileReporter.m; sourceTree = "<group>"; };
+		6B36938A1D5758EC00ED4578 /* DSNetworkReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSNetworkReporter.h; sourceTree = "<group>"; };
+		6B36938B1D5758EC00ED4578 /* DSNetworkReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSNetworkReporter.m; sourceTree = "<group>"; };
+		6B36938C1D5758EC00ED4578 /* DSRemoteTelnetReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSRemoteTelnetReporter.h; sourceTree = "<group>"; };
+		6B36938D1D5758EC00ED4578 /* DSRemoteTelnetReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSRemoteTelnetReporter.m; sourceTree = "<group>"; };
+		6B3693931D57591700ED4578 /* DSStreamingDatabaseEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSStreamingDatabaseEvent.h; sourceTree = "<group>"; };
+		6B3693941D57591700ED4578 /* DSStreamingDatabaseEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSStreamingDatabaseEvent.m; sourceTree = "<group>"; };
+		6B3693951D57591700ED4578 /* DSAdaptedObjectsFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAdaptedObjectsFactory.h; sourceTree = "<group>"; };
+		6B3693961D57591700ED4578 /* DSAdaptedObjectsFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAdaptedObjectsFactory.m; sourceTree = "<group>"; };
+		6B3693971D57591700ED4578 /* DSLocalSQLEntitiesProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLocalSQLEntitiesProvider.h; sourceTree = "<group>"; };
+		6B3693981D57591700ED4578 /* DSLocalSQLEntitiesProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLocalSQLEntitiesProvider.m; sourceTree = "<group>"; };
+		6B3693991D57591700ED4578 /* DSLocalDBModels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLocalDBModels.h; sourceTree = "<group>"; };
+		6B36939E1D57593D00ED4578 /* DSAdaptedDBJournal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAdaptedDBJournal.h; sourceTree = "<group>"; };
+		6B36939F1D57593D00ED4578 /* DSAdaptedDBJournal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAdaptedDBJournal.m; sourceTree = "<group>"; };
+		6B3693A01D57593D00ED4578 /* DSAdaptedDBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAdaptedDBService.h; sourceTree = "<group>"; };
+		6B3693A11D57593D00ED4578 /* DSAdaptedDBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAdaptedDBService.m; sourceTree = "<group>"; };
+		6B3693A21D57593D00ED4578 /* DSAdaptedDBJournalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAdaptedDBJournalRecord.h; sourceTree = "<group>"; };
+		6B3693A31D57593D00ED4578 /* DSAdaptedDBJournalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAdaptedDBJournalRecord.m; sourceTree = "<group>"; };
+		6B3693A41D57593D00ED4578 /* DSAdaptedDBError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSAdaptedDBError.h; sourceTree = "<group>"; };
+		6B3693A51D57593D00ED4578 /* DSAdaptedDBError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSAdaptedDBError.m; sourceTree = "<group>"; };
+		6B3693AB1D57596000ED4578 /* DSAdaptedDBJournal+Convertation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DSAdaptedDBJournal+Convertation.h"; sourceTree = "<group>"; };
+		6B3693AC1D57596000ED4578 /* DSAdaptedDBJournal+Convertation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DSAdaptedDBJournal+Convertation.m"; sourceTree = "<group>"; };
+		6B3693AD1D57596000ED4578 /* DSAdaptedDBService+Convertation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DSAdaptedDBService+Convertation.h"; sourceTree = "<group>"; };
+		6B3693AE1D57596000ED4578 /* DSAdaptedDBService+Convertation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DSAdaptedDBService+Convertation.m"; sourceTree = "<group>"; };
+		6B3693AF1D57596000ED4578 /* DSAdaptedDBJournalRecord+Convertation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DSAdaptedDBJournalRecord+Convertation.h"; sourceTree = "<group>"; };
+		6B3693B01D57596000ED4578 /* DSAdaptedDBJournalRecord+Convertation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DSAdaptedDBJournalRecord+Convertation.m"; sourceTree = "<group>"; };
+		6B3693B11D57596000ED4578 /* DSAdaptedDBError+Convertation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DSAdaptedDBError+Convertation.h"; sourceTree = "<group>"; };
+		6B3693B21D57596000ED4578 /* DSAdaptedDBError+Convertation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DSAdaptedDBError+Convertation.m"; sourceTree = "<group>"; };
+		6B3693B71D57596F00ED4578 /* DSLocalSQLDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLocalSQLDatabase.h; sourceTree = "<group>"; };
+		6B3693B81D57596F00ED4578 /* DSLocalSQLDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLocalSQLDatabase.m; sourceTree = "<group>"; };
+		6B3693B91D57596F00ED4578 /* DSLocalSQLDatabaseReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSLocalSQLDatabaseReporter.h; sourceTree = "<group>"; };
+		6B3693BA1D57596F00ED4578 /* DSLocalSQLDatabaseReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSLocalSQLDatabaseReporter.m; sourceTree = "<group>"; };
+		6B3693BF1D5759B300ED4578 /* BBAES.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAES.h; sourceTree = "<group>"; };
+		6B3693C01D5759B300ED4578 /* BBAES.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAES.m; sourceTree = "<group>"; };
+		6B3693C21D5759BA00ED4578 /* DSEmailReporterProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DSEmailReporterProtocol.h; sourceTree = "<group>"; };
+		6B3693C41D5759D700ED4578 /* DSPresentingEmailReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSPresentingEmailReporter.h; sourceTree = "<group>"; };
+		6B3693C51D5759D700ED4578 /* DSPresentingEmailReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSPresentingEmailReporter.m; sourceTree = "<group>"; };
+		6B3693C61D5759D700ED4578 /* DSEmailHiddenReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSEmailHiddenReporter.h; sourceTree = "<group>"; };
+		6B3693C71D5759D700ED4578 /* DSEmailHiddenReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSEmailHiddenReporter.m; sourceTree = "<group>"; };
+		6B3693CB1D575A0E00ED4578 /* NSString+DSEmailValidation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+DSEmailValidation.h"; sourceTree = "<group>"; };
+		6B3693CC1D575A0E00ED4578 /* NSString+DSEmailValidation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+DSEmailValidation.m"; sourceTree = "<group>"; };
+		6B3693CD1D575A0E00ED4578 /* UIWindow+DSControllerDetermination.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+DSControllerDetermination.h"; sourceTree = "<group>"; };
+		6B3693CE1D575A0E00ED4578 /* UIWindow+DSControllerDetermination.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+DSControllerDetermination.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +215,9 @@
 				6B3693111D57571700ED4578 /* AppDelegate.m */,
 				6B3693131D57571700ED4578 /* ViewController.h */,
 				6B3693141D57571700ED4578 /* ViewController.m */,
+				6B3693241D57574200ED4578 /* TSVCLocationManager.h */,
+				6B3693251D57574300ED4578 /* TSVCLocationManager.m */,
+				6B3693271D57574F00ED4578 /* DeepStorm */,
 				6B3693161D57571700ED4578 /* Main.storyboard */,
 				6B3693191D57571700ED4578 /* Assets.xcassets */,
 				6B36931B1D57571700ED4578 /* LaunchScreen.storyboard */,
@@ -77,6 +233,267 @@
 				6B36930E1D57571700ED4578 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6B3693271D57574F00ED4578 /* DeepStorm */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693281D57575E00ED4578 /* DeepStorm.h */,
+				6B3693291D57575E00ED4578 /* DSIdeaHeader.h */,
+				6B36932A1D57575E00ED4578 /* LICENSE.txt */,
+				6B36932B1D57575E00ED4578 /* NOTICE.txt */,
+				6B36932C1D57575E00ED4578 /* README.md */,
+				6B36932D1D57575E00ED4578 /* DS_ECreds.plist */,
+				6B3693321D57576D00ED4578 /* Streaming */,
+				6B36933E1D5757A200ED4578 /* Top Level Abstractions */,
+				6B36934E1D5757C700ED4578 /* Sending Events */,
+				6B3693621D57582D00ED4578 /* Journalling */,
+				6B3693751D57587B00ED4578 /* Reporting */,
+			);
+			name = DeepStorm;
+			sourceTree = "<group>";
+		};
+		6B3693321D57576D00ED4578 /* Streaming */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693331D57577800ED4578 /* DSStreamingInterfaces.h */,
+				6B3693341D57577800ED4578 /* DSStreamingQueue.h */,
+				6B3693351D57577800ED4578 /* DSStreamingQueue.m */,
+				6B3693371D57578500ED4578 /* Custom Streamers */,
+			);
+			name = Streaming;
+			sourceTree = "<group>";
+		};
+		6B3693371D57578500ED4578 /* Custom Streamers */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693381D57579100ED4578 /* DSBasePeriodicStreamer.h */,
+				6B3693391D57579100ED4578 /* DSBasePeriodicStreamer.m */,
+				6B36933A1D57579100ED4578 /* DSBaseObservableStreamer.h */,
+				6B36933B1D57579100ED4578 /* DSBaseObservableStreamer.m */,
+			);
+			name = "Custom Streamers";
+			sourceTree = "<group>";
+		};
+		6B36933E1D5757A200ED4578 /* Top Level Abstractions */ = {
+			isa = PBXGroup;
+			children = (
+				6B36933F1D5757B600ED4578 /* DSServiceManager.h */,
+				6B3693401D5757B600ED4578 /* DSServiceManager.m */,
+				6B3693411D5757B600ED4578 /* DSBaseLoggedService.h */,
+				6B3693421D5757B600ED4578 /* DSBaseLoggedService.m */,
+				6B3693431D5757B600ED4578 /* DSExternalJournalCloud.h */,
+				6B3693441D5757B600ED4578 /* DSExternalJournalCloud.m */,
+				6B3693451D5757B600ED4578 /* DSStreamerDaemon.h */,
+				6B3693461D5757B600ED4578 /* DSStreamerDaemon.m */,
+				6B3693471D5757B600ED4578 /* DSLogger.h */,
+				6B3693481D5757B600ED4578 /* DSLogger.m */,
+			);
+			name = "Top Level Abstractions";
+			sourceTree = "<group>";
+		};
+		6B36934E1D5757C700ED4578 /* Sending Events */ = {
+			isa = PBXGroup;
+			children = (
+				6B36934F1D5757DC00ED4578 /* DSSendingEventInterfaces.h */,
+				6B3693501D5757DC00ED4578 /* DSEventFactoryProtocol.h */,
+				6B3693511D5757DC00ED4578 /* DSStreamingComplexEvent.h */,
+				6B3693521D5757DC00ED4578 /* DSStreamingComplexEvent.m */,
+				6B3693541D5757E200ED4578 /* File Events */,
+				6B3693551D5757FD00ED4578 /* Email Events */,
+			);
+			name = "Sending Events";
+			sourceTree = "<group>";
+		};
+		6B3693541D5757E200ED4578 /* File Events */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693561D57581900ED4578 /* DSFileEventFactory.h */,
+				6B3693571D57581900ED4578 /* DSFileEventFactory.m */,
+				6B3693581D57581900ED4578 /* DSStreamingFileEvent.h */,
+				6B3693591D57581900ED4578 /* DSStreamingFileEvent.m */,
+			);
+			name = "File Events";
+			sourceTree = "<group>";
+		};
+		6B3693551D5757FD00ED4578 /* Email Events */ = {
+			isa = PBXGroup;
+			children = (
+				6B36935C1D57581E00ED4578 /* DSEmailEventFactory.h */,
+				6B36935D1D57581E00ED4578 /* DSEmailEventFactory.m */,
+				6B36935E1D57581E00ED4578 /* DSStreamingEmailEvent.h */,
+				6B36935F1D57581E00ED4578 /* DSStreamingEmailEvent.m */,
+			);
+			name = "Email Events";
+			sourceTree = "<group>";
+		};
+		6B3693621D57582D00ED4578 /* Journalling */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693631D57583900ED4578 /* DSJournal.h */,
+				6B3693641D57583900ED4578 /* DSJournal.m */,
+				6B3693651D57583900ED4578 /* DSJournalDefines.h */,
+				6B3693671D57584E00ED4578 /* Object Mapping */,
+			);
+			name = Journalling;
+			sourceTree = "<group>";
+		};
+		6B3693671D57584E00ED4578 /* Object Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693681D57585D00ED4578 /* DSJournalMappingProtocol.h */,
+				6B3693691D57585D00ED4578 /* DSMappingHelpfulFunctions.h */,
+				6B36936A1D57585D00ED4578 /* DSMappingHelpfulFunctions.m */,
+				6B36936B1D57585D00ED4578 /* DSJournalJSONMapper.h */,
+				6B36936C1D57585D00ED4578 /* DSJournalJSONMapper.m */,
+				6B36936D1D57585D00ED4578 /* DSJournalXMLMapper.h */,
+				6B36936E1D57585D00ED4578 /* DSJournalXMLMapper.m */,
+				6B36936F1D57585D00ED4578 /* DSJournalStringDescriptor.h */,
+				6B3693701D57585D00ED4578 /* DSJournalStringDescriptor.m */,
+			);
+			name = "Object Mapping";
+			sourceTree = "<group>";
+		};
+		6B3693751D57587B00ED4578 /* Reporting */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693761D57588600ED4578 /* DSReporting.h */,
+				6B3693771D57589000ED4578 /* Base Superclass Reporters */,
+				6B3693851D5758DA00ED4578 /* Custom Reporters */,
+			);
+			name = Reporting;
+			sourceTree = "<group>";
+		};
+		6B3693771D57589000ED4578 /* Base Superclass Reporters */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693781D5758A800ED4578 /* DSBaseMappingReporter.h */,
+				6B3693791D5758A800ED4578 /* DSBaseMappingReporter.m */,
+				6B36937A1D5758A800ED4578 /* DSBaseEventBuiltInReporter.h */,
+				6B36937B1D5758A800ED4578 /* DSBaseEventBuiltInReporter.m */,
+				6B36937E1D5758B900ED4578 /* Superclass Email Reporters */,
+			);
+			name = "Base Superclass Reporters";
+			sourceTree = "<group>";
+		};
+		6B36937E1D5758B900ED4578 /* Superclass Email Reporters */ = {
+			isa = PBXGroup;
+			children = (
+				6B36937F1D5758C900ED4578 /* DSBaseEmailReporter.h */,
+				6B3693801D5758C900ED4578 /* DSBaseEmailReporter.m */,
+				6B3693811D5758C900ED4578 /* DSEventSupportedEmailReporter.h */,
+				6B3693821D5758C900ED4578 /* DSEventSupportedEmailReporter.m */,
+			);
+			name = "Superclass Email Reporters";
+			sourceTree = "<group>";
+		};
+		6B3693851D5758DA00ED4578 /* Custom Reporters */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693861D5758EC00ED4578 /* DSOutputConsoleReporter.h */,
+				6B3693871D5758EC00ED4578 /* DSOutputConsoleReporter.m */,
+				6B3693881D5758EC00ED4578 /* DSFileReporter.h */,
+				6B3693891D5758EC00ED4578 /* DSFileReporter.m */,
+				6B36938A1D5758EC00ED4578 /* DSNetworkReporter.h */,
+				6B36938B1D5758EC00ED4578 /* DSNetworkReporter.m */,
+				6B3693BD1D57599100ED4578 /* Email Reporters */,
+				6B36938C1D5758EC00ED4578 /* DSRemoteTelnetReporter.h */,
+				6B36938D1D5758EC00ED4578 /* DSRemoteTelnetReporter.m */,
+				6B3693921D57590000ED4578 /* Local DB Reporters */,
+			);
+			name = "Custom Reporters";
+			sourceTree = "<group>";
+		};
+		6B3693921D57590000ED4578 /* Local DB Reporters */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693931D57591700ED4578 /* DSStreamingDatabaseEvent.h */,
+				6B3693941D57591700ED4578 /* DSStreamingDatabaseEvent.m */,
+				6B3693951D57591700ED4578 /* DSAdaptedObjectsFactory.h */,
+				6B3693961D57591700ED4578 /* DSAdaptedObjectsFactory.m */,
+				6B3693971D57591700ED4578 /* DSLocalSQLEntitiesProvider.h */,
+				6B3693981D57591700ED4578 /* DSLocalSQLEntitiesProvider.m */,
+				6B3693991D57591700ED4578 /* DSLocalDBModels.h */,
+				6B36939D1D57592A00ED4578 /* Local DB Models */,
+				6B3693AA1D57594900ED4578 /* Convertation DB Models */,
+				6B3693B71D57596F00ED4578 /* DSLocalSQLDatabase.h */,
+				6B3693B81D57596F00ED4578 /* DSLocalSQLDatabase.m */,
+				6B3693B91D57596F00ED4578 /* DSLocalSQLDatabaseReporter.h */,
+				6B3693BA1D57596F00ED4578 /* DSLocalSQLDatabaseReporter.m */,
+			);
+			name = "Local DB Reporters";
+			sourceTree = "<group>";
+		};
+		6B36939D1D57592A00ED4578 /* Local DB Models */ = {
+			isa = PBXGroup;
+			children = (
+				6B36939E1D57593D00ED4578 /* DSAdaptedDBJournal.h */,
+				6B36939F1D57593D00ED4578 /* DSAdaptedDBJournal.m */,
+				6B3693A01D57593D00ED4578 /* DSAdaptedDBService.h */,
+				6B3693A11D57593D00ED4578 /* DSAdaptedDBService.m */,
+				6B3693A21D57593D00ED4578 /* DSAdaptedDBJournalRecord.h */,
+				6B3693A31D57593D00ED4578 /* DSAdaptedDBJournalRecord.m */,
+				6B3693A41D57593D00ED4578 /* DSAdaptedDBError.h */,
+				6B3693A51D57593D00ED4578 /* DSAdaptedDBError.m */,
+			);
+			name = "Local DB Models";
+			sourceTree = "<group>";
+		};
+		6B3693AA1D57594900ED4578 /* Convertation DB Models */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693AB1D57596000ED4578 /* DSAdaptedDBJournal+Convertation.h */,
+				6B3693AC1D57596000ED4578 /* DSAdaptedDBJournal+Convertation.m */,
+				6B3693AD1D57596000ED4578 /* DSAdaptedDBService+Convertation.h */,
+				6B3693AE1D57596000ED4578 /* DSAdaptedDBService+Convertation.m */,
+				6B3693AF1D57596000ED4578 /* DSAdaptedDBJournalRecord+Convertation.h */,
+				6B3693B01D57596000ED4578 /* DSAdaptedDBJournalRecord+Convertation.m */,
+				6B3693B11D57596000ED4578 /* DSAdaptedDBError+Convertation.h */,
+				6B3693B21D57596000ED4578 /* DSAdaptedDBError+Convertation.m */,
+			);
+			name = "Convertation DB Models";
+			sourceTree = "<group>";
+		};
+		6B3693BD1D57599100ED4578 /* Email Reporters */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693BE1D5759A600ED4578 /* Encrypt AES Library */,
+				6B3693C21D5759BA00ED4578 /* DSEmailReporterProtocol.h */,
+				6B3693C31D5759C500ED4578 /* Fight Email Reporters */,
+				6B3693CA1D5759E800ED4578 /* Additional Categories for Emailing */,
+			);
+			name = "Email Reporters";
+			sourceTree = "<group>";
+		};
+		6B3693BE1D5759A600ED4578 /* Encrypt AES Library */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693BF1D5759B300ED4578 /* BBAES.h */,
+				6B3693C01D5759B300ED4578 /* BBAES.m */,
+			);
+			name = "Encrypt AES Library";
+			sourceTree = "<group>";
+		};
+		6B3693C31D5759C500ED4578 /* Fight Email Reporters */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693C41D5759D700ED4578 /* DSPresentingEmailReporter.h */,
+				6B3693C51D5759D700ED4578 /* DSPresentingEmailReporter.m */,
+				6B3693C61D5759D700ED4578 /* DSEmailHiddenReporter.h */,
+				6B3693C71D5759D700ED4578 /* DSEmailHiddenReporter.m */,
+			);
+			name = "Fight Email Reporters";
+			sourceTree = "<group>";
+		};
+		6B3693CA1D5759E800ED4578 /* Additional Categories for Emailing */ = {
+			isa = PBXGroup;
+			children = (
+				6B3693CB1D575A0E00ED4578 /* NSString+DSEmailValidation.h */,
+				6B3693CC1D575A0E00ED4578 /* NSString+DSEmailValidation.m */,
+				6B3693CD1D575A0E00ED4578 /* UIWindow+DSControllerDetermination.h */,
+				6B3693CE1D575A0E00ED4578 /* UIWindow+DSControllerDetermination.m */,
+			);
+			name = "Additional Categories for Emailing";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -110,6 +527,7 @@
 				TargetAttributes = {
 					6B3693091D57571700ED4578 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = G66E5Z7S9K;
 					};
 				};
 			};
@@ -136,6 +554,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B36932F1D57575E00ED4578 /* NOTICE.txt in Resources */,
+				6B3693311D57575E00ED4578 /* DS_ECreds.plist in Resources */,
+				6B36932E1D57575E00ED4578 /* LICENSE.txt in Resources */,
 				6B36931D1D57571700ED4578 /* LaunchScreen.storyboard in Resources */,
 				6B36931A1D57571700ED4578 /* Assets.xcassets in Resources */,
 				6B3693181D57571700ED4578 /* Main.storyboard in Resources */,
@@ -149,9 +570,55 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B3693901D5758EC00ED4578 /* DSNetworkReporter.m in Sources */,
+				6B3693C91D5759D700ED4578 /* DSEmailHiddenReporter.m in Sources */,
+				6B36939C1D57591700ED4578 /* DSLocalSQLEntitiesProvider.m in Sources */,
+				6B36938F1D5758EC00ED4578 /* DSFileReporter.m in Sources */,
+				6B3693261D57574300ED4578 /* TSVCLocationManager.m in Sources */,
+				6B3693B51D57596000ED4578 /* DSAdaptedDBJournalRecord+Convertation.m in Sources */,
+				6B3693611D57581E00ED4578 /* DSStreamingEmailEvent.m in Sources */,
+				6B3693D01D575A0E00ED4578 /* UIWindow+DSControllerDetermination.m in Sources */,
+				6B36934D1D5757B600ED4578 /* DSLogger.m in Sources */,
+				6B36937D1D5758A800ED4578 /* DSBaseEventBuiltInReporter.m in Sources */,
+				6B3693721D57585D00ED4578 /* DSJournalJSONMapper.m in Sources */,
+				6B3693A71D57593D00ED4578 /* DSAdaptedDBService.m in Sources */,
+				6B3693A81D57593D00ED4578 /* DSAdaptedDBJournalRecord.m in Sources */,
+				6B3693C81D5759D700ED4578 /* DSPresentingEmailReporter.m in Sources */,
+				6B3693601D57581E00ED4578 /* DSEmailEventFactory.m in Sources */,
+				6B3693BB1D57596F00ED4578 /* DSLocalSQLDatabase.m in Sources */,
+				6B36934B1D5757B600ED4578 /* DSExternalJournalCloud.m in Sources */,
+				6B36939B1D57591700ED4578 /* DSAdaptedObjectsFactory.m in Sources */,
+				6B3693741D57585D00ED4578 /* DSJournalStringDescriptor.m in Sources */,
+				6B36934A1D5757B600ED4578 /* DSBaseLoggedService.m in Sources */,
+				6B3693731D57585D00ED4578 /* DSJournalXMLMapper.m in Sources */,
+				6B3693A61D57593D00ED4578 /* DSAdaptedDBJournal.m in Sources */,
+				6B36935B1D57581900ED4578 /* DSStreamingFileEvent.m in Sources */,
+				6B36939A1D57591700ED4578 /* DSStreamingDatabaseEvent.m in Sources */,
+				6B36934C1D5757B600ED4578 /* DSStreamerDaemon.m in Sources */,
+				6B3693B41D57596000ED4578 /* DSAdaptedDBService+Convertation.m in Sources */,
+				6B3693B31D57596000ED4578 /* DSAdaptedDBJournal+Convertation.m in Sources */,
+				6B3693B61D57596000ED4578 /* DSAdaptedDBError+Convertation.m in Sources */,
+				6B3693BC1D57596F00ED4578 /* DSLocalSQLDatabaseReporter.m in Sources */,
+				6B3693911D5758EC00ED4578 /* DSRemoteTelnetReporter.m in Sources */,
+				6B3693A91D57593D00ED4578 /* DSAdaptedDBError.m in Sources */,
+				6B36937C1D5758A800ED4578 /* DSBaseMappingReporter.m in Sources */,
+				6B3693491D5757B600ED4578 /* DSServiceManager.m in Sources */,
+				6B36938E1D5758EC00ED4578 /* DSOutputConsoleReporter.m in Sources */,
+				6B36933C1D57579100ED4578 /* DSBasePeriodicStreamer.m in Sources */,
+				6B3693831D5758C900ED4578 /* DSBaseEmailReporter.m in Sources */,
+				6B3693361D57577800ED4578 /* DSStreamingQueue.m in Sources */,
+				6B3693CF1D575A0E00ED4578 /* NSString+DSEmailValidation.m in Sources */,
 				6B3693151D57571700ED4578 /* ViewController.m in Sources */,
+				6B3693531D5757DC00ED4578 /* DSStreamingComplexEvent.m in Sources */,
+				6B36935A1D57581900ED4578 /* DSFileEventFactory.m in Sources */,
+				6B3693841D5758C900ED4578 /* DSEventSupportedEmailReporter.m in Sources */,
+				6B3693301D57575E00ED4578 /* README.md in Sources */,
+				6B3693C11D5759B300ED4578 /* BBAES.m in Sources */,
 				6B3693121D57571700ED4578 /* AppDelegate.m in Sources */,
+				6B3693661D57583900ED4578 /* DSJournal.m in Sources */,
 				6B36930F1D57571700ED4578 /* main.m in Sources */,
+				6B3693711D57585D00ED4578 /* DSMappingHelpfulFunctions.m in Sources */,
+				6B36933D1D57579100ED4578 /* DSBaseObservableStreamer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +732,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DeepStormProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-11.DeepStormProject";
@@ -276,6 +744,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = DeepStormProject/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "-11.DeepStormProject";
