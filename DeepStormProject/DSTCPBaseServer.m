@@ -7,7 +7,18 @@
 //
 
 #import "DSTCPBaseServer.h"
+#import "DSTCPConnection.h"
 
 @implementation DSTCPBaseServer
+
+- (instancetype)initWebServer{
+    
+    self = [super initWithConnectionClass:[DSTCPConnection class] port:8080];
+    if(self){
+        
+    }
+    return self;
+}
+
 
 @end

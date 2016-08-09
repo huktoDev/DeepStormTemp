@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GCDNetworking.h"
 
-@interface DSTCPConnection : NSObject
+@interface DSTCPConnection : GCDTCPServerConnection
 
 @end

@@ -6,8 +6,11 @@
 //  Copyright © 2016 Alexandr Babenko. All rights reserved.
 //
 
-#import "DSTCPBasePeer.h"
+#import <Foundation/Foundation.h>
+#import "GCDNetworking.h"
 
-@interface DSTCPBaseServer : DSTCPBasePeer
+@interface DSTCPBaseServer : GCDTCPServer
+
+- (instancetype)initWebServer;
 
 @end
