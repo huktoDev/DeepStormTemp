@@ -1,0 +1,443 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+
+
+
+
+
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+<title>Agile Board - Improve Group JIRA</title>
+<meta name="application-name" content="JIRA" data-name="jira" data-version="6.4.7"><meta name="ajs-dev-mode" content="false">
+<meta name="ajs-context-path" content="">
+<meta name="ajs-version-number" content="6.4.7">
+<meta name="ajs-build-number" content="64022">
+<meta name="ajs-is-beta" content="false">
+<meta name="ajs-is-rc" content="false">
+<meta name="ajs-is-snapshot" content="false">
+<meta name="ajs-is-milestone" content="false">
+<meta name="ajs-remote-user" content="ababenko">
+<meta name="ajs-remote-user-fullname" content="Alexandr Babenko">
+<meta name="ajs-user-locale" content="en_US">
+<meta name="ajs-user-locale-group-separator" content=",">
+<meta name="ajs-app-title" content="Improve Group JIRA">
+<meta name="ajs-keyboard-shortcuts-enabled" content="true">
+<meta name="ajs-keyboard-accesskey-modifier" content="Ctrl+Alt">
+<meta name="ajs-enabled-dark-features" content="[&quot;com.atlassian.jira.projects.issuenavigator&quot;,&quot;com.atlassian.jira.projects.ProjectCentricNavigation.Switch&quot;,&quot;jira.plugin.devstatus.phasetwo.enabled&quot;,&quot;com.atlassian.jira.config.PDL&quot;,&quot;jira.frother.reporter.field&quot;,&quot;jira.plugin.devstatus.phasetwo&quot;,&quot;com.atlassian.jira.darkfeature.CommonHeader&quot;,&quot;app-switcher.new&quot;,&quot;frother.assignee.field&quot;,&quot;jira.issue.status.lozenge&quot;]">
+<meta name="ajs-date-relativize" content="true">
+<meta name="ajs-date-time" content="h:mm a">
+<meta name="ajs-date-day" content="EEEE h:mm a">
+<meta name="ajs-date-dmy" content="dd/MMM/yy">
+<meta name="ajs-date-complete" content="dd/MMM/yy h:mm a">
+<meta name="ajs-in-admin-mode" content="false">
+<meta name="ajs-is-sysadmin" content="false">
+<meta name="ajs-is-admin" content="false">
+<meta name="ajs-outgoing-mail-enabled" content="true">
+<meta name="ajs-gebsun-authorized-projects-list" content="SMSFAPP,BBRDM">
+<meta name="ajs-gebsun-user" content="ababenko"><meta name="ajs-gebsun-export-button-enabled" content="false"><meta name="ajs-gebsun-has-worklog-permission-project-flag" content="true"><meta name="ajs-gebsun-has-valid-license-flag" content="true"><script type="text/javascript">var AJS=AJS||{};AJS.debug=true;</script>
+
+
+    
+<meta id="atlassian-token" name="atlassian-token" content="B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin">
+
+
+
+<link rel="shortcut icon" href="/s/en_US-4xq5bd/64022/19/_/favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="/osd.jsp" title="Agile Board - Improve Group JIRA"/>
+
+    
+
+
+<!--[if IE]><![endif]-->
+<script type="text/javascript">var contextPath = '';</script>
+<script>
+window.WRM=window.WRM||{};window.WRM._unparsedData=window.WRM._unparsedData||{};
+WRM._unparsedData["com.atlassian.plugins.atlassian-plugins-webresource-plugin:context-path.context-path"]="\"\"";
+WRM._unparsedData["jira.webresources:dateFormatProvider.dateFormat"]="{\"meridiem\":[\"AM\",\"PM\"],\"eras\":[\"BC\",\"AD\"],\"months\":[\"January\",\"February\",\"March\",\"April\",\"May\",\"June\",\"July\",\"August\",\"September\",\"October\",\"November\",\"December\"],\"monthsShort\":[\"Jan\",\"Feb\",\"Mar\",\"Apr\",\"May\",\"Jun\",\"Jul\",\"Aug\",\"Sep\",\"Oct\",\"Nov\",\"Dec\"],\"weekdaysShort\":[\"Sun\",\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\",\"Sat\"],\"weekdays\":[\"Sunday\",\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\",\"Saturday\"]}";
+WRM._unparsedData["com.atlassian.jira.jira-header-plugin:dismissedFlags.flags"]="{\"dismissed\":[\"com.atlassian.jira.tzdetect.18000000,18000000\",\"com.atlassian.jira.tzdetect.7200000,10800000\"]}";
+WRM._unparsedData["com.atlassian.jira.jira-header-plugin:newsletter-signup-tip.newsletterSignup"]="{\"formUrl\":\"https://www.atlassian.com/apis/exact-target/{0}/subscribe?mailingListId=1239131\",\"userEmail\":\"babenko@improveitgroup.com\",\"showNewsletterTip\":true}";
+WRM._unparsedData["com.atlassian.jira.plugins.greenhopper-marketing-plugin:gh-advertising-resources.urls"]="{\"hamlet\":\"https://hamlet.atlassian.com/\",\"lasso\":\"https://id.atlassian.com/\",\"mac\":\"https://my.atlassian.com\"}";
+WRM._unparsedData["com.atlassian.jira.plugins.jira-admin-helper-plugin:notification-event-provider.notification-event-data"]="[{\"id\":1,\"name\":\"Issue Created\",\"isDefault\":true},{\"id\":2,\"name\":\"Issue Updated\"},{\"id\":3,\"name\":\"Issue Assigned\"},{\"id\":4,\"name\":\"Issue Resolved\"},{\"id\":5,\"name\":\"Issue Closed\"},{\"id\":6,\"name\":\"Issue Commented\"},{\"id\":14,\"name\":\"Issue Comment Edited\"},{\"id\":17,\"name\":\"Issue Comment Deleted\"},{\"id\":7,\"name\":\"Issue Reopened\"},{\"id\":8,\"name\":\"Issue Deleted\"},{\"id\":9,\"name\":\"Issue Moved\"},{\"id\":10,\"name\":\"Work Logged On Issue\"},{\"id\":11,\"name\":\"Work Started On Issue\"},{\"id\":12,\"name\":\"Work Stopped On Issue\"},{\"id\":15,\"name\":\"Issue Worklog Updated\"},{\"id\":16,\"name\":\"Issue Worklog Deleted\"},{\"id\":13,\"name\":\"Generic Event\"}]";
+WRM._unparsedData["com.atlassian.jira.plugins.jira-admin-helper-plugin:permissions-provider.permissions-data"]="[{\"permissions\":[{\"name\":\"Administer Projects\",\"id\":\"23\"},{\"name\":\"Browse Projects\",\"id\":\"10\"},{\"name\":\"View Development Tools\",\"id\":\"29\"},{\"name\":\"View Read-Only Workflow\",\"id\":\"45\"}],\"name\":\"Project Permissions\"},{\"permissions\":[{\"name\":\"Create Issues\",\"id\":\"11\"},{\"name\":\"Edit Issues\",\"id\":\"12\"},{\"name\":\"Transition Issues\",\"id\":\"46\"},{\"name\":\"Schedule Issues\",\"id\":\"28\"},{\"name\":\"Move Issues\",\"id\":\"25\"},{\"name\":\"Assign Issues\",\"id\":\"13\"},{\"name\":\"Assignable User\",\"id\":\"17\"},{\"name\":\"Resolve Issues\",\"id\":\"14\"},{\"name\":\"Close Issues\",\"id\":\"18\"},{\"name\":\"Modify Reporter\",\"id\":\"30\"},{\"name\":\"Delete Issues\",\"id\":\"16\"},{\"name\":\"Link Issues\",\"id\":\"21\"},{\"name\":\"Set Issue Security\",\"id\":\"26\"}],\"name\":\"Issue Permissions\"},{\"permissions\":[{\"name\":\"View Voters and Watchers\",\"id\":\"31\"},{\"name\":\"Manage Watchers\",\"id\":\"32\"}],\"name\":\"Voters & Watchers Permissions\"},{\"permissions\":[{\"name\":\"Add Comments\",\"id\":\"15\"},{\"name\":\"Edit All Comments\",\"id\":\"34\"},{\"name\":\"Edit Own Comments\",\"id\":\"35\"},{\"name\":\"Delete All Comments\",\"id\":\"36\"},{\"name\":\"Delete Own Comments\",\"id\":\"37\"}],\"name\":\"Comments Permissions\"},{\"permissions\":[{\"name\":\"Create Attachments\",\"id\":\"19\"},{\"name\":\"Delete All Attachments\",\"id\":\"38\"},{\"name\":\"Delete Own Attachments\",\"id\":\"39\"}],\"name\":\"Attachments Permissions\"},{\"permissions\":[{\"name\":\"Work On Issues\",\"id\":\"20\"},{\"name\":\"Edit Own Worklogs\",\"id\":\"40\"},{\"name\":\"Edit All Worklogs\",\"id\":\"41\"},{\"name\":\"Delete Own Worklogs\",\"id\":\"42\"},{\"name\":\"Delete All Worklogs\",\"id\":\"43\"}],\"name\":\"Time Tracking Permissions\"}]";
+WRM._unparsedData["com.atlassian.jira.plugins.jira-dnd-attachment-plugin:drag-and-drop-attachment-javascript.upload-limit"]="\"500485760\"";
+WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:api.feature-data-provider"]="true";
+WRM._unparsedData["com.atlassian.plugins.browser.metrics.browser-metrics-plugin:browser-metrics.feature-data-provider-legacy"]="true";
+WRM._unparsedData["com.atlassian.plugins.helptips.jira-help-tips:common.JiraHelpTipData"]="{\"dismissed\":[\"newsletter-signup-tip\",\"split-view-intro\"],\"anonymous\":false}";
+WRM._unparsedData["com.atlassian.plugins.jira-html5-attach-images:jira-html5-attach-images-resources.resource-uris"]="{\"deployJava.html\":\"/s/en_US-4xq5bd/64022/19/1.5.27/_/download/resources/com.atlassian.plugins.jira-html5-attach-images:jira-html5-attach-images-resources/deployJava.html\",\"clipboard.jar\":\"/s/en_US-4xq5bd/64022/19/1.5.27/_/download/resources/com.atlassian.plugins.jira-html5-attach-images:jira-html5-attach-images-resources/clipboard.jar\",\"clipboard-legacy.jar\":\"/s/en_US-4xq5bd/64022/19/1.5.27/_/download/resources/com.atlassian.plugins.jira-html5-attach-images:jira-html5-attach-images-resources/clipboard-legacy.jar\"}";
+WRM._unparsedData["sidebar-collapsed-by-default"]="true";
+WRM._unparsedData["project-id"]="11703";
+WRM._unparsedData["project-key"]="\"SMSFAPP\"";
+WRM._unparsedData["project-name"]="\"Smsfinance: \u043c\u043e\u0431\u0438\u043b\u044c\u043d\u043e\u0435 \u043f\u0440\u0438\u043b\u043e\u0436\u0435\u043d\u0438\u0435\"";
+WRM._unparsedData["should-display-chaperone"]="false";
+WRM._unparsedData["com.atlassian.jira.projects.shortcuts:can-manage"]="false";
+WRM._unparsedData["com.atlassian.jira.projects.shortcuts:shortcuts"]="[]";
+WRM._unparsedData["com.atlassian.jira.projects.sidebar.feedback-button-disabled"]="false";
+WRM._unparsedData["scope-filter-data"]="{\"selectedScope\":{\"link\":\"/secure/RapidBoard.jspa?rapidView\\u003d21\\u0026projectKey\\u003dSMSFAPP\\u0026useStoredSettings\\u003dtrue\",\"label\":\"SMS APP\",\"styleClass\":\"\"},\"scopes\":[{\"link\":\"/secure/RapidBoard.jspa?rapidView\\u003d21\\u0026projectKey\\u003dSMSFAPP\\u0026useStoredSettings\\u003dtrue\",\"label\":\"SMS APP\",\"styleClass\":\"\"}],\"createScopeActions\":[{\"link\":\"\",\"label\":\"Create board\",\"styleClass\":\"scope-filter-create-board js-create-board\"}]}";
+</script>
+<link type="text/css" rel="stylesheet" href="/s/9cc570918dbda5361ce97838cf30b5b5-CDN/en_US-4xq5bd/64022/19/31/_/download/superbatch/css/batch.css" media="all">
+<!--[if lte IE 9]>
+<link type="text/css" rel="stylesheet" href="/s/d3ef26e0d21296f90dc8c1123239cc7a-CDN/en_US-4xq5bd/64022/19/31/_/download/superbatch/css/batch.css?conditionalComment=lte+IE+9" media="all">
+<![endif]-->
+<link type="text/css" rel="stylesheet" href="/s/19e150c889c1dcf3ffdb6dc9cf89c812-CDN/en_US-4xq5bd/64022/19/a8c784096f90b5594117df5057007659/_/download/contextbatch/css/greenhopper-rapid-non-gadget,gh-rapid,atl.general,jira.project.sidebar,jira.global,jira.general/batch.css?agile_global_admin_condition=true&amp;jag=true&amp;jag_disabled_marketing=true" media="all">
+<link type="text/css" rel="stylesheet" href="/s/b5385c15b53bfae99b2c5874c631bc13-CDN/en_US-4xq5bd/64022/19/f6db8eac21acc0670a77d97518d0cda7/_/download/contextbatch/css/gh-rapid-charts/batch.css" media="all">
+<script type="text/javascript" src="/s/b3d059b1a1c7732d324063ee83c8e247-CDN/en_US-4xq5bd/64022/19/31/_/download/superbatch/js/batch.js?locale=en-US" ></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_US-4xq5bd/64022/19/0b0172860e2b3099b3eeffc82d47d7b0/_/download/contextbatch/js/gh-rapid-exception/batch.js" ></script>
+<script type="text/javascript" src="/s/dcc6605812dd8a672b92acde4a1ba88a-CDN/en_US-4xq5bd/64022/19/a8c784096f90b5594117df5057007659/_/download/contextbatch/js/greenhopper-rapid-non-gadget,gh-rapid,atl.general,jira.project.sidebar,jira.global,jira.general/batch.js?agile_global_admin_condition=true&amp;jag=true&amp;jag_disabled_marketing=true&amp;locale=en-US&amp;jaguser=true" ></script>
+<!--[if IE]>
+<script type="text/javascript" src="/s/f2f8c8e928c8f55f1aaca736b441751b-CDN/en_US-4xq5bd/64022/19/a8c784096f90b5594117df5057007659/_/download/contextbatch/js/greenhopper-rapid-non-gadget,gh-rapid,atl.general,jira.project.sidebar,jira.global,jira.general/batch.js?ieonly=true&amp;locale=en-US" ></script>
+<![endif]-->
+<script type="text/javascript" src="/s/f2f8c8e928c8f55f1aaca736b441751b-CDN/en_US-4xq5bd/64022/19/2.1/_/download/batch/com.atlassian.jira.jira-tzdetect-plugin:tzdetect-lib/com.atlassian.jira.jira-tzdetect-plugin:tzdetect-lib.js?locale=en-US" ></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_US-4xq5bd/64022/19/1.0/_/download/batch/jira.webresources:calendar-en/jira.webresources:calendar-en.js" ></script>
+<script type="text/javascript" src="/s/d41d8cd98f00b204e9800998ecf8427e-CDN/en_US-4xq5bd/64022/19/1.0/_/download/batch/jira.webresources:calendar-localisation-moment/jira.webresources:calendar-localisation-moment.js" ></script>
+
+<script type="text/javascript" src="/rest/api/1.0/shortcuts/64022/68ea5138716b9fd441a4e5d8a95cd0c3/shortcuts.js?context=greenhopper"></script>
+
+
+    
+                        
+
+                
+
+        <meta name='decorator' content='atl.general'/>
+
+
+
+
+
+
+        
+        
+        
+
+        
+
+                    <meta name="ajs-sidebar-enabled" content="true" />
+        
+        <meta name="ajs-onboarding-has-completed-first-use-flow" content="true" />
+
+                <script type="text/javascript">
+            
+                                    window.onbeforeunload = null;
+
+            AJS.$(GH.RapidBoard.init);
+        </script>
+        <meta name="ghx-plugin-key" content="com.pyxis.greenhopper.jira">
+                            <meta name="ghx-project-key" content="SMSFAPP">
+        
+    
+</head>
+<body id="jira" class="aui-layout aui-theme-default ghx-agile" data-version="6.4.7">
+<div id="page">
+    <header id="header" role="banner">
+        
+    
+        
+            
+        
+    
+
+
+
+
+
+<script>
+    AJS.$(function () {
+        var licenseBanner = require("jira/license-banner");
+        licenseBanner.showLicenseBanner("");
+        licenseBanner.showLicenseFlag("");
+    });
+</script>
+
+
+
+
+
+
+
+        
+
+
+
+        
+
+
+
+
+
+<fieldset class="parameters hidden dont-default-focus">
+    <input type="hidden" title="tzdetect.pref.tzid" value="Asia/Yekaterinburg" />
+    <input type="hidden" title="tzdetect.pref.tzname" value="(GMT+05:00) Yekaterinburg" />
+    <input type="hidden" title="tzdetect.pref.janOffset" value="18000000" />
+    <input type="hidden" title="tzdetect.pref.julyOffset" value="18000000" />
+</fieldset>
+<nav class="aui-header aui-dropdown2-trigger-group" role="navigation"><div class="aui-header-inner"><div class="aui-header-primary"><h1 id="logo" class="aui-header-logo aui-header-logo-custom"><a href="https://jira.impdig.ru/secure/MyJiraHome.jspa"><img src="/s/en_US-4xq5bd/64022/19/_/jira-logo-scaled.png" alt="Improve Group JIRA" /></a></h1><ul class='aui-nav'>
+
+
+
+
+<li><a class="aui-nav-link aui-dropdown2-ajax jira-ajax-menu aui-dropdown2-trigger "href="/secure/Dashboard.jspa" id="home_link"  accessKey="d"  title="View and manage your dashboards"  aria-haspopup="true" aria-owns="home_link-content">Dashboards</a><div id="home_link-content" class="aui-dropdown2 aui-style-default" data-aui-dropdown2-ajax-key="home_link"></div></li><li><a class="aui-nav-link aui-dropdown2-ajax jira-ajax-menu aui-dropdown2-trigger "href="/browse/SMSFAPP" id="browse_link"  accessKey="p"  title="View recent projects and browse a list of projects"  aria-haspopup="true" aria-owns="browse_link-content">Projects</a><div id="browse_link-content" class="aui-dropdown2 aui-style-default" data-aui-dropdown2-ajax-key="browse_link"></div></li><li><a class="aui-nav-link aui-dropdown2-ajax jira-ajax-menu aui-dropdown2-trigger "href="/issues/" id="find_link"  accessKey="i"  title="Search for issues and view recent issues"  aria-haspopup="true" aria-owns="find_link-content">Issues</a><div id="find_link-content" class="aui-dropdown2 aui-style-default" data-aui-dropdown2-ajax-key="find_link"></div></li><li><a class="aui-nav-link aui-dropdown2-ajax jira-ajax-menu aui-dropdown2-trigger "href="/secure/GreenHopper.jspa" id="greenhopper_menu"  title="Manage your project with JIRA Agile"  aria-haspopup="true" aria-owns="greenhopper_menu-content">Agile</a><div id="greenhopper_menu-content" class="aui-dropdown2 aui-style-default" data-aui-dropdown2-ajax-key="greenhopper_menu"></div></li>
+<li id="create-menu"><a  id="create_link"  class="aui-button aui-button-primary aui-style create-issue "  title="Create a new issue / bug / feature request / etc" href="/secure/CreateIssue!default.jspa" accesskey="c">Create</a></li></ul></div><div class="aui-header-secondary"><ul class='aui-nav'><li>
+    <form action="/secure/QuickSearch.jspa" method="get" id="quicksearch" class="aui-quicksearch dont-default-focus ajs-dirty-warning-exempt">
+        <input id="quickSearchInput" class="search" type="text" title="Search" placeholder="Search" name="searchString" accessKey="q" />
+        <input type="submit" class="hidden" value="Search">
+    </form>
+</li>
+
+
+
+    <li id="system-help-menu">
+        <a class="aui-nav-link aui-dropdown2-trigger" id="help_menu" aria-haspopup="true" aria-owns="system-help-menu-content" href="https://docs.atlassian.com/jira/docs-064/JIRA+Documentation"  target="$textUtils.htmlEncode($rootHelpMenuItem.params.target)"  title="Help"><span class="aui-icon aui-icon-small aui-iconfont-help">Help</span></a>
+        <div id="system-help-menu-content" class="aui-dropdown2 aui-style-default">
+                            <div class="aui-dropdown2-section">
+                                                                <ul id="jira-help" class="aui-list-truncate">
+                                                            <li>
+                                    <a  id="view_help"   class=""  title="Goto the online documentation for JIRA" href="https://docs.atlassian.com/jira/docs-064/JIRA+Documentation"  target="_blank" >Online Help</a>
+                                </li>
+                                                            <li>
+                                    <a  id="gh_view_help"   class=""  title="Get help online for JIRA Agile" href="http://docs.atlassian.com/agile/docs-067/JIRA+Agile+Documentation"  target="_blank" >JIRA Agile Help</a>
+                                </li>
+                                                            <li>
+                                    <a  id="keyshortscuthelp"   class=""  title="Get more information about JIRA's Keyboard Shortcuts" href="/secure/ViewKeyboardShortcuts!default.jspa"  target="_blank" >Keyboard Shortcuts</a>
+                                </li>
+                                                            <li>
+                                    <a  id="view_about"   class=""  title="Get more information about JIRA" href="/secure/AboutPage.jspa" >About JIRA</a>
+                                </li>
+                                                            <li>
+                                    <a  id="view_credits"   class=""  title="See who did what" href="/secure/JiraCreditsPage!default.jspa"  target="_blank" >JIRA Credits</a>
+                                </li>
+                                                    </ul>
+                                    </div>
+                    </div>
+    </li>
+
+
+
+
+
+
+
+
+
+<li id="user-options">
+            <a id="header-details-user-fullname" class="aui-dropdown2-trigger" aria-haspopup="true" aria-owns="user-options-content" data-username="ababenko" data-displayname="Alexandr Babenko" href="/secure/ViewProfile.jspa" title="User profile for Alexandr Babenko">
+            <span class="aui-avatar aui-avatar-small">
+                <span class="aui-avatar-inner">
+                    <img src="https://jira.impdig.ru/secure/useravatar?size=small&avatarId=10102" alt="User profile for Alexandr Babenko"/>
+                </span>
+            </span>
+        </a>
+                <div id="user-options-content" class="aui-dropdown2 aui-style-default">
+                            <div class="aui-dropdown2-section">
+                                                                <ul id="personal" class="aui-list-truncate">
+                                                                                                <li>
+                                        <a  id="view_profile"   class=""  title="View and change your details and preferences" href="/secure/ViewProfile.jspa">Profile</a>
+                                    </li>
+                                                                                                                                <li>
+                                        <a  id="upm-requests-link"   class=""   href="/plugins/servlet/upm/requests?source=header_user">Atlassian Marketplace</a>
+                                    </li>
+                                                                                    </ul>
+                                    </div>
+                            <div class="aui-dropdown2-section">
+                                            <strong>My JIRA Home</strong>
+                                                                <ul id="set_my_jira_home" class="aui-list-truncate">
+                                                            
+                                                                        <li>
+                                        <a  id="set_my_jira_home_default"  class="aui-dropdown2-radio interactive    " title="Set my JIRA Home to the Dashboard." href="/secure/UpdateMyJiraHome.jspa?target=com.atlassian.jira.jira-my-home-plugin%3Aset_my_jira_home_dashboard&atl_token=B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin">Dashboard</a>
+                                    </li>
+                                                                                            
+                                                                        <li>
+                                        <a  id="greenhopper-my-jira-home-set"  class="aui-dropdown2-radio interactive checked    " title="Set my JIRA Home to Agile." href="/secure/UpdateMyJiraHome.jspa?target=com.pyxis.greenhopper.jira%3Agreenhopper-my-jira-home-set-51&atl_token=B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin">Agile</a>
+                                    </li>
+                                                                                            
+                                                                        <li>
+                                        <a  id="set_my_jira_home_issuenav"  class="aui-dropdown2-radio interactive    " title="Set my JIRA Home to the Issue Navigator." href="/secure/UpdateMyJiraHome.jspa?target=com.atlassian.jira.jira-my-home-plugin%3Aset_my_jira_home_issue&atl_token=B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin">Issue Navigator</a>
+                                    </li>
+                                                                                    </ul>
+                                    </div>
+                            <div class="aui-dropdown2-section">
+                                                                <ul id="system" class="aui-list-truncate">
+                                                                                                <li>
+                                        <a   class="project-centric-nav-user-option disable-project-centric-nav"   href="">Disable new project navigation</a>
+                                    </li>
+                                                                                                                                <li>
+                                        <a  id="log_out"   class=""  title="Log out and cancel any automatic login." href="/logout?atl_token=B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin">Log Out</a>
+                                    </li>
+                                                                                    </ul>
+                                    </div>
+                    </div>
+    </li>
+</ul></div></div><!-- .aui-header-inner--></nav><!-- .aui-header -->
+    </header>
+    
+
+
+
+    <section id="content" role="main">
+        
+        <div class="aui-sidebar " ><div class="aui-sidebar-wrapper"><div class="aui-sidebar-body"><header class="aui-page-header"><div class="aui-page-header-inner"><div class="aui-page-header-image"><a href="/projects/SMSFAPP/summary" title="Smsfinance: мобильное приложение"><span class="aui-avatar aui-avatar-large aui-avatar-project"><span class="aui-avatar-inner"><img src="/secure/projectavatar?avatarId=10011" alt="Smsfinance: мобильное приложение" /></span></span></a></div><!-- .aui-page-header-image --><div class="aui-page-header-main"><h1><a href="/projects/SMSFAPP/summary" title="Smsfinance: мобильное приложение">Smsfinance: мобильное приложение</a></h1><div class="scope-filter"><a href="/secure/RapidBoard.jspa?rapidView=21&amp;projectKey=SMSFAPP&amp;useStoredSettings=true" aria-owns="sidebar-scope-filter-list" aria-haspopup="true" class="aui-button aui-dropdown2-trigger aui-style-default aui-button-link scope-filter-trigger" data-scope-filter-id="scope-filter-board-item-21">SMS APP</a><div id="sidebar-scope-filter-list" class="aui-dropdown2 aui-style-default scope-filter-list"><div class="aui-dropdown2-section"><ul class="aui-list-truncate"><li><a href="" class="scope-filter-create-board js-create-board">Create board</a></li></ul></div></div></div> <!-- .scope-filter --></div><!-- .aui-page-header-main --></div><!-- .aui-page-header-inner --></header><!-- .aui-page-header --><nav class="aui-navgroup aui-navgroup-vertical"><div class="aui-navgroup-inner sidebar-content-container"><div class="aui-sidebar-group aui-sidebar-group-tier-one" data-id="sidebar-navigation-panel"><ul class="aui-nav"><li  ><a class="aui-nav-item " href="/secure/RapidBoard.jspa?projectKey=SMSFAPP&amp;rapidView=21&amp;view=planning" data-link-id="com.pyxis.greenhopper.jira:project-sidebar-plan-scrum"><span class="aui-icon aui-icon-large agile-icon-plan"></span><span class="aui-nav-item-label" title="Backlog">Backlog</span></a></li><li  ><a class="aui-nav-item " href="/secure/RapidBoard.jspa?projectKey=SMSFAPP&amp;rapidView=21" data-link-id="com.pyxis.greenhopper.jira:project-sidebar-work-scrum"><span class="aui-icon aui-icon-large agile-icon-work"></span><span class="aui-nav-item-label" title="Active sprints">Active sprints</span></a></li><li  ><a class="aui-nav-item " href="/projects/SMSFAPP?selectedItem=com.atlassian.jira.jira-projects-plugin:release-page" data-link-id="com.atlassian.jira.jira-projects-plugin:release-page"><span class="aui-icon aui-icon-large icon-sidebar-release"></span><span class="aui-nav-item-label" title="Releases">Releases</span></a></li><li  ><a class="aui-nav-item " href="/projects/SMSFAPP?selectedItem=com.atlassian.jira.jira-projects-plugin:report-page" data-link-id="com.atlassian.jira.jira-projects-plugin:report-page"><span class="aui-icon aui-icon-large agile-icon-report"></span><span class="aui-nav-item-label" title="Reports">Reports</span></a></li><li  ><a class="aui-nav-item " href="/projects/SMSFAPP?selectedItem=com.atlassian.jira.jira-projects-plugin:components-page" data-link-id="com.atlassian.jira.jira-projects-plugin:components-page"><span class="aui-icon aui-icon-large icon-sidebar-components"></span><span class="aui-nav-item-label" title="Components">Components</span></a></li><li  ><a class="aui-nav-item " href="/projects/SMSFAPP/issues" data-link-id="com.atlassian.jira.jira-projects-issue-navigator:sidebar-issue-navigator"><span class="aui-icon aui-icon-large icon-sidebar-issues"></span><span class="aui-nav-item-label" title="Issues">Issues</span></a></li></ul></div><hr><div class="aui-sidebar-group aui-sidebar-group-tier-one jira-projects-feedback-group" data-id="jira-projects-feedback-group"><ul class="aui-nav"><li><a class="aui-nav-item jira-projects-feedback-collector" data-link-id="jira-projects-feedback-collector" data-custom-tooltip="We&#39;d love to hear your thoughts, good or bad, on our new navigation experience."><span class="aui-icon jira-projects-feedback-collector-icon"></span><span class="aui-nav-item-label">Give feedback</span></a></li></ul></div></div></nav></div><div class="aui-sidebar-footer"><a class="aui-button aui-button-subtle aui-sidebar-toggle aui-sidebar-footer-tipsy" data-tooltip="Expand sidebar ( [ )" href="#"><span class="aui-icon aui-icon-small"></span></a></div></div></div>
+
+        <div id="gh" class="ghx-gh ghx-no-touch aui-page-panel">
+            <noscript>
+    <div class="aui-message warning">
+        <p>
+            <span class="aui-icon icon-warning"></span>
+            Either you have JavaScript disabled or your browser does not support JavaScript. To work properly, this page requires JavaScript to be enabled.
+        </p>
+    </div>
+</noscript>
+        </div>
+
+        <div class="hidden js-issueaction-container-dot">
+			<a id="edit-issue" class="js-issueaction issueaction-edit-issue" href="/secure/EditIssue!default.jspa?id={0}"></a>
+				<a id="assign-issue" class="js-issueaction issueaction-assign-issue" href="/secure/AssignIssue!default.jspa?id={0}"></a>
+				<a id="assign-to-me" class="js-issueaction issueaction-assign-to-me hide-from-opsbar" href="/secure/AssignIssue.jspa?atl_token=B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin&id={0}&assignee=ababenko"></a>
+				<a id="comment-issue" class="js-issueaction issueaction-comment-issue add-issue-comment" href="/secure/AddComment!default.jspa?id={0}"></a>
+				<a id="greenhopper-rapidboard-operation" class="js-issueaction issueaction-greenhopper-rapidboard-operation js-rapidboard-operation-issue" href="/secure/GHGoToBoard.jspa?issueId={0}"></a>
+				<a id="greenhopper-rank-top-operation" class="js-issueaction issueaction-greenhopper-rank-top-operation" href="/secure/RankTop.jspa?issueId={0}"></a>
+				<a id="greenhopper-rank-bottom-operation" class="js-issueaction issueaction-greenhopper-rank-bottom-operation" href="/secure/RankBottom.jspa?issueId={0}"></a>
+				<a id="log-work" class="js-issueaction issueaction-log-work" href="/secure/CreateWorklog!default.jspa?id={0}"></a>
+				<a id="attach-file" class="js-issueaction issueaction-attach-file" href="/secure/AttachFile!default.jspa?id={0}"></a>
+				<a id="attach-screenshot-html5" class="js-issueaction issueaction-attach-screenshot-html5" href="/secure/ShowAttachScreenshotFormAction!default.jspa?id={0}"></a>
+				<a id="toggle-vote-issue" class="js-issueaction issueaction-vote-issue" href="/secure/VoteOrWatchIssue.jspa?atl_token=B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin&id={0}&vote=vote"></a>
+				<a id="toggle-vote-issue" class="js-issueaction issueaction-unvote-issue" href="/secure/VoteOrWatchIssue.jspa?atl_token=B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin&id={0}&vote=unvote"></a>
+				<a id="view-voters" class="js-issueaction issueaction-view-voters" href="/secure/ViewVoters!default.jspa?id={0}"></a>
+				<a id="toggle-watch-issue" class="js-issueaction issueaction-watch-issue" href="/secure/VoteOrWatchIssue.jspa?atl_token=B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin&id={0}&watch=watch"></a>
+				<a id="toggle-watch-issue" class="js-issueaction issueaction-unwatch-issue" href="/secure/VoteOrWatchIssue.jspa?atl_token=B6O8-8V81-NLQV-J8CG|aa5fed65021d6d93b8a2cc21db73eedcc4f836c1|lin&id={0}&watch=unwatch"></a>
+				<a id="manage-watchers" class="js-issueaction issueaction-manage-watchers" href="/secure/ManageWatchers!default.jspa?id={0}"></a>
+				<a id="create-subtask" class="js-issueaction issueaction-create-subtask" href="/secure/CreateSubTaskIssue!default.jspa?parentIssueId={0}"></a>
+				<a id="subtask-to-issue" class="js-issueaction issueaction-subtask-to-issue" href="/secure/ConvertSubTask.jspa?id={0}"></a>
+				<a id="issue-to-subtask" class="js-issueaction issueaction-issue-to-subtask" href="/secure/ConvertIssue.jspa?id={0}"></a>
+				<a id="cta-create-branch" class="js-issueaction devstatus-cta-link" href="#devstatus.cta.createbranch"></a>
+				<a id="move-issue" class="js-issueaction issueaction-move-issue" href="/secure/MoveIssue!default.jspa?id={0}"></a>
+				<a id="move-issue" class="js-issueaction issueaction-move-subtask" href="/secure/MoveSubTaskChooseOperation!default.jspa?id={0}"></a>
+				<a id="link-issue" class="js-issueaction issueaction-link-issue" href="/secure/LinkJiraIssue!default.jspa?id={0}"></a>
+				<a id="clone-issue" class="js-issueaction issueaction-clone-issue" href="/secure/CloneIssueDetails!default.jspa?id={0}"></a>
+				<a id="edit-labels" class="js-issueaction issueaction-edit-labels" href="/secure/EditLabels!default.jspa?id={0}"></a>
+				<a id="delete-issue" class="js-issueaction issueaction-delete-issue" href="/secure/DeleteIssue!default.jspa?id={0}"></a>
+	</div>
+
+<fieldset class="hidden parameters">
+    <input type="hidden" id="thanks_issue_updated" value="{0} has been updated.">
+    <input type="hidden" id="thanks_issue_transitioned" value="{0} has been updated.">
+    <input type="hidden" id="thanks_issue_assigned" value="{0} has been assigned.">
+    <input type="hidden" id="thanks_issue_commented" value="{0} has been updated with your comment.">
+    <input type="hidden" id="thanks_issue_worklogged" value="Work has been logged on {0}.">
+    <input type="hidden" id="thanks_issue_voted" value="Your vote on {0} has been updated.">
+    <input type="hidden" id="thanks_issue_watched" value="Your watcher status on {0} has been updated.">
+    <input type="hidden" id="thanks_issue_moved" value="{0} has been moved.">
+    <input type="hidden" id="thanks_issue_linked" value="The links on {0} have been updated.">
+    <input type="hidden" id="thanks_issue_cloned" value="{0} has been cloned.">
+    <input type="hidden" id="thanks_issue_labelled" value="The labels on {0} have been updated.">
+    <input type="hidden" id="thanks_issue_deleted" value="{0} has been deleted.">
+    <input type="hidden" id="thanks_issue_attached" value="The file(s) have been attached to {0}.">
+</fieldset>
+    
+    </section>
+    <footer id="footer" role="contentinfo">
+        
+        
+
+<section class="footer-body">
+    <ul id="ghx-footer" style="visibility: hidden" class="gh-build-version" >
+        <li>
+
+
+            <a class='seo-link' href='http://www.atlassian.com/software/greenhopper/?utm_source=gh_footer'>Agile project management</a> for <a class='seo-link' href='http://www.atlassian.com/software/greenhopper/overview/kanban?utm_source=gh_footer'>Kanban</a> and <a class='seo-link' href='http://www.atlassian.com/software/greenhopper/overview/scrum?utm_source=gh_footer'>Scrum software development</a> powered by <a class='seo-link' href='http://www.atlassian.com/software/greenhopper/?utm_source=gh_footer'>JIRA Agile</a>
+            (v6.7.11)
+        </li>
+    </ul>
+
+
+
+<ul class="atlassian-footer">
+    <li>
+        Atlassian JIRA <a class="seo-link" href="https://www.atlassian.com/software/jira">Project Management Software</a>
+
+                                    
+                        
+        <span id="footer-build-information">(v6.4.7#64022-<span title='4cb296803939f4a073aa3b93ab6313ffa6c86a2e' data-commit-id='4cb296803939f4a073aa3b93ab6313ffa6c86a2e}'>sha1:4cb2968</span>)</span>
+    </li>
+    <li>
+        <a id="about-link" href="/secure/AboutPage.jspa">About JIRA</a>
+    </li>
+    <li>
+                        <a id="footer-report-problem-link" href="/secure/CreateIssue!default.jspa">Report a problem</a>
+    </li>
+</ul>
+
+<form id="jira_request_timing_info" class="dont-default-focus" >
+	<fieldset class="parameters hidden">
+		<input type="hidden" title="jira.request.start.millis" value="1470770421190" />
+		<input type="hidden" title="jira.request.server.time" value="1317" />
+		<input type="hidden" title="jira.request.id" value="1160x56754x1" />
+		<input type="hidden" title="jira.session.expiry.time" value="1470788406059" />
+		<input type="hidden" title="jira.session.expiry.in.mins" value="299" />
+		<input id="jiraConcurrentRequests" type="hidden" name="jira.request.concurrent.requests" value="1" />
+	</fieldset>
+</form>
+<!--
+	                 REQUEST ID : 1160x56754x1
+	          REQUEST TIMESTAMP : [09/Aug/2016:19:20:21 +0000]
+	               REQUEST TIME : 1.3170
+	                 ASESSIONID : 11wxcyf
+	        CONCURRENT REQUESTS : 1
+
+	                      db.reads : name=db.reads; inv=167; ms=22; cpu=0; rss=0;
+	                     db.writes : name=db.writes; inv=1; ms=109; cpu=0; rss=0;
+	                      db.conns : name=db.conns; inv=171; ms=144; cpu=0; rss=0;
+-->
+    <div id="footer-logo"><a href="http://www.atlassian.com/">Atlassian</a></div>
+</section>
+
+
+
+
+
+
+
+
+
+<fieldset class="hidden parameters">
+    <input type="hidden" title="loggedInUser" value="ababenko">
+    <input type="hidden" title="ajaxTimeout" value="The call to the JIRA server did not complete within the timeout period.  We are unsure of the result of this operation.">
+    <input type="hidden" title="JiraVersion" value="6.4.7" />
+    <input type="hidden" title="ajaxUnauthorised" value="You are not authorized to perform this operation.  Please log in.">
+    <input type="hidden" title="baseURL" value="https://jira.impdig.ru:443">
+    <input type="hidden" title="ajaxCommsError" value="The JIRA server could not be contacted. This may be a temporary glitch or the server may be down.">
+    <input type="hidden" title="ajaxServerError" value="The JIRA server was contacted but has returned an error response. We are unsure of the result of this operation.">
+    <input type="hidden" title="ajaxErrorCloseDialog" value="Close this dialog and press refresh in your browser">
+    <input type="hidden" title="ajaxErrorDialogHeading" value="Communications Breakdown">
+
+    <input type="hidden" title="dirtyMessage" value="You have entered new data on this page. If you navigate away from this page without first saving your data, the changes will be lost.">
+    <input type="hidden" title="dirtyDialogMessage" value="You have entered new data in this dialog. If you navigate away from this dialog without first saving your data, the changes will be lost. Click cancel to return to the dialog.">
+    <input type="hidden" title="keyType" value="Type">
+    <input type="hidden" title="keyThen" value="then">
+    <input type="hidden" title="dblClickToExpand" value="Double click to expand">
+    <input type="hidden" title="actions" value="Actions">
+    <input type="hidden" title="removeItem" value="Remove">
+    <input type="hidden" title="workflow" value="Workflow">
+    <input type="hidden" title="labelNew" value="New Label">
+    <input type="hidden" title="issueActionsHint" value="Begin typing for available operations or press down to see all">
+    <input type="hidden" title="closelink" value="Close">
+    <input type="hidden" title="dotOperations" value="Operations">
+    <input type="hidden" title="dotLoading" value="Loading...">
+    <input type="hidden" title="frotherSuggestions" value="Suggestions">
+    <input type="hidden" title="frotherNomatches" value="No Matches">
+    <input type="hidden" title="multiselectVersionsError" value="{0} is not a valid version.">
+    <input type="hidden" title="multiselectComponentsError" value="{0} is not a valid component.">
+    <input type="hidden" title="multiselectGenericError" value="The value {0} is invalid.">
+</fieldset>
+
+    </footer>
+</div>
+</body>
+</html>
