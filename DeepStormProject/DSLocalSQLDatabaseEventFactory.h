@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DSLocalSQLDatabaseEventFactory : NSObject
+#import "DSEventFactoryProtocol.h"
+
+@interface DSLocalSQLDatabaseEventFactory : NSObject <DSEventFactoryProtocol>
 
 @end

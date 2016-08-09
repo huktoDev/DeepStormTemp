@@ -30,5 +30,8 @@
 - (NSArray<DSAdaptedDBService*>*)loadAllServices;
 - (NSArray<DSAdaptedDBJournalRecord*>*)loadAllRecords;
 
+- (DSAdaptedDBJournal*)loadJournalForName:(NSString*)journalName;
+- (DSAdaptedDBJournal*)loadServiceForName:(NSString*)serviceName;
+
 
 @end

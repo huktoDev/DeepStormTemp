@@ -7,7 +7,25 @@
 //
 
 #import "DSLocalSQLDatabaseEventFactory.h"
+#import "DSStreamingDatabaseEvent.h"
 
 @implementation DSLocalSQLDatabaseEventFactory
+
+- (DSStreamingEmailEvent*)eventForJournal:(DSJournal*)workJournal withDataMapping:(DSJournalObjectMapping)mappingType{
+    
+    DSStreamingDatabaseEvent *newDatabaseEvent = [DSStreamingDatabaseEvent new];
+    newDatabaseEvent.streamingEntity = workJournal;
+    
+    return newDatabaseEvent;
+}
+
+- (DSStreamingEmailEvent*)eventForService:(DSBaseLoggedService*)workService withDataMapping:(DSJournalObjectMapping)mappingType{
+    
+    DSStreamingDatabaseEvent *newDatabaseEvent = [DSStreamingDatabaseEvent new];
+    newDatabaseEvent.streamingEntity = workService;
+    
+    return newDatabaseEvent;
+}
+
 
 @end

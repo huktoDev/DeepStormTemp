@@ -11,7 +11,17 @@
 #import "DSJournal.h"
 #import "DSBaseLoggedService.h"
 
+#import "DSStreamingDatabaseEvent.h"
+
 @implementation DSLocalSQLDatabaseReporter
+
+/// Задает фабрику событий отправки имейлов
+- (instancetype)init{
+    if(self = [super init]){
+        [self registerEventFactoryClass:[DSEmailEventFactory class]];
+    }
+    return self;
+}
 
 - (void)sendReportJournal:(DSJournal*)reportingJournal{
     
@@ -19,6 +29,12 @@
 }
 
 - (void)sendReportService:(DSBaseLoggedService*)reportingService{
+    
+    DSStreamingDatabaseEvent *dbEvent = [self eventForService:reportingService];
+    [self executeStreamingEvent:emailEvent];
+}
+
+- (BOOL)executeStreamingEvent:(id<DSStreamingEventProtocol>)streamingEvent{
     
     
 }

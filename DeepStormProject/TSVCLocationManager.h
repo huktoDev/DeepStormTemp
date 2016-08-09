@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @import UIKit;
-#import "DeepStorm/DeepStorm.h"
+#import "DeepStorm.h"
 
 /**
     @constant TSVCNewLocationNotification

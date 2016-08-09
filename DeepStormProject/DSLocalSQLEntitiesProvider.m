@@ -12,6 +12,23 @@
 @implementation DSLocalSQLEntitiesProvider
 
 
++ (NSString*)serviceEntityName{
+    return @"Service";
+}
+
++ (NSString*)journalEntityName{
+    return @"Journal";
+}
+
++ (NSString*)recordEntityName{
+    return @"JournalRecord";
+}
+
++ (NSString*)errorEntityName{
+    return @"Error";
+}
+
+
 #pragma mark - Enitites Provide
 
 + (NSEntityDescription*)serviceEntity{
@@ -55,7 +72,7 @@
         
         serviceEntity = [NSEntityDescription new];
         
-        serviceEntity.name = @"Service";
+        serviceEntity.name = [[self class] serviceEntityName];
         serviceEntity.managedObjectClassName = @"DSAdaptedDBService";
         serviceEntity.abstract = NO;
         
@@ -118,7 +135,7 @@
         
         journalEntity = [NSEntityDescription new];
         
-        journalEntity.name = @"Journal";
+        journalEntity.name = [[self class] journalEntityName];
         journalEntity.managedObjectClassName = @"DSAdaptedDBJournal";
         journalEntity.abstract = NO;
         
@@ -199,7 +216,7 @@
         
         journalRecordEntity = [NSEntityDescription new];
         
-        journalRecordEntity.name = @"JournalRecord";
+        journalRecordEntity.name = [[self class] recordEntityName];
         journalRecordEntity.managedObjectClassName = @"DSAdaptedDBJournalRecord";
         journalRecordEntity.abstract = NO;
         
@@ -266,7 +283,7 @@
         
         errorEntity = [NSEntityDescription new];
         
-        errorEntity.name = @"Error";
+        errorEntity.name = [[self class] errorEntityName];
         errorEntity.managedObjectClassName = @"DSAdaptedDBError";
         errorEntity.abstract = NO;
         
