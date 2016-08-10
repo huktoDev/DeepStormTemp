@@ -8,6 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
+@class DSBaseLoggedService, DSJournal, DSJournalRecord;
+
 @protocol DSStoreDataProvidingProtocol <NSObject>
+
+@required
+- (NSArray<DSBaseLoggedService*>*)getAllServices;
+- (NSArray<DSJournal*>*)getAllJournals;
+- (NSArray<DSJournalRecord*>*)getAllRecords;
+
+- (DSJournal*)getJournalForName:(NSString*)journalName;
+- (DSBaseLoggedService*)getServiceByTypeID:(NSNumber*)serviceTypeID orByClass:(NSString*)serviceClass;
 
 @end
