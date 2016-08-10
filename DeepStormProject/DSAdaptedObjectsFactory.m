@@ -68,6 +68,30 @@
     return resultRecord;
 }
 
+- (NSManagedObject*)adaptedModelFromEntity:(id<DSEventConvertibleEntity>)baseEntity{
+    
+    BOOL isJournalEntity = [baseEntity isKindOfClass:[DSJournal class]];
+    if(isJournalEntity){
+        return [self adaptedModelFromJournal:(DSJournal*)baseEntity];
+    }
+    
+    BOOL isServiceEntity = [baseEntity isKindOfClass:[DSBaseLoggedService class]];
+    if(isServiceEntity){
+        return [self adaptedModelFromService:(DSBaseLoggedService*)baseEntity];
+    }
+    
+    BOOL isRecordEntity = [baseEntity isKindOfClass:[DSJournalRecord class]];
+    if(isRecordEntity){
+        return [self adaptedModelFromRecord:(DSJournalRecord*)baseEntity];
+    }
+    
+    BOOL isErrorEntity = [baseEntity isKindOfClass:[NSError class]];
+    if(isErrorEntity){
+        return [self adaptedModelFromError:(NSError*)baseEntity];
+    }
+    
+    return nil;
+}
 
 //TODO: Wrap Entity Keys (method entityForKey:)
 

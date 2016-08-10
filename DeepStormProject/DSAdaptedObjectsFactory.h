@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "DSSendingEventInterfaces.h"
+
+@class NSManagedObject;
 @class NSManagedObjectContext;
 @class DSJournal, DSBaseLoggedService, DSJournalRecord, NSError;
 
@@ -24,6 +27,8 @@
 - (DSAdaptedDBJournal*)adaptedModelFromJournal:(DSJournal*)baseJournal;
 - (DSAdaptedDBError*)adaptedModelFromError:(NSError*)baseError;
 - (DSAdaptedDBJournalRecord*)adaptedModelFromRecord:(DSJournalRecord*)baseJournalRecord;
+
+- (NSManagedObject*)adaptedModelFromEntity:(id<DSEventConvertibleEntity>)baseEntity;
 
 - (DSAdaptedDBService*)generateEmptyService;
 - (DSAdaptedDBJournal*)generateEmptyJournal;
