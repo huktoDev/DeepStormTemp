@@ -10,4 +10,9 @@
 
 @interface DSWebServerReporter : DSLocalSQLDatabaseReporter
 
++ (DSWebServerReporter<DSStreamingEventFullProtocol>*)extendedWebServerReporter;
+
+@property (assign, nonatomic, readonly) BOOL haveNewData;
+- (void)invalidateServerData;
+
 @end

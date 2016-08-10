@@ -7,6 +7,7 @@
 //
 
 #import "DSHTTPResponseBuilder.h"
+#import "DSStoreDataProvidingProtocol.h"
 
 #define DS_REG_EXP_SAFE_CREATE(futureRegExpObject, patternString) futureRegExpObject = [NSRegularExpression regularExpressionWithPattern:patternString options:0 error:&regExpError]; \
 NSAssert((regExpError == nil), @"Regular Expression %@ fail creation with Error : %@.\n%s in %@", patternString, [regExpError localizedDescription], __PRETTY_FUNCTION__, NSStringFromClass([self class]));
@@ -195,7 +196,7 @@ typedef NS_ENUM(NSUInteger, DSHTTPDeepStormKeyTags) {
     return processedHTML;
 }
 
-- (NSString*)buildResponse{
+- (NSString*)buildResponseWithDataProvider:(id<DSStoreDataProvidingProtocol>)dataProvider{
     return [self processAndFillRawHTML:_rawHTMLText withKeyTags:_collectedKeyTagsArray];
 }
 

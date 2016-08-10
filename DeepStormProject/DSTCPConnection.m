@@ -36,9 +36,6 @@
                 
                 NSString *responseString = [[NSString alloc] initWithContentsOfFile:framedHTMLFilePath encoding:NSUTF8StringEncoding error:nil];
                 
-                DSHTTPResponseBuilder *responseBuilder = [DSHTTPResponseBuilder responseBuilderWithHTMLPattern:responseString];
-                responseString = [responseBuilder buildResponse];
-                
                 
                 NSData* data = [responseString dataUsingEncoding:NSUTF8StringEncoding];
                 if (data) {

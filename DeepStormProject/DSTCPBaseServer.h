@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "GCDNetworking.h"
+#import "DSStoreDataProvidingProtocol.h"
 
 @interface DSTCPBaseServer : GCDTCPServer
 
-- (instancetype)initWebServer;
++ (instancetype)sharedWebServer;
+
+- (void)updateWebServerDataWithDataProvider:(id<DSStoreDataProvidingProtocol>)dataProvider;
 
 @end

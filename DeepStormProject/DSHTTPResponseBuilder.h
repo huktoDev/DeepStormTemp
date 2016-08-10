@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol DSStoreDataProvidingProtocol;
 @class DSJournalRecord;
 @class DSBaseLoggedService;
 @class DSJournal;
@@ -25,6 +26,6 @@
 - (instancetype)appendJournalLink:(DSJournal*)linkedJournal;
 - (instancetype)appendJournalDescription:(DSJournal*)descriptedJournal;
 
-- (NSString*)buildResponse;
+- (NSString*)buildResponseWithDataProvider:(id<DSStoreDataProvidingProtocol>)dataProvider;
 
 @end
