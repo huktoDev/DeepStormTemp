@@ -46,7 +46,7 @@
 		6B36937C1D5758A800ED4578 /* DSBaseMappingReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693791D5758A800ED4578 /* DSBaseMappingReporter.m */; };
 		6B36937D1D5758A800ED4578 /* DSBaseEventBuiltInReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36937B1D5758A800ED4578 /* DSBaseEventBuiltInReporter.m */; };
 		6B3693831D5758C900ED4578 /* DSBaseEmailReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693801D5758C900ED4578 /* DSBaseEmailReporter.m */; };
-		6B3693841D5758C900ED4578 /* DSEventSupportedEmailReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693821D5758C900ED4578 /* DSEventSupportedEmailReporter.m */; };
+		6B3693841D5758C900ED4578 /* DSEventSupportedProxyReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693821D5758C900ED4578 /* DSEventSupportedProxyReporter.m */; };
 		6B36938E1D5758EC00ED4578 /* DSOutputConsoleReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693871D5758EC00ED4578 /* DSOutputConsoleReporter.m */; };
 		6B36938F1D5758EC00ED4578 /* DSFileReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693891D5758EC00ED4578 /* DSFileReporter.m */; };
 		6B3693901D5758EC00ED4578 /* DSNetworkReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B36938B1D5758EC00ED4578 /* DSNetworkReporter.m */; };
@@ -76,6 +76,7 @@
 		6B3693ED1D5760F500ED4578 /* GCDTCPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693E71D5760F500ED4578 /* GCDTCPConnection.m */; };
 		6B3693EE1D5760F500ED4578 /* GCDTCPPeer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693E91D5760F500ED4578 /* GCDTCPPeer.m */; };
 		6B3693EF1D5760F500ED4578 /* GCDTCPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B3693EB1D5760F500ED4578 /* GCDTCPServer.m */; };
+		6BABC7001D5B1C3200E5CAA6 /* DSWebServerReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BABC6FF1D5B1C3200E5CAA6 /* DSWebServerReporter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -157,8 +158,8 @@
 		6B36937B1D5758A800ED4578 /* DSBaseEventBuiltInReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBaseEventBuiltInReporter.m; sourceTree = "<group>"; };
 		6B36937F1D5758C900ED4578 /* DSBaseEmailReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSBaseEmailReporter.h; sourceTree = "<group>"; };
 		6B3693801D5758C900ED4578 /* DSBaseEmailReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSBaseEmailReporter.m; sourceTree = "<group>"; };
-		6B3693811D5758C900ED4578 /* DSEventSupportedEmailReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSEventSupportedEmailReporter.h; sourceTree = "<group>"; };
-		6B3693821D5758C900ED4578 /* DSEventSupportedEmailReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSEventSupportedEmailReporter.m; sourceTree = "<group>"; };
+		6B3693811D5758C900ED4578 /* DSEventSupportedProxyReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSEventSupportedProxyReporter.h; sourceTree = "<group>"; };
+		6B3693821D5758C900ED4578 /* DSEventSupportedProxyReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSEventSupportedProxyReporter.m; sourceTree = "<group>"; };
 		6B3693861D5758EC00ED4578 /* DSOutputConsoleReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSOutputConsoleReporter.h; sourceTree = "<group>"; };
 		6B3693871D5758EC00ED4578 /* DSOutputConsoleReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSOutputConsoleReporter.m; sourceTree = "<group>"; };
 		6B3693881D5758EC00ED4578 /* DSFileReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSFileReporter.h; sourceTree = "<group>"; };
@@ -221,6 +222,9 @@
 		6B3693E91D5760F500ED4578 /* GCDTCPPeer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTCPPeer.m; sourceTree = "<group>"; };
 		6B3693EA1D5760F500ED4578 /* GCDTCPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDTCPServer.h; sourceTree = "<group>"; };
 		6B3693EB1D5760F500ED4578 /* GCDTCPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDTCPServer.m; sourceTree = "<group>"; };
+		6BABC6FE1D5B1C3200E5CAA6 /* DSWebServerReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSWebServerReporter.h; sourceTree = "<group>"; };
+		6BABC6FF1D5B1C3200E5CAA6 /* DSWebServerReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSWebServerReporter.m; sourceTree = "<group>"; };
+		6BABC7011D5B269D00E5CAA6 /* DSStoreDataProvidingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSStoreDataProvidingProtocol.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -450,6 +454,8 @@
 				6B3693791D5758A800ED4578 /* DSBaseMappingReporter.m */,
 				6B36937A1D5758A800ED4578 /* DSBaseEventBuiltInReporter.h */,
 				6B36937B1D5758A800ED4578 /* DSBaseEventBuiltInReporter.m */,
+				6B3693811D5758C900ED4578 /* DSEventSupportedProxyReporter.h */,
+				6B3693821D5758C900ED4578 /* DSEventSupportedProxyReporter.m */,
 				6B36937E1D5758B900ED4578 /* Superclass Email Reporters */,
 			);
 			name = "Base Superclass Reporters";
@@ -460,8 +466,6 @@
 			children = (
 				6B36937F1D5758C900ED4578 /* DSBaseEmailReporter.h */,
 				6B3693801D5758C900ED4578 /* DSBaseEmailReporter.m */,
-				6B3693811D5758C900ED4578 /* DSEventSupportedEmailReporter.h */,
-				6B3693821D5758C900ED4578 /* DSEventSupportedEmailReporter.m */,
 			);
 			name = "Superclass Email Reporters";
 			sourceTree = "<group>";
@@ -478,6 +482,8 @@
 				6B3693BD1D57599100ED4578 /* Email Reporters */,
 				6B36938C1D5758EC00ED4578 /* DSRemoteTelnetReporter.h */,
 				6B36938D1D5758EC00ED4578 /* DSRemoteTelnetReporter.m */,
+				6BABC6FE1D5B1C3200E5CAA6 /* DSWebServerReporter.h */,
+				6BABC6FF1D5B1C3200E5CAA6 /* DSWebServerReporter.m */,
 				6B3693921D57590000ED4578 /* Local DB Reporters */,
 			);
 			name = "Custom Reporters";
@@ -486,6 +492,7 @@
 		6B3693921D57590000ED4578 /* Local DB Reporters */ = {
 			isa = PBXGroup;
 			children = (
+				6BABC7011D5B269D00E5CAA6 /* DSStoreDataProvidingProtocol.h */,
 				6B3693951D57591700ED4578 /* DSAdaptedObjectsFactory.h */,
 				6B3693961D57591700ED4578 /* DSAdaptedObjectsFactory.m */,
 				6B3693971D57591700ED4578 /* DSLocalSQLEntitiesProvider.h */,
@@ -620,6 +627,7 @@
 				6B3693081D57571700ED4578 /* Resources */,
 				61E356609AC6136EE23F4AB1 /* 📦 Embed Pods Frameworks */,
 				64807C4DCD2C9523E12A129B /* 📦 Copy Pods Resources */,
+				6B33D7351D5B120100F64685 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -729,6 +737,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DeepStormProject/Pods-DeepStormProject-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		6B33D7351D5B120100F64685 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"run build phase DeepStorm shell Script\"\n\nsrcPath=\"$PROJECT_DIR/$PROJECT_NAME/DS_ECreds.plist\";\ndestEncFilePath=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/DS_ECreds.enc\"\n\ndestSrcFileDirPath=\"$TARGET_BUILD_DIR/$UNLOCALIZED_RESOURCES_FOLDER_PATH/\"\nsrcFileName=\"DS_ECreds.plist\"\n\necho \"srcPath: $srcPath\"\necho \"destPath: $destEncFilePath\"\n\nopenssl aes-256-cbc -e -K D8578EDF8458CE06FBC5BB76A58C5CA4D8578EDF8458CE06FBC5BB76A58C5CA4 -iv 1234567890abcdef1234567890abcdef -in $srcPath -out $destEncFilePath\ncd\ncd $destSrcFileDirPath\nrm $srcFileName";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -783,10 +804,11 @@
 				6B3693831D5758C900ED4578 /* DSBaseEmailReporter.m in Sources */,
 				6B3693361D57577800ED4578 /* DSStreamingQueue.m in Sources */,
 				6B3693CF1D575A0E00ED4578 /* NSString+DSEmailValidation.m in Sources */,
+				6BABC7001D5B1C3200E5CAA6 /* DSWebServerReporter.m in Sources */,
 				6B3693151D57571700ED4578 /* ViewController.m in Sources */,
 				6B3693531D5757DC00ED4578 /* DSStreamingComplexEvent.m in Sources */,
 				6B36935A1D57581900ED4578 /* DSFileEventFactory.m in Sources */,
-				6B3693841D5758C900ED4578 /* DSEventSupportedEmailReporter.m in Sources */,
+				6B3693841D5758C900ED4578 /* DSEventSupportedProxyReporter.m in Sources */,
 				6B3693301D57575E00ED4578 /* README.md in Sources */,
 				6B3693C11D5759B300ED4578 /* BBAES.m in Sources */,
 				6B3693121D57571700ED4578 /* AppDelegate.m in Sources */,

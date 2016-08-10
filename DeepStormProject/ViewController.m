@@ -7,12 +7,36 @@
 //
 
 #import "ViewController.h"
+
 #import "DSTCPBaseServer.h"
 #import "DSTCPConnection.h"
+
+#import "DeepStorm.h"
+#import "DSBasePeriodicStreamer.h"
+
+#import "DSLocalSQLDatabase.h"
+#import "DSAdaptedDBJournal.h"
+#import "DSAdaptedDBService.h"
+#import "DSAdaptedDBError.h"
+#import "DSAdaptedDBJournalRecord.h"
+
+#import "TSVCLocationManager.h"
+
+#import "DSLocalSQLDatabaseReporter.h"
+#import "DSWebServerReporter.h"
 
 @interface ViewController ()
 
 @end
+
+@implementation ViewController{
+    
+    DSEmailReporter *_emailReporter2;
+    DSEmailHiddenReporter *_emailReporter;
+    DSFileReporter *_fileReporter;
+    DSBasePeriodicStreamer *_testStreamer;
+    DSWebServerReporter<DSStreamingEventFullProtocol> *_webServerReporter;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -50,98 +74,44 @@
     DSJournalRecord *secondTestRecord = [firstJournalObject getRecordWithNumber:@2];
     
     
-    DSLocalSQLDatabase *localDB = [DSLocalSQLDatabase sharedDeepStormLocalDatabase];
-    DSAdaptedObjectsFactory *modelsFactory = localDB.modelsFactory;
+    
+    _webServerReporter = [DSWebServerReporter extendedWebServerReporter];
+    id<DSStoreDataProvidingProtocol> dbDataProvider = _webServerReporter.localDB;
+    
+    NSArray <DSJournal*> *journals = [dbDataProvider getAllJournals];
+    NSArray <DSBaseLoggedService*> *services = [dbDataProvider getAllServices];
+    NSArray <DSJournalRecord*> *records = [dbDataProvider getAllRecords];
     
     
+    [_webServerReporter setReportingCompletion:^(BOOL isSuccessSending, NSError *sendingError){
+        NSLog(@"DB REPORTING COMPLETION");
+    }];
     
-    NSArray <DSAdaptedDBJournal*> *journals = [localDB loadAllJournals];
-    NSArray <DSAdaptedDBService*> *services = [localDB loadAllServices];
-    NSArray <DSAdaptedDBJournalRecord*> *records = [localDB loadAllRecords];
-    
-    
-    DSAdaptedDBJournal *firstAdaptedJournal = [modelsFactory adaptedModelFromJournal:firstJournalObject];
-    DSAdaptedDBJournal *secondAdaptedJournal = [modelsFactory adaptedModelFromJournal:secondJournalObject];
-    
-    DSAdaptedDBJournalRecord *firstAdaptedRecord = [modelsFactory adaptedModelFromRecord:firstTestRecord];
-    DSAdaptedDBJournalRecord *secondAdaptedRecord = [modelsFactory adaptedModelFromRecord:secondTestRecord];
     
     TSVCLocationManager *testService = [TSVCLocationManager sharedLocationManager];
     [testService injectDependencies];
     [testService prepareGeolocation];
     
-    NSError *testEmergError = [NSError errorWithDomain:@"testDomain" code:10 userInfo:@{@5 : @"12"}];
-    //[testService fixateEmergercySituationWithError:testEmergError];
+    DSREPORT_FULL(_webServerReporter);
     
-    DSAdaptedDBService *testAdaptedService = [modelsFactory adaptedModelFromService:testService];
+    //[_localDBReporter addPartReportService:testService];
+    
+    //[_localDBReporter performAllReports];
     
     
-    NSError *savingError = nil;
-    BOOL saveSuccess = [localDB.managedObjectContext save:&savingError];
-    if(! saveSuccess){
-        NSLog(@"BAD SAVING WITH ERROR : %@", savingError);
-    }
-    
-    NSArray <DSAdaptedDBJournal*> *journals2 = [localDB loadAllJournals];
-    NSArray <DSAdaptedDBService*> *services2 = [localDB loadAllServices];
-    NSArray <DSAdaptedDBJournalRecord*> *records2 = [localDB loadAllRecords];
+    NSArray <DSJournal*> *journals2 = [dbDataProvider getAllJournals];
+    NSArray <DSBaseLoggedService*> *services2 = [dbDataProvider getAllServices];
+    NSArray <DSJournalRecord*> *records2 = [dbDataProvider getAllRecords];
     NSLog(@"");
     
-    
     /*
-     _emailReporter2 = [DSEmailReporter new];
-     [_emailReporter2 addDestinationEmail:@"hikto583004@list.ru"];
-     
-     
-     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-     
-     DSREPORT_FULL(_emailReporter2);
-     });
-     
-     return;
-     */
-    
-    /*
-     
-     NSError *testError = [NSError errorWithDomain:@"on.good.domain" code:10 userInfo:@{@"new" : @5}];
-     [self addNewError:testError];
-     
-     
-     [self addNewJournalWithName:@"FirstJournal" withClass:@"DSJournal" withCurrentCount:@56 withMaxCount:@80 withOutputStreamingState:@YES];
-     
-     [self addNewServiceWithServiceClass:@"TZNetworkCore" withTypeID:@12 withWorkingMode:@"WORKING IN NORMAL MODE" withEmergencyError:@"Error !!!" withJournalID:@10];
-     
-     
-     DSLocalSQLDatabase *localDB = [DSLocalSQLDatabase sharedDeepStormLocalDatabase];
-     NSFetchRequest *journalsFetchRequest = [NSFetchRequest new];
-     NSEntityDescription *journalEntity = [NSEntityDescription entityForName:@"Journal" inManagedObjectContext:localDB.managedObjectContext];
-     [journalsFetchRequest setEntity:journalEntity];
-     
-     NSError *fetchError = nil;
-     NSArray <DSAdaptedDBJournal*> *journals = [localDB.managedObjectContext executeFetchRequest:journalsFetchRequest error:&fetchError];
-     
-     if(! journals || fetchError){
-     NSLog(@"FETCH REQUEST ERROR : %@", fetchError);
-     }
-     
-     NSFetchRequest *errorsFetchRequest = [NSFetchRequest new];
-     NSEntityDescription *errorEntity = [NSEntityDescription entityForName:@"Error" inManagedObjectContext:localDB.managedObjectContext];
-     [errorsFetchRequest setEntity:errorEntity];
-     
-     fetchError = nil;
-     NSArray <DSAdaptedDBError*> *errors = [localDB.managedObjectContext executeFetchRequest:errorsFetchRequest error:&fetchError];
-     
-     if(! errors || fetchError){
-     NSLog(@"FETCH REQUEST ERROR : %@", fetchError);
-     }
-     */
     
     return;
     
     
     
     
-    _emailReporter = [DSEmailHiddenReporter new];
+    _emailReporter = [DSEmailHiddenReporter extendedEmailReporter];
     [_emailReporter addDestinationEmail:@"hikto583004@list.ru"];
     [_emailReporter setDecryptorWithIV:@"1234567890abcdef1234567890abcdef" withKey:@"D8578EDF8458CE06FBC5BB76A58C5CA4D8578EDF8458CE06FBC5BB76A58C5CA4"];
     [_emailReporter addConfigSMTPSession:^(MCOSMTPSession *smtpSession) {
@@ -155,117 +125,32 @@
     }];
     
     
+    DSREPORT_FULL(_emailReporter);
     
+    return;
     
+    */
     
-    _fileReporter = [DSFileReporter fileReporterWithMappingType:DSJournalObjectXMLMapping];
+     
+    _testStreamer = [DSBasePeriodicStreamer streamerWithInterval:1.0f];
     
+    [_testStreamer addStreamingEntity:firstJournalObject];
+    [_testStreamer addStreamingEntity:secondJournalObject];
+    [_testStreamer addStreamingEntity:testService];
     
-    [firstJournalObject enumerateRecords:^(DSJournalRecord *currentRecord) {
+    _testStreamer.eventProducer = _webServerReporter;
+    _testStreamer.eventExecutor = _webServerReporter;
+    
+    [_testStreamer startStreaming];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(40.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        [_fileReporter sendNewRecords:@[currentRecord] forJournal:firstJournalObject];
-    }];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(4.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        
-        
-        
+        [_testStreamer stopStreaming];
     });
     
-    return;
-    
-    
-    /*
-     
-     _testStreamer = [DSBasePeriodicStreamer streamerWithInterval:5.0f];
-     
-     [_testStreamer addStreamingEntity:firstJournalObject];
-     [_testStreamer addStreamingEntity:secondJournalObject];
-     
-     _testStreamer.eventProducer = _emailReporter;
-     _testStreamer.eventExecutor = _emailReporter;
-     
-     [_testStreamer startStreaming];
-     
-     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(16.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-     
-     [_testStreamer stopStreaming];
-     });
-     */
     
     return;
     
 }
-
-- (BOOL)addNewJournalWithName:(NSString*)journalName withClass:(NSString*)journalClassString withCurrentCount:(NSNumber*)currentCount withMaxCount:(NSNumber*)maxCount withOutputStreamingState:(NSNumber*)streamingState{
-    
-    DSLocalSQLDatabase *localDB = [DSLocalSQLDatabase sharedDeepStormLocalDatabase];
-    DSAdaptedObjectsFactory *modelsFactory = localDB.modelsFactory;
-    DSAdaptedDBJournal *newJournal = [modelsFactory generateEmptyJournal];
-    
-    newJournal.journalName = journalName;
-    newJournal.journalClass = journalClassString;
-    newJournal.currentCount = currentCount;
-    newJournal.maxCount = maxCount;
-    newJournal.outputStreamingState = streamingState;
-    
-    
-    NSError *savingError = nil;
-    BOOL saveSuccess = [localDB.managedObjectContext save:&savingError];
-    if(saveSuccess){
-        NSLog(@"ADDED JOURNAL : %@", newJournal);
-    }else{
-        NSLog(@"BAD SAVING WITH ERROR : %@", savingError);
-    }
-    
-    return saveSuccess;
-}
-
-
-- (BOOL)addNewServiceWithServiceClass:(NSString*)serviceClass withTypeID:(NSNumber*)serviceTypeID withWorkingMode:(NSString*)workingMode withEmergencyError:(NSString*)emergencyError withJournalID:(NSNumber*)journalID{
-    
-    DSLocalSQLDatabase *localDB = [DSLocalSQLDatabase sharedDeepStormLocalDatabase];
-    DSAdaptedObjectsFactory *modelsFactory = localDB.modelsFactory;
-    DSAdaptedDBService *newService = [modelsFactory generateEmptyService];
-    
-    newService.serviceClass = serviceClass;
-    newService.typeID = serviceTypeID;
-    newService.workingMode = workingMode;
-    
-    NSError *savingError = nil;
-    BOOL saveSuccess = [localDB.managedObjectContext save:&savingError];
-    if(saveSuccess){
-        NSLog(@"ADDED JOURNAL : %@", newService);
-    }else{
-        NSLog(@"BAD SAVING WITH ERROR : %@", savingError);
-    }
-    
-    return saveSuccess;
-}
-
-- (BOOL)addNewError:(NSError*)testError{
-    
-    DSLocalSQLDatabase *localDB = [DSLocalSQLDatabase sharedDeepStormLocalDatabase];
-    DSAdaptedObjectsFactory *modelsFactory = localDB.modelsFactory;
-    DSAdaptedDBError *newError = [modelsFactory generateEmptyError];
-    
-    newError.code = @(testError.code);
-    newError.domain = testError.domain;
-    newError.localizedDescription = testError.localizedDescription;
-    
-    newError.embeddedError = testError;
-    
-    NSError *savingError = nil;
-    BOOL saveSuccess = [localDB.managedObjectContext save:&savingError];
-    if(saveSuccess){
-        NSLog(@"ADDED ERROR : %@", newError);
-    }else{
-        NSLog(@"BAD SAVING WITH ERROR : %@", savingError);
-    }
-    
-    return saveSuccess;
-}
-
 
 @end
