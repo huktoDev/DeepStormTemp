@@ -23,10 +23,10 @@
 #import "DSBaseEmailReporter.h"
 
 /**
-    @class DSEventSupportedEmailReporter
+    @class DSEventSupportedProxyReporter
     @author HuktoDev
-    @updated 21.06.2016
-    @abstract Класс-прослойка для Email-репортеров, которые могут стримить события
+    @updated 10.08.2016
+    @abstract Класс-прослойка для репортеров, которые могут полностью стримить события
     @discussion
     Так получилось, что в DSBaseEmailReporter методы протокола DSStreamingEventFullProtocol уже реализованы, но находятся в приватном интерфейсе.
     Поэтому задача стояла следующим образом : Сделать мост между приватным интерфейсом суперкласса, и публичным интерфейсом данного класса.
@@ -34,7 +34,9 @@
     @note
     Этот класс выполняет эту задачу - он делает видимым снаружи интерфейс стриминга, и этот репортер можно подключать в качестве исполнителя или производителя событий к стримеру
  */
-@interface DSEventSupportedEmailReporter : DSBaseEmailReporter <DSStreamingEventFullProtocol>
+@interface DSEventSupportedProxyReporter : DSBaseEventBuiltInReporter <DSStreamingEventFullProtocol>
+
++ (instancetype)proxyReporterForEventReporter:(DSBaseEventBuiltInReporter*)eventReporter;
 
 @end
 

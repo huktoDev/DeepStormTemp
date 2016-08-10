@@ -21,9 +21,25 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 #import "DSEventSupportedEmailReporter.h"
-//#import <objc/runtime.h>
 
-@implementation DSEventSupportedEmailReporter
+@implementation DSEventSupportedProxyReporter{
+    
+    @private
+    DSBaseEventBuiltInReporter *_proxiedEventReporter;
+}
+
++ (instancetype)proxyReporterForEventReporter:(DSBaseEventBuiltInReporter*)eventReporter{
+    
+    DSEventSupportedEmailReporter *proxyReporter = [[DSEventSupportedEmailReporter alloc] initWithEventReporter:eventReporter];
+    return proxyReporter;
+}
+
+- (instancetype)initWithEventReporter:(DSBaseEventBuiltInReporter*)eventReporter{
+    if(self = [super init]){
+        _proxiedEventReporter = eventReporter;
+    }
+    return self;
+}
 
 #pragma mark - DSStreamingEventProductorProtocol
 
@@ -31,7 +47,7 @@
     
     SEL produceStreamEventSelector = @selector(produceStreamingEventWithObject:);
     
-    IMP superImplementation = [[[DSEventSupportedEmailReporter superclass] new] methodForSelector:produceStreamEventSelector];
+    IMP superImplementation = [_proxiedEventReporter methodForSelector:produceStreamEventSelector];
     if(superImplementation != NULL){
         
         id<DSStreamingEventProtocol> (*produceFuncSignature)(id, SEL, id<DSEventConvertibleEntity>) = (void *)superImplementation;
@@ -45,7 +61,7 @@
     
     SEL unionStreamEventSelector = @selector(canUnionAllStreamingEvents);
     
-    IMP superImplementation = [[[DSEventSupportedEmailReporter superclass] new] methodForSelector:unionStreamEventSelector];
+    IMP superImplementation = [_proxiedEventReporter methodForSelector:unionStreamEventSelector];
     if(superImplementation != NULL){
         
         BOOL (*unionFuncSignature)(id, SEL) = (void *)superImplementation;
@@ -62,7 +78,7 @@
     
     SEL executeStreamEventSelector = @selector(executeStreamingEvent:);
     
-    IMP superImplementation = [[[DSEventSupportedEmailReporter superclass] new] methodForSelector:executeStreamEventSelector];
+    IMP superImplementation = [_proxiedEventReporter methodForSelector:executeStreamEventSelector];
     if(superImplementation != NULL){
         
         BOOL (*executeFuncSignature)(id, SEL, id<DSStreamingEventProtocol>) = (void *)superImplementation;
