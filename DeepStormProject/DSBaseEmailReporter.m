@@ -31,24 +31,32 @@
 #import "DSStreamingEmailEvent.h"
 #import "DSStreamingComplexEvent.h"
 
-@interface DSBaseEmailReporter () <DSStreamingEventFullProtocol>
+#import "DSEventSupportedProxyReporter.h"
+
+@interface DSBaseEmailReporter () <DSStreamingEventExecutorProtocol>
 @end
 
 @implementation DSBaseEmailReporter{
     
     NSString *destinationAddress;
-    
     NSMutableArray <DSStreamingEmailEvent*> *_temporaryEmailEvents;
 }
 
 @synthesize reportingCompletion = _reportingCompletion;
 
++ (DSBaseEmailReporter<DSStreamingEventFullProtocol>*)extendedEmailReporter{
+    DSBaseEmailReporter<DSStreamingEventFullProtocol> *extendedReporter = [[self class] new];
+    return extendedReporter;
+}
+
 /// Задает фабрику событий отправки имейлов
 - (instancetype)init{
+    
     if(self = [super init]){
         [self registerEventFactoryClass:[DSEmailEventFactory class]];
     }
-    return self;
+    DSBaseEventBuiltInReporter<DSStreamingEventFullProtocol> *proxyReporter = [DSEventSupportedProxyReporter proxyReporterForEventReporter:self];
+    return (DSBaseEmailReporter*)proxyReporter;
 }
 
 

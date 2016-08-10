@@ -24,12 +24,11 @@
 
 @interface DSBaseEventBuiltInReporter () <DSStreamingEventProductorProtocol>
 
+@property (strong, nonatomic) id<DSEventFactoryProtocol> eventFactory;
+
 @end
 
-@implementation DSBaseEventBuiltInReporter{
-    
-    id<DSEventFactoryProtocol> eventFactory;
-}
+@implementation DSBaseEventBuiltInReporter
 
 #pragma mark - SET EVENT Factory
 
@@ -46,7 +45,7 @@
  */
 - (void)registerEventFactoryClass:(Class)factoryClass{
     
-    eventFactory = [factoryClass new];
+    self.eventFactory = [factoryClass new];
 }
 
 
@@ -68,7 +67,7 @@
  */
 - (id<DSStreamingEventProtocol>)produceStreamingEventWithObject:(id<DSEventConvertibleEntity>)convertibleObject{
     
-    NSAssert(eventFactory, @"Event Factory is Undefined! Need call %@ method when init Reporter. Responder %@ in %s", NSStringFromSelector(@selector(registerEventFactoryClass:)), NSStringFromClass([self class]), __PRETTY_FUNCTION__);
+    NSAssert(self.eventFactory, @"Event Factory is Undefined! Need call %@ method when init Reporter. Responder %@ in %s", NSStringFromSelector(@selector(registerEventFactoryClass:)), NSStringFromClass([self class]), __PRETTY_FUNCTION__);
     
     BOOL isJournalObject = [convertibleObject isKindOfClass:[DSJournal class]];
     BOOL isServiceObject = [convertibleObject isKindOfClass:[DSBaseLoggedService class]];
@@ -100,20 +99,20 @@
 /// Создание события отправки из объекта журнала
 - (id<DSStreamingEventProtocol>)eventForJournal:(DSJournal*)workJournal{
     
-    id<DSStreamingEventProtocol> streamingEvent = [eventFactory eventForJournal:workJournal withDataMapping:self.mappingType];
+    id<DSStreamingEventProtocol> streamingEvent = [self.eventFactory eventForJournal:workJournal withDataMapping:self.mappingType];
     return streamingEvent;
 }
 
 /// Создание события отправки из объекта сервиса
 - (id<DSStreamingEventProtocol>)eventForService:(DSBaseLoggedService*)workService{
     
-    id<DSStreamingEventProtocol> streamingEvent = [eventFactory eventForService:workService withDataMapping:self.mappingType];
+    id<DSStreamingEventProtocol> streamingEvent = [self.eventFactory eventForService:workService withDataMapping:self.mappingType];
     return streamingEvent;
 }
 
 - (id<DSStreamingEventProtocol>)eventForRecords:(NSArray<DSJournalRecord*>*)workRecords withParentEntity:(id<DSEventConvertibleEntity>)parentEntity{
     
-    id<DSStreamingEventProtocol> streamingEvent = [eventFactory eventForRecords:workRecords withParentEntity:parentEntity withDataMapping:self.mappingType];
+    id<DSStreamingEventProtocol> streamingEvent = [self.eventFactory eventForRecords:workRecords withParentEntity:parentEntity withDataMapping:self.mappingType];
     return streamingEvent;
 }
 

@@ -23,7 +23,7 @@
 #import <Foundation/Foundation.h>
 
 #import "DSSendingEventInterfaces.h"
-#import "DSEventSupportedEmailReporter.h"
+#import "DSBaseEmailReporter.h"
 
 #import <MailCore/MailCore.h>
 
@@ -89,7 +89,7 @@
     <hr>
     @note ОТПРАВЛЯЕТ EMAIL без ведома пользователя! Можно даже собирать таким образом статистику с работающих в текущий момент приложений! Только Apple может режектить такие приложения, так что этот механизм значительно безопаснее использовать именно при отладке.
  */
-@interface DSEmailHiddenReporter : DSEventSupportedEmailReporter
+@interface DSEmailHiddenReporter : DSBaseEmailReporter
 
 
 #pragma mark - Config DSEmailHiddenReporter

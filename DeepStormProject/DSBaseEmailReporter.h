@@ -31,6 +31,8 @@
 
 @interface DSBaseEmailReporter : DSBaseEventBuiltInReporter <DSReporterProtocol, DSEmailReporterProtocol>
 
++ (DSBaseEmailReporter<DSStreamingEventFullProtocol>*)extendedEmailReporter;
+
 
 #pragma mark - DSEmailReporterProtocol
 // Методы для отправки имейла

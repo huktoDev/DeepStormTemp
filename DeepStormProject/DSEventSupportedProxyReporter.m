@@ -20,24 +20,23 @@
  */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#import "DSEventSupportedEmailReporter.h"
+#import "DSEventSupportedProxyReporter.h"
 
 @implementation DSEventSupportedProxyReporter{
     
     @private
-    DSBaseEventBuiltInReporter *_proxiedEventReporter;
+    DSBaseEventBuiltInReporter<DSStreamingEventExecutorProtocol> *_proxiedEventReporter;
 }
 
-+ (instancetype)proxyReporterForEventReporter:(DSBaseEventBuiltInReporter*)eventReporter{
++ (DSBaseEventBuiltInReporter<DSStreamingEventFullProtocol>*)proxyReporterForEventReporter:(DSBaseEventBuiltInReporter<DSStreamingEventExecutorProtocol>*)eventReporter{
     
-    DSEventSupportedEmailReporter *proxyReporter = [[DSEventSupportedEmailReporter alloc] initWithEventReporter:eventReporter];
+    DSBaseEventBuiltInReporter<DSStreamingEventFullProtocol> *proxyReporter = (DSBaseEventBuiltInReporter<DSStreamingEventFullProtocol>*)[[DSEventSupportedProxyReporter alloc] initWithEventReporter:eventReporter];
     return proxyReporter;
 }
 
-- (instancetype)initWithEventReporter:(DSBaseEventBuiltInReporter*)eventReporter{
-    if(self = [super init]){
-        _proxiedEventReporter = eventReporter;
-    }
+- (instancetype)initWithEventReporter:(DSBaseEventBuiltInReporter<DSStreamingEventExecutorProtocol>*)eventReporter{
+    
+     _proxiedEventReporter = eventReporter;
     return self;
 }
 
@@ -86,6 +85,16 @@
     }else{
         return NO;
     }
+}
+
+- (id)forwardingTargetForSelector:(SEL)aSelector{
+    return _proxiedEventReporter;
+}
+
+- (BOOL)respondsToSelector:(SEL)aSelector{
+    
+    BOOL isProxiedObjectCanRespond = [_proxiedEventReporter respondsToSelector:aSelector];
+    return isProxiedObjectCanRespond;
 }
 
 @end

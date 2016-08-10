@@ -30,13 +30,14 @@
     @discussion
     Так получилось, что в DSBaseEmailReporter методы протокола DSStreamingEventFullProtocol уже реализованы, но находятся в приватном интерфейсе.
     Поэтому задача стояла следующим образом : Сделать мост между приватным интерфейсом суперкласса, и публичным интерфейсом данного класса.
+    Сделал прокси объект-обертку над DSBaseEventBuiltInReporter инстансами, которая обладает всеми качествами DSBaseEventBuiltInReporter + публичный протокол работы с событиями
  
     @note
-    Этот класс выполняет эту задачу - он делает видимым снаружи интерфейс стриминга, и этот репортер можно подключать в качестве исполнителя или производителя событий к стримеру
+    Этот класс выполняет эту задачу - он делает видимым снаружи интерфейс стриминга, и этот прокси репортер можно подключать в качестве исполнителя или производителя событий к стримеру
  */
-@interface DSEventSupportedProxyReporter : DSBaseEventBuiltInReporter <DSStreamingEventFullProtocol>
+@interface DSEventSupportedProxyReporter : NSProxy <DSStreamingEventFullProtocol>
 
-+ (instancetype)proxyReporterForEventReporter:(DSBaseEventBuiltInReporter*)eventReporter;
++ (DSBaseEventBuiltInReporter<DSStreamingEventFullProtocol>*)proxyReporterForEventReporter:(DSBaseEventBuiltInReporter<DSStreamingEventExecutorProtocol>*)eventReporter;
 
 @end
 
