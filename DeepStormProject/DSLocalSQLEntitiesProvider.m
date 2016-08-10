@@ -311,7 +311,7 @@
     [journalRelation setDestinationEntity:journalEntity];
     [journalRelation setMinCount:0];
     [journalRelation setMaxCount:1];
-    [journalRelation setDeleteRule:NSNullifyDeleteRule];
+    [journalRelation setDeleteRule:NSCascadeDeleteRule];
     
     
     NSRelationshipDescription *parentServiceRelation = [NSRelationshipDescription new];
@@ -345,7 +345,7 @@
     [errorRelation setDestinationEntity:errorEntity];
     [errorRelation setMinCount:0];
     [errorRelation setMaxCount:0];
-    [errorRelation setDeleteRule:NSNullifyDeleteRule];
+    [errorRelation setDeleteRule:NSCascadeDeleteRule];
     
     
     NSRelationshipDescription *parentServiceErrorRelation = [NSRelationshipDescription new];
@@ -379,7 +379,7 @@
     [recordRelation setDestinationEntity:recordEntity];
     [recordRelation setMinCount:0];
     [recordRelation setMaxCount:0];
-    [recordRelation setDeleteRule:NSNullifyDeleteRule];
+    [recordRelation setDeleteRule:NSCascadeDeleteRule];
     
     
     NSRelationshipDescription *parentJournalRelation = [NSRelationshipDescription new];
