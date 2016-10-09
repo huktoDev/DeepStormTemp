@@ -23,6 +23,7 @@
 #import <Foundation/Foundation.h>
 #import "DSReporting.h"
 #import "DSJournal.h"
+#import "DSJournalRecord.h"
 
 /**
     @class DSLogger

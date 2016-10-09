@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+@class DSJournalRecord;
 
 @interface DSJournalRecordDescriptor : NSObject
+
+- (NSString*)descriptionForRecord:(DSJournalRecord*)record;
 
 @end

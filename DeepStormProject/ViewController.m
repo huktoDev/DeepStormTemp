@@ -25,6 +25,8 @@
 #import "DSLocalSQLDatabaseReporter.h"
 #import "DSWebServerReporter.h"
 
+#import "DSLocalSQLEntitiesProvider.h"
+
 @interface ViewController ()
 
 @end
@@ -41,6 +43,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+    //[DSLocalSQLEntitiesProvider setRelationsBetweenEntitiesWithKeys:DSEntityServiceKey:DSEntityJournalKey];
     
     static NSString *firstJournal = @"firstJrn";
     static NSString *secondJournal = @"secondJrn";

@@ -111,6 +111,7 @@
             break;
     }
     
+    // убираем контроллер после отсылки, и отправляем соответствующий коллбэк по результату
     __weak __block typeof(self) weakSelf = self;
     [controller dismissViewControllerAnimated:YES completion:^{
         

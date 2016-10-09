@@ -74,4 +74,9 @@
 
 // configFIle for DeepStorm (DEEPSTORM CONFIGF FILE)
 
+// shake action
+// own widget
+// web form
+// Long Press (special Reserved GestureRecognizer and custom)
+
 #endif /* DSIdeaHeader_h */

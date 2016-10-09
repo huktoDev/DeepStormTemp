@@ -26,6 +26,8 @@
 @class DSPresentingEmailReporter;
 @compatibility_alias DSEmailReporter DSPresentingEmailReporter;
 
+//TODO: Тоха просил сделать возможность кастомизировать контроллер
+
 /**
     <hr>
     @class DSPresentingEmailReporter

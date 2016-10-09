@@ -22,6 +22,7 @@
 
 #import "DSJournalJSONMapper.h"
 #import "DSJournal.h"
+#import "DSJournalRecord.h"
 #import "DSBaseLoggedService.h"
 
 @implementation DSJournalJSONMapper
