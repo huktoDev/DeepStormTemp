@@ -7,7 +7,33 @@
 //
 
 #import "DSJournalRecord.h"
+#import "DSEntityProtocol.h"
+
+/// Строкое описание Log-Level-а
+NSString* DSLogLevelDescription(DSRecordLogLevel logLevel){
+    
+    switch (logLevel) {
+        case DSRecordLogLevelInfo:
+            return @"INFO";
+        case DSRecordLogLevelVerbose:
+            return @"VERBOSE";
+        case DSRecordLogLevelMedium:
+            return @"MEDIUM";
+        case DSRecordLogLevelHard:
+            return @"HARD";
+        case DSRecordLogLevelWarning:
+            return @"WARNING";
+        case DSRecordLogLevelError:
+            return @"ERROR";
+        default:
+            return @"";
+    }
+}
 
 @implementation DSJournalRecord
+
+- (DSEntityKey)entityKey{
+    return DSEntityRecordKey;
+}
 
 @end
