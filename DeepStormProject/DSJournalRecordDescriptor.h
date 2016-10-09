@@ -1,5 +1,5 @@
 //
-//  DSJournalStringDescriptor.h
+//  DSJournalRecordDescriptor.h
 //  ReporterProject
 //
 //  Created by Alexandr Babenko on 20.03.16.
@@ -8,6 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface DSJournalStringDescriptor : NSObject
+@interface DSJournalRecordDescriptor : NSObject
 
 @end
