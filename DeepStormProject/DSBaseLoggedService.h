@@ -149,29 +149,12 @@ NSString *serviceWorkingModeDescription(DSServiceWorkingMode workingMode);
 - (void)log:(NSString*)logString withInfo:(NSDictionary*)userInfo;
 - (void)clearJournal;
 
-
-#pragma mark - Simple Journal Reports
-// Получение простых репортов журнала (без отправки)
-
-- (NSString*)serviceJournalReportWithFormatDescription:(DSJournalFormatDescription)formatDescription;
-- (NSString*)serviceExtendedRecordForNumber:(NSNumber*)recordNumber withFormatDescription:(DSJournalFormatDescription)formatDescription;
-
-
-#pragma mark - Simple Work Reports
-// Получение простых рабочих репортов (без отправки)
-
-- (NSString*)serviceReport;
-- (NSString*)serviceReportWithFullReporting:(BOOL)needFullReporting;
-
-
 #pragma mark - Send Reports
 // Отправка самых различных репортов
 
-- (void)sendBaseServiceJournalReport;
 - (void)sendServiceJournalReport:(id<DSReporterProtocol>)customReporter;
-
-- (void)sendBaseServiceWorkReport;
 - (void)sendServiceWorkReport:(id<DSReporterProtocol>)customReporter;
 
 
 @end
+

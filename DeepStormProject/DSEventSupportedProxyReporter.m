@@ -42,6 +42,13 @@
 
 #pragma mark - DSStreamingEventProductorProtocol
 
+/**
+    @abstract Производит транзакцию для репортера из сущности
+    @discussion
+    Если есть имплементация этого метода в проксируемом (заменяемом) репортере - передать управление методу проксируемого объекта
+    @param convertibleObject        Объект, из которого будет производится транзакция
+    @return Готовый объект транзакции (nil, если не удалось произвести)
+ */
 - (id<DSStreamingEventProtocol>)produceStreamingEventWithObject:(id<DSEventConvertibleEntity>)convertibleObject{
     
     SEL produceStreamEventSelector = @selector(produceStreamingEventWithObject:);
@@ -56,6 +63,12 @@
     }
 }
 
+/**
+    @abstract Позволено ли объединять примитивные транзакции в комплексные
+    @discussion
+    Если есть имплементация этого метода в проксируемом (заменяемом) репортере - передать управление методу проксируемого объекта
+    @return Можно ли объединять транзакции? Если да - формирует одну большую транзакцию, иначе - массив простых транзакций
+ */
 - (BOOL)canUnionAllStreamingEvents{
     
     SEL unionStreamEventSelector = @selector(canUnionAllStreamingEvents);
@@ -73,6 +86,13 @@
 
 #pragma mark - DSStreamingEventExecutorProtocol
 
+/**
+    @abstract Метод, выполнящий транзакцию
+    @discussion
+    Если есть имплементация этого метода в проксируемом (заменяемом) репортере - передать управление методу проксируемого объекта
+    @param streamingEvent          Транзакция к исполнению
+    @return Удалось ли выполнить/начать выполнение транзакции?
+ */
 - (BOOL)executeStreamingEvent:(id<DSStreamingEventProtocol>)streamingEvent{
     
     SEL executeStreamEventSelector = @selector(executeStreamingEvent:);
@@ -86,6 +106,9 @@
         return NO;
     }
 }
+
+
+#pragma mark - Forwarding Methods
 
 - (id)forwardingTargetForSelector:(SEL)aSelector{
     return _proxiedEventReporter;

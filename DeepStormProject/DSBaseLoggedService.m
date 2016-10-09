@@ -90,83 +90,8 @@ NSString *serviceWorkingModeDescription(DSServiceWorkingMode workingMode){
     [self.logJournal clearJournal];
 }
 
-#pragma mark - Simple Journal Reports
-
-/// Получить репорт журнала сервиса в нужном формате
-- (NSString*)serviceJournalReportWithFormatDescription:(DSJournalFormatDescription)formatDescription{
-    
-    NSString *journalString = [self.logJournal getJournalWithFormatDescription:formatDescription];
-    NSString *formattedJournalString = [NSString stringWithFormat:@"\nSERVICE %@ JOURNAL : \n====================================================\n%@\n====================================================\n", NSStringFromClass([self class]), journalString ];
-    
-    return formattedJournalString;
-}
-
-/// Получиь описание конкретной записи журнала в нужном формате
-- (NSString*)serviceExtendedRecordForNumber:(NSNumber*)recordNumber withFormatDescription:(DSJournalFormatDescription)formatDescription{
-    
-    NSString *recordString = [self.logJournal getDescriptionRecord:recordNumber withFormatDescription:formatDescription];
-    NSString *formattedRecordString = [NSString stringWithFormat:@"SERVICE %@ RECORD %@ : \n====================================================\n%@\n====================================================\n", NSStringFromClass([self class]), recordNumber, recordString ];
-    
-    return formattedRecordString;
-}
-
-#pragma mark - Simple Work Reports
-
-/// Получить стандартный репорт сервиса (метод-враппер serviceReportWithFullReporting: )
-- (NSString*)serviceReport{
-    return [self serviceReportWithFullReporting:NO];
-}
-
-/// Полная репорт-строка сервиса
-- (NSString*)serviceReportWithFullReporting:(BOOL)needFullReporting{
-    
-    NSMutableString *serviceString = [NSMutableString stringWithFormat:@"\nSERVICE %@ :\n====================================================\n%@\n", NSStringFromClass([self class]), SERVICE_WORKING_MODE];
-    
-    BOOL emergencySituationsCatched = (self.emergencySituationsErrors.count != 0);
-    if(! emergencySituationsCatched){
-        [serviceString appendString:@"EMERGENCY ERRORS MISSING"];
-    }else{
-        [serviceString appendString:@"EMERGENCY ERRORS FOUND :"];
-        
-        NSUInteger emergencyErrorIndex = 0;
-        for (NSError *emergencyError in self.emergencySituationsErrors) {
-            
-            [serviceString appendFormat:@"\n\t%lu. %@ : %ld\n\tDESCRIPTION : %@", (unsigned long)(++ emergencyErrorIndex), [emergencyError domain], (long)[emergencyError code], [emergencyError localizedDescription]];
-        }
-    }
-
-    if(! needFullReporting){
-        
-        // добавить 100 последних записей к репорту в обыном формате (если возникала ошибка)
-        // добавить 10 последних записей к репорту в обычном формате (если работа в штатном режиме)
-        NSUInteger countNeededRecords = emergencySituationsCatched ? 100 : 10;
-        NSString *journalReportString = [self.logJournal getJournalLastRecords:countNeededRecords WithFormatDescription:DSJournalShortDescription];
-        
-        NSString *formattedJournalString = [NSString stringWithFormat:@"SERVICE %@ JOURNAL : \n====================================================\n%@\n====================================================\n", NSStringFromClass([self class]), journalReportString ];
-        [serviceString appendFormat:@"\n\n%@", formattedJournalString];
-    }else{
-        // добавить все имеющиеся записи, в расширенном формате
-        
-        NSString *fullJournalReportString = [self serviceJournalReportWithFormatDescription:DSJournalExtendedDescription];
-        [serviceString appendFormat:@"\n%@", fullJournalReportString];
-    }
-    
-    NSString *reportString = [NSString stringWithString:serviceString];
-    return reportString;
-}
-
-
 #pragma mark - Send Reports
 // Основные методы репорта
-
-- (void)sendBaseServiceJournalReport{
-    
-    BOOL canReporterSendStringReport = [self.baseLogRepoter respondsToSelector:@selector(sendReport:)];
-    NSAssert(canReporterSendStringReport, @"Reporter not defined sendReport: Method !!!");
-    
-    NSString *reportString = [self serviceJournalReportWithFormatDescription:DSJournalShortDescription];
-    [self.baseLogRepoter sendReport:reportString];
-}
 
 - (void)sendServiceJournalReport:(id<DSReporterProtocol>)customReporter{
     
@@ -174,15 +99,6 @@ NSString *serviceWorkingModeDescription(DSServiceWorkingMode workingMode){
     NSAssert(canReporterSendJournalReport, @"Reporter not defined sendReportJournal: Method !!!");
     
     [customReporter sendReportJournal:self.logJournal];
-}
-
-- (void)sendBaseServiceWorkReport{
-    
-    BOOL canReporterSendStringReport = [self.baseLogRepoter respondsToSelector:@selector(sendReport:)];
-    NSAssert(canReporterSendStringReport, @"Reporter not defined sendReport: Method !!!");
-    
-    NSString *reportString = [self serviceReportWithFullReporting:NO];
-    [self.baseLogRepoter sendReport:reportString];
 }
 
 - (void)sendServiceWorkReport:(id<DSReporterProtocol>)customReporter{

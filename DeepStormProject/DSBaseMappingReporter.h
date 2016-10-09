@@ -13,7 +13,7 @@
 /**
     @protocol DSReporterMappingProtocol
     @author HuktoDev
-    @updated  21.06.2016
+    @updated  21.07.2016
     @abstract Протокол, который позволяет поддерживать разные виды маппинга для отправляемых данных
  */
 @protocol DSReporterMappingProtocol <NSObject>

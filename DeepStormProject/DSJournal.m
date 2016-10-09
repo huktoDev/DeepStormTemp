@@ -20,65 +20,8 @@
  */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #import "DSJournal.h"
+#import "DSJournalRecord.h"
 #import "DSJournalDefines.h"
-
-
-/// Строкое описание Log-Level-а
-NSString* DSLogLevelDescription(DSRecordLogLevel logLevel){
-    
-    switch (logLevel) {
-        case DSRecordLogLevelInfo:
-            return @"INFO";
-        case DSRecordLogLevelVerbose:
-            return @"VERBOSE";
-        case DSRecordLogLevelMedium:
-            return @"MEDIUM";
-        case DSRecordLogLevelHard:
-            return @"HARD";
-        case DSRecordLogLevelWarning:
-            return @"WARNING";
-        case DSRecordLogLevelError:
-            return @"ERROR";
-        default:
-            return @"";
-    }
-}
-
-
-@implementation DSJournalRecord
-
-#pragma mark - Description Records With Formatting
-
-/// Короткое описание записи журнала
-- (NSString*)shortTypeDescription{
-    
-    NSString *recordShortDescription = [NSString stringWithFormat:@"%@. [%@] %@", self.recordNumber, self.recordDate, self.recordDescription];
-    if(self.recordInfo){
-        recordShortDescription = [recordShortDescription stringByAppendingFormat:@" (INFO : %@)", self.recordInfo];
-    }
-    return recordShortDescription;
-}
-
-/// Расширенное описане записи журнала
-- (NSString*)extendedTypeDescription{
-    
-    return [NSString stringWithFormat:@"Record %@ :\nTime Record : %@\nRecord Description : %@\nRecord Info : \n%@", self.recordNumber, self.recordDate, self.recordDescription, self.recordInfo];
-}
-
-/// Описание записи журнала по выбранному типу форматирования
-- (NSString*)descriptionWithFormat:(DSJournalFormatDescription)descriptionFormat{
-    
-    if(descriptionFormat == DSJournalShortDescription){
-        return [self shortTypeDescription];
-    }else if(descriptionFormat == DSJournalExtendedDescription){
-        return [self extendedTypeDescription];
-    }else{
-        return nil;
-    }
-}
-
-@end
-
 
 NSString * const DSRecordLogLevelParamKey = @"DSRecordLogLevelParamKey";
 
@@ -136,7 +79,7 @@ NSString * const DSRecordLogLevelParamKey = @"DSRecordLogLevelParamKey";
         newRecord.recordInfo = (filteredUserInfo.count > 0) ? filteredUserInfo : nil;
         
     }else{
-        newRecord.recordLogLevel = DSRecordLogLevelVerbose;
+        newRecord.recordLogLevel = DSRecordLogLevelDefault;
         newRecord.recordInfo = userInfo;
     }
     
@@ -154,6 +97,7 @@ NSString * const DSRecordLogLevelParamKey = @"DSRecordLogLevelParamKey";
         [records addObject:newRecord];
     }
     
+    /*
 #if DSJOURNAL_LOG_STREAMING == 1
     
     // Если не отключено потоковое логгирование - вывести запись в консоль
@@ -163,6 +107,7 @@ NSString * const DSRecordLogLevelParamKey = @"DSRecordLogLevelParamKey";
         DSLOGGER_STREAM_MACRO(@"%@", recordDescription);
     }
 #endif
+     */
 }
 
 /**
@@ -199,70 +144,6 @@ NSString * const DSRecordLogLevelParamKey = @"DSRecordLogLevelParamKey";
     }
 }
 
-#pragma mark - Create Reports
-
-/**
-    @abstract Получает строковое представления журнала
-    @discussion
-    Формирует строковое представление журнала с представлениями записей в выбранном формате.
-    Собирает описания всех записей, и компонует их
- 
-    @param descriptionFormat Формат описания записей журнал
-    @return Строка-описание журнала
- */
-- (NSString*)getJournalWithFormatDescription:(DSJournalFormatDescription)descriptionFormat{
-    
-    NSMutableString *bigJournalString = [NSMutableString new];
-    [self enumerateRecords:^(DSJournalRecord *logRecord) {
-        
-        [bigJournalString appendFormat:@"%@\n", [logRecord descriptionWithFormat:descriptionFormat]];
-    }];
-    return bigJournalString;
-}
-
-/**
-    @abstract Получает строковое представления журнала последних n записей журнала
-    @discussion
-    Формирует строковое представление журнала с представлениями записей в выбранном формате.
-    Собирает описания последних  countNeededRecords записей, и компонует их
- 
-    @param countNeededRecords       Количество требуемых последних записей
-    @param descriptionFormat        Формат описания записей журнал
-    @return Строка-описание         журнала
- */
-- (NSString*)getJournalLastRecords:(NSUInteger)countNeededRecords WithFormatDescription:(DSJournalFormatDescription)descriptionFormat{
-    
-    NSMutableString *bigJournalString = [NSMutableString new];
-    [self enumerateLast:countNeededRecords records:^(DSJournalRecord *logRecord) {
-        
-        [bigJournalString appendFormat:@"%@\n", [logRecord descriptionWithFormat:descriptionFormat]];
-    }];
-    return bigJournalString;
-}
-
-/**
-    @abstract Получает описание для конкретной записи
-    @discussion
-    Сначала получает конкретную запись по порядковому номеру записи.
-    Потом для этой записи получает описание по требуемому формату
- 
-    @note Если запись не найдена - возвращает  nil
- 
-    @param numberRecord Порядковый номер записи
-    @param descriptionFormat Формт описания записи
- 
-    @return Строка, описывающая запись (nil, если запись не найдена)
- */
-- (NSString*)getDescriptionRecord:(NSNumber*)numberRecord withFormatDescription:(DSJournalFormatDescription)descriptionFormat{
-    
-    DSJournalRecord *record = [self getRecordWithNumber:numberRecord];
-    if(record){
-        return [record descriptionWithFormat:descriptionFormat];
-    }else{
-        return nil;
-    }
-}
-
 #pragma mark - Recieving Records
 
 /// Получение количества записей в журнале
@@ -283,6 +164,9 @@ NSString * const DSRecordLogLevelParamKey = @"DSRecordLogLevelParamKey";
 /// Энумерация всех записей в журнале с помощью блока
 - (void)enumerateRecords:(void (^)(DSJournalRecord *))recordEnumerateBlock{
     
+    if(! recordEnumerateBlock){
+        return;
+    }
     @synchronized(records) {
         for (DSJournalRecord *currentRecord in records) {
             recordEnumerateBlock(currentRecord);
@@ -292,6 +176,9 @@ NSString * const DSRecordLogLevelParamKey = @"DSRecordLogLevelParamKey";
 
 - (void)enumerateLast:(NSUInteger)countNeededRecords records:(void (^)(DSJournalRecord *))recordEnumerateBlock{
     
+    if(! recordEnumerateBlock){
+        return;
+    }
     @synchronized(records) {
         
         NSUInteger countLastRecords = (countNeededRecords <= records.count) ? countNeededRecords : records.count;

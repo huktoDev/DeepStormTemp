@@ -20,17 +20,7 @@
  */
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 #import <Foundation/Foundation.h>
-
-/**
-    @enum DSJournalFormatDescription типы форматирования записи
-    
-    @constant DSJournalShortDescription             Способ краткого описания записи (однострочного)
-    @constant DSJournalExtendedDescription      Способ расширенного описания записи
- */
-typedef NS_ENUM(NSUInteger, DSJournalFormatDescription) {
-    DSJournalShortDescription,
-    DSJournalExtendedDescription,
-};
+@class DSJournalRecord;
 
 #define DEFAULT_MAX_STORED_RECORDS 500
 
@@ -40,77 +30,6 @@ typedef NS_ENUM(NSUInteger, DSJournalFormatDescription) {
         Можно передавать уровень логгирования через  userInfo, с помощью этого параметра
  */
 extern NSString * const DSRecordLogLevelParamKey;
-
-/**
-    @enum DSRecordLogLevel
-        Уровень логгирования конкретной записи
- 
-    @constant DSRecordLogLevelInfo
-        Минимальный уровень видимости (видны только при самом детальном репорте)
-    @constant DSRecordLogLevelVerbose
-        Уровень видимости для записей низкой важности (различных событий)
-    @constant DSRecordLogLevelMedium
-        Средняя зона видимости записи
-    @constant DSRecordLogLevelHard
-        Достаточно широкая зона видимости записи
-    @constant DSRecordLogLevelWarning
-        Запись-предупреждение (видна практически всегда)
-    @constant DSRecordLogLevelError
-        Запись-ошибка (самый высокий тип важности)
- */
-typedef NS_ENUM(NSUInteger, DSRecordLogLevel) {
-    DSRecordLogLevelInfo = 0,
-    DSRecordLogLevelVerbose,
-    DSRecordLogLevelMedium,
-    DSRecordLogLevelHard,
-    DSRecordLogLevelWarning,
-    DSRecordLogLevelError
-};
-
-/**
-    @function DSLogLevelDescription
-    @abstract Строковое описание LogLevel-а
- */
-NSString* DSLogLevelDescription(DSRecordLogLevel logLevel);
-
-
-/**
-    @class DSJournalRecord
-    @abstract Модель записи журнала
-    @discussion
-    Используется в журналах, содержит  различную требуемую информацию о записи
-    
-    @property recordNumber           Номер записи в журнале
-    @property recordDescription     Конкретно описание записи в журнале
-    @property recordDate                Конкретная дата, когда была создана запись
-    @property recordInfo                  Дополнительная информация, крепящаяся к записи
-    @property recordLogLevel          Уровень видимости записи (уровень важности)
- 
-    @note Может описывать  себя с помощью 2х типов форматирования на текущий момент : DSJournalFormatDescription
- */
-@interface DSJournalRecord : NSObject
-
-
-#pragma mark - Records Properties
-// Различные свойства записи
-
-@property (copy, nonatomic) NSNumber *recordNumber;
-@property (copy, nonatomic) NSString *recordDescription;
-
-@property (copy, nonatomic) NSDate *recordDate;
-@property (copy, nonatomic) NSDictionary *recordInfo;
-
-@property (assign, nonatomic) DSRecordLogLevel recordLogLevel;
-
-#pragma mark - Description Records With Formatting
-// Описание записей с различным форматированием
-
-- (NSString*)shortTypeDescription;
-- (NSString*)extendedTypeDescription;
-
-- (NSString*)descriptionWithFormat:(DSJournalFormatDescription)descriptionFormat;
-
-@end
 
 
 /**
@@ -149,14 +68,6 @@ NSString* DSLogLevelDescription(DSRecordLogLevel logLevel);
 - (void)clearJournal;
 
 
-#pragma mark - Create Reports
-// Создание репортов
-
-- (NSString*)getJournalWithFormatDescription:(DSJournalFormatDescription)descriptionFormat;
-- (NSString*)getJournalLastRecords:(NSUInteger)countNeededRecords WithFormatDescription:(DSJournalFormatDescription)descriptionFormat;
-- (NSString*)getDescriptionRecord:(NSNumber*)numberRecord withFormatDescription:(DSJournalFormatDescription)descriptionFormat;
-
-
 #pragma mark - Recieving Records
 // Получение требуемых записей
 
@@ -167,3 +78,4 @@ NSString* DSLogLevelDescription(DSRecordLogLevel logLevel);
 - (void)enumerateLast:(NSUInteger)countNeededRecords records:(void (^)(DSJournalRecord *))recordEnumerateBlock;
 
 @end
+
