@@ -7,17 +7,12 @@
 //
 
 #import "DSAdaptedObjectsFactory.h"
-
 @import CoreData;
-#import "DSAdaptedDBService.h"
-#import "DSAdaptedDBJournal.h"
-#import "DSAdaptedDBError.h"
-#import "DSAdaptedDBJournalRecord.h"
-#import "DSAdaptedDBService+Convertation.h"
-#import "DSAdaptedDBJournal+Convertation.h"
-#import "DSAdaptedDBError+Convertation.h"
-#import "DSAdaptedDBJournalRecord+Convertation.h"
+
+#import "DSLocalDBModels.h"
+
 #import "DSJournal.h"
+#import "DSJournalRecord.h"
 #import "DSBaseLoggedService.h"
 
 @interface DSAdaptedObjectsFactory ()
@@ -29,12 +24,84 @@
 
 @implementation DSAdaptedObjectsFactory
 
+
+#pragma mark - Construction
+
 + (instancetype)factoryWitnContext:(NSManagedObjectContext*)managedContext{
     
     DSAdaptedObjectsFactory *newFactory = [DSAdaptedObjectsFactory new];
     newFactory.managedContext = managedContext;
     return newFactory;
 }
+
+
+#pragma mark - MAIN Dispatch Methods
+
+/**
+    @abstract Простой метод для конвертации обычно DeepStorm модели в адаптированную
+    @discussion
+    Направляет в соответствующий внутренний метод.
+    Поддерживает конвертацию для 4х типов сущностей :
+    1) Журнал
+    2) Логгируемый Сервис
+    3) Запись журнала
+    4) Ошибка сервиса
+    @param baseEntity           Базовая конвертируемая сущность
+    
+ */
+- (NSManagedObject*)adaptedModelFromEntity:(id<DSEventConvertibleEntity>)baseEntity{
+    
+    BOOL isJournalEntity = [baseEntity isKindOfClass:[DSJournal class]];
+    if(isJournalEntity){
+        return [self adaptedModelFromJournal:(DSJournal*)baseEntity];
+    }
+    
+    BOOL isServiceEntity = [baseEntity isKindOfClass:[DSBaseLoggedService class]];
+    if(isServiceEntity){
+        return [self adaptedModelFromService:(DSBaseLoggedService*)baseEntity];
+    }
+    
+    BOOL isRecordEntity = [baseEntity isKindOfClass:[DSJournalRecord class]];
+    if(isRecordEntity){
+        return [self adaptedModelFromRecord:(DSJournalRecord*)baseEntity];
+    }
+    
+    BOOL isErrorEntity = [baseEntity isKindOfClass:[NSError class]];
+    if(isErrorEntity){
+        return [self adaptedModelFromError:(NSError*)baseEntity];
+    }
+    
+    return nil;
+}
+
+- (NSManagedObject*)generateEmptyModelWithEntityKey:(DSEntityKey)entityKey{
+    
+    NSManagedObject *newManagedModel = nil;
+    switch (entityKey) {
+        case DSEntityServiceKey:
+            newManagedModel = [self generateEmptyService];
+            break;
+        case DSEntityJournalKey:
+            newManagedModel = [self generateEmptyJournal];
+            break;
+        case DSEntityRecordKey:
+            newManagedModel = [self generateEmptyJournalRecord];
+            break;
+        case DSEntityErrorKey:
+            newManagedModel = [self generateEmptyError];
+            break;
+        default:
+            break;
+    }
+    if(! newManagedModel){
+        NSAssert(NO, @"Unknown Entity Key %lu. See %s in %@", (unsigned long)entityKey, __PRETTY_FUNCTION__, NSStringFromClass([self class]));
+    }
+    return newManagedModel;
+}
+
+
+
+#pragma mark - CONVERTATION Methods
 
 - (DSAdaptedDBService*)adaptedModelFromService:(DSBaseLoggedService*)baseService{
     
@@ -68,33 +135,8 @@
     return resultRecord;
 }
 
-- (NSManagedObject*)adaptedModelFromEntity:(id<DSEventConvertibleEntity>)baseEntity{
-    
-    BOOL isJournalEntity = [baseEntity isKindOfClass:[DSJournal class]];
-    if(isJournalEntity){
-        return [self adaptedModelFromJournal:(DSJournal*)baseEntity];
-    }
-    
-    BOOL isServiceEntity = [baseEntity isKindOfClass:[DSBaseLoggedService class]];
-    if(isServiceEntity){
-        return [self adaptedModelFromService:(DSBaseLoggedService*)baseEntity];
-    }
-    
-    BOOL isRecordEntity = [baseEntity isKindOfClass:[DSJournalRecord class]];
-    if(isRecordEntity){
-        return [self adaptedModelFromRecord:(DSJournalRecord*)baseEntity];
-    }
-    
-    BOOL isErrorEntity = [baseEntity isKindOfClass:[NSError class]];
-    if(isErrorEntity){
-        return [self adaptedModelFromError:(NSError*)baseEntity];
-    }
-    
-    return nil;
-}
 
-//TODO: Wrap Entity Keys (method entityForKey:)
-
+#pragma mark - GENERATION BLANK Methods
 
 - (DSAdaptedDBService*)generateEmptyService{
     

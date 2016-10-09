@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DSEntityKeys.h"
 
 #import "DSSendingEventInterfaces.h"
 
@@ -23,6 +24,9 @@
 
 + (instancetype)factoryWitnContext:(NSManagedObjectContext*)managedContext;
 
+
+
+
 - (DSAdaptedDBService*)adaptedModelFromService:(DSBaseLoggedService*)baseService;
 - (DSAdaptedDBJournal*)adaptedModelFromJournal:(DSJournal*)baseJournal;
 - (DSAdaptedDBError*)adaptedModelFromError:(NSError*)baseError;
@@ -34,5 +38,7 @@
 - (DSAdaptedDBJournal*)generateEmptyJournal;
 - (DSAdaptedDBError*)generateEmptyError;
 - (DSAdaptedDBJournalRecord*)generateEmptyJournalRecord;
+
+- (NSManagedObject*)generateEmptyModelWithEntityKey:(DSEntityKey)entityKey;
 
 @end
