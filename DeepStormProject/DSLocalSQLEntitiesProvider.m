@@ -11,6 +11,117 @@
 
 @implementation DSLocalSQLEntitiesProvider
 
+#pragma mark - MAIN Dispatch Methods
+
+/**
+    @abstract Получить сущность CoreData для определенного типа
+    @discussion
+    Направляет в метод, соответствующий конкретному типу сущности
+    @param entityKey        Тип сущности DeepStorm-а
+    @return NSEntityDescription объект для CoreData, из которого будем формировать модель объекта в DB
+ */
++ (NSEntityDescription*)entityForKey:(DSEntityKey)entityKey{
+    
+    switch (entityKey) {
+        case DSEntityServiceKey:
+            return [[self class] serviceEntity];
+        case DSEntityJournalKey:
+            return [[self class] journalEntity];
+        case DSEntityRecordKey:
+            return [[self class] recordEntity];
+        case DSEntityErrorKey:
+            return [[self class] errorEntity];
+        default:{
+            NSAssert(NO, @"Unknown entity key %lu. See %@ in %@", (unsigned long)entityKey, NSStringFromSelector(_cmd), NSStringFromClass([self class]));
+            return nil;
+        }
+    }
+}
+
+/**
+    @abstract Статический метод для установки сразу всех известных связей между сущностями
+    @discussion
+    Установка выполняется только единожды (больше для CoreData не нужно)
+    Имеются 3 связи между сущностями :
+    1) Сервис -> его внутренний журнал
+    2) Сервис -> его внутренние ошибки
+    3) Журнал -> составляющие его записи
+ */
++ (void)setAllEntitiesRelations{
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        
+        [[self class] setRelationsBetweenEntitiesWithKeys:DSEntityServiceKey :DSEntityJournalKey];
+        [[self class] setRelationsBetweenEntitiesWithKeys:DSEntityServiceKey :DSEntityErrorKey];
+        [[self class] setRelationsBetweenEntitiesWithKeys:DSEntityJournalKey :DSEntityRecordKey];
+    });
+}
+
+/**
+    @abstract Настраивает CoreData отношения между двумя типами сущностей
+    @discussion
+    Алгоритм делится на несколько шагов :
+    1) Определяются возможные связи между сущностями, и с каждой ассоциируется специальный селектор для установки связи
+    2) Выполняется поиск последовательности из 2х сущностей (и тут порядок важен (родитель -> ребенок))
+    3) Получаем селектор для установки связи, и 2 готовых NSEntityDescription
+    4) Передаем управление конкретному связующему селектору
+    @param firstEntityKey       Тип родительской сущности
+    @param secondEntityKey       Тип дочерней сущности (вложенной)
+ */
++ (void)setRelationsBetweenEntitiesWithKeys:(DSEntityKey)firstEntityKey :(DSEntityKey)secondEntityKey{
+    
+    NSArray<NSArray*> *possibleEntitiesSequence = @[@[@(DSEntityServiceKey), @(DSEntityJournalKey)],
+                                                    @[@(DSEntityServiceKey), @(DSEntityErrorKey)],
+                                                    @[@(DSEntityJournalKey), @(DSEntityRecordKey)]];
+    
+    NSArray<NSValue*> *relationsSelectors = @[[NSValue valueWithPointer:@selector(setRelationsBetweenService:andJournal:)],
+                                              [NSValue valueWithPointer:@selector(setRelationsBetweenService:andError:)],
+                                              [NSValue valueWithPointer:@selector(setRelationsBetweenJournal:andRecord:)]];
+    
+    NSUInteger indexValidRelation = 0;
+    BOOL haveValidObtainedEntities = NO;
+    for (NSArray<NSNumber*> *currentSequence in possibleEntitiesSequence) {
+        DSEntityKey firstEntity = [[currentSequence firstObject] unsignedIntegerValue];
+        DSEntityKey secondEntity = [[currentSequence lastObject] unsignedIntegerValue];
+        
+        BOOL areDontEqualEntities = (firstEntity != secondEntity);
+        BOOL isFirstEntitiesSame = (firstEntity == firstEntityKey);
+        BOOL isSecondEntitiesSame = (secondEntity == secondEntityKey);
+        
+        haveValidObtainedEntities = areDontEqualEntities && isFirstEntitiesSame && isSecondEntitiesSame;
+        if(haveValidObtainedEntities){
+            
+            indexValidRelation = [possibleEntitiesSequence indexOfObject:currentSequence];
+            break;
+        }
+    }
+    
+    if(! haveValidObtainedEntities){
+        NSAssert(NO, @"Relation for this 2 Entity types wasn't found! Between %lu and %lu. See %s in %@", (unsigned long)firstEntityKey, (unsigned long)secondEntityKey, __PRETTY_FUNCTION__, NSStringFromClass([self class]));
+        return;
+    }
+    
+    SEL relationSelector = [relationsSelectors[indexValidRelation] pointerValue];
+    
+    NSEntityDescription *firstEntityImplementation = [[self class] entityForKey:firstEntityKey];
+    NSEntityDescription *secondEntityImplementation = [[self class] entityForKey:secondEntityKey];
+    
+    BOOL isImplementedRelationSelector = [self respondsToSelector:relationSelector];
+    if(isImplementedRelationSelector){
+        
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+        [self performSelector:relationSelector withObject:firstEntityImplementation withObject:secondEntityImplementation];
+#pragma clang diagnostic pop
+        
+    }else{
+        NSAssert(NO, @"Implementation of Relation Selector %@ wasn't found! Link without setter method is impossible. See %s in %@", NSStringFromSelector(relationSelector), __PRETTY_FUNCTION__, NSStringFromClass([self class]));
+    }
+}
+
+
+#pragma mark - Entities Names
 
 + (NSString*)serviceEntityName{
     return @"Service";

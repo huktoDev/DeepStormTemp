@@ -10,6 +10,8 @@
 #import "DSStreamingDatabaseEvent.h"
 #import "DSStreamingComplexEvent.h"
 
+#import "DSAdaptedObjectsFactory.h"
+
 #import "DSAdaptedDBService.h"
 #import "DSAdaptedDBJournal.h"
 #import "DSAdaptedDBJournalRecord.h"
@@ -24,15 +26,22 @@
 
 @import CoreData;
 
-
+/**
+    @constant DS_LOCAL_DB_FILENAME
+        Имя файла локальной БД внутри бандла
+ */
 static NSString* const DS_LOCAL_DB_FILENAME = @"DeepStorm21.sqlite";
 
 
 @interface DSLocalSQLDatabase ()
 
-@property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+// Объекты окружения для Core Data
+@property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic, readonly) NSManagedObjectModel *managedObjectModel;
+@property (strong, nonatomic, readonly) NSPersistentStoreCoordinator *persistentStoreCoordinator;
+
+/// Фабрика "адаптированных" объектов (представляющих реальные объекты на контексте)
+@property (strong, nonatomic, readwrite) DSAdaptedObjectsFactory *modelsFactory;
 
 @end
 
@@ -42,6 +51,9 @@ static NSString* const DS_LOCAL_DB_FILENAME = @"DeepStorm21.sqlite";
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+
+#pragma mark - Initialization & Construction
 
 + (instancetype)sharedDeepStormLocalDatabase{
     
@@ -60,6 +72,10 @@ static NSString* const DS_LOCAL_DB_FILENAME = @"DeepStorm21.sqlite";
     return self;
 }
 
+
+#pragma mark - Configuration
+
+/// Последовательно создает весь CoreData стэк, и в конце - фабрику объектов для БД
 - (void)configurationDatabase{
     
     _managedObjectModel = [self createManagedObjectModel];
@@ -79,15 +95,12 @@ static NSString* const DS_LOCAL_DB_FILENAME = @"DeepStorm21.sqlite";
         return _managedObjectModel;
     }
     
-    NSEntityDescription *serviceEntity  = [DSLocalSQLEntitiesProvider serviceEntity];
-    NSEntityDescription *journalEntity = [DSLocalSQLEntitiesProvider journalEntity];
-    NSEntityDescription *errorEntity = [DSLocalSQLEntitiesProvider errorEntity];
-    NSEntityDescription *recordEntity = [DSLocalSQLEntitiesProvider recordEntity];
+    NSEntityDescription *serviceEntity  = [DSLocalSQLEntitiesProvider entityForKey:DSEntityServiceKey];
+    NSEntityDescription *journalEntity = [DSLocalSQLEntitiesProvider entityForKey:DSEntityJournalKey];
+    NSEntityDescription *errorEntity = [DSLocalSQLEntitiesProvider entityForKey:DSEntityErrorKey];
+    NSEntityDescription *recordEntity = [DSLocalSQLEntitiesProvider entityForKey:DSEntityRecordKey];
     
-    [DSLocalSQLEntitiesProvider setRelationsBetweenService:serviceEntity andJournal:journalEntity];
-    [DSLocalSQLEntitiesProvider setRelationsBetweenService:serviceEntity andError:errorEntity];
-    [DSLocalSQLEntitiesProvider setRelationsBetweenJournal:journalEntity andRecord:recordEntity];
-    
+    [DSLocalSQLEntitiesProvider setAllEntitiesRelations];
     
     NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel new];
     managedObjectModel.entities = @[serviceEntity, journalEntity, errorEntity, recordEntity];
@@ -293,6 +306,7 @@ static NSString* const DS_LOCAL_DB_FILENAME = @"DeepStorm21.sqlite";
     }
 }
 
+/// Найти похожий объект в БД (выполняется неоптимально - сначала грузятся все объекты данного типа, и потом используется предикат по основным идентифицирующим признакам)
 - (NSManagedObject*)findSameDatabaseObjectForEntity:(id<DSEventConvertibleEntity>)compareEntity{
     
     BOOL isJournalEntity = [compareEntity isKindOfClass:[DSJournal class]];
@@ -320,7 +334,7 @@ static NSString* const DS_LOCAL_DB_FILENAME = @"DeepStorm21.sqlite";
 /// Получить все имеющиеся журналы в хранилище
 - (NSArray<DSAdaptedDBJournal*>*)loadAdaptedAllJournals{
     
-    NSEntityDescription *journalEntity = [DSLocalSQLEntitiesProvider journalEntity];
+    NSEntityDescription *journalEntity = [DSLocalSQLEntitiesProvider entityForKey:DSEntityJournalKey];
     NSArray<NSManagedObject*> *loadedEntities = [self _loadAdaptedAllObjectForEntity:journalEntity];
     return (NSArray<DSAdaptedDBJournal*>*)loadedEntities;
 }
@@ -328,7 +342,7 @@ static NSString* const DS_LOCAL_DB_FILENAME = @"DeepStorm21.sqlite";
 /// Получить все имеющиеся сервисы в хранилище
 - (NSArray<DSAdaptedDBService*>*)loadAdaptedAllServices{
     
-    NSEntityDescription *serviceEntity = [DSLocalSQLEntitiesProvider serviceEntity];
+    NSEntityDescription *serviceEntity = [DSLocalSQLEntitiesProvider entityForKey:DSEntityServiceKey];
     NSArray<NSManagedObject*> *loadedEntities = [self _loadAdaptedAllObjectForEntity:serviceEntity];
     return (NSArray<DSAdaptedDBService*>*)loadedEntities;
 }
@@ -336,7 +350,7 @@ static NSString* const DS_LOCAL_DB_FILENAME = @"DeepStorm21.sqlite";
 /// Получить все имеющиеся записи в хранилище
 - (NSArray<DSAdaptedDBJournalRecord*>*)loadAdaptedAllRecords{
     
-    NSEntityDescription *recordsEntity = [DSLocalSQLEntitiesProvider recordEntity];
+    NSEntityDescription *recordsEntity = [DSLocalSQLEntitiesProvider entityForKey:DSEntityRecordKey];
     NSArray<NSManagedObject*> *loadedEntities = [self _loadAdaptedAllObjectForEntity:recordsEntity];
     return (NSArray<DSAdaptedDBJournalRecord*>*)loadedEntities;
 }
@@ -448,16 +462,19 @@ static NSString* const DS_LOCAL_DB_FILENAME = @"DeepStorm21.sqlite";
     return [NSArray arrayWithArray:convertedEntities];
 }
 
+/// Получить из базы объект журнала с названием
 - (DSJournal*)getJournalForName:(NSString*)journalName{
     
     DSAdaptedDBJournal *adaptedJournal = [self loadAdaptedJournalForName:journalName];
     return [adaptedJournal convertToJournal];
 }
 
+/// Получить из базы объект сервиса по типу и классу
 - (DSBaseLoggedService*)getServiceByTypeID:(NSNumber*)serviceTypeID orByClass:(NSString*)serviceClass{
     
     DSAdaptedDBService *adaptedService = [self loadAdaptedServiceByTypeID:serviceTypeID orByClass:serviceClass];
     return [adaptedService convertToService];
 }
+
 
 @end

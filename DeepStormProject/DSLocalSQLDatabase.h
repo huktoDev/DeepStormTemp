@@ -8,16 +8,23 @@
 
 #import <Foundation/Foundation.h>
 #import "DSStoreDataProvidingProtocol.h"
+#import "DSSendingEventInterfaces.h"
 
-@import CoreData;
-@class NSManagedObjectContext;
 
-@protocol DSStoreDataProvidingProtocol;
-@protocol DSStreamingEventExecutorProtocol;
-@class DSAdaptedDBService, DSAdaptedDBJournal, DSAdaptedDBError, DSAdaptedDBJournalRecord;
-
-#import "DSAdaptedObjectsFactory.h"
-
+/**
+    @class DSLocalSQLDatabase
+    @author HuktoDev
+    @updated 28.08.2016
+    @abstract База данных для DeepStorm-а
+    @discussion
+    Класс, инкапсулирующий в себе всю работу с Core Data. Принимает на вход события(транзакции) репортера, и запоминает принятные объекты.
+    Использует в себе :
+    - Статический провайдер сущностей, содержащий всю информациию о модели данных
+    - Фабрика заготовок объектов, автоматически инжектированных в контекст
+ 
+    Предоставляет протокол для получения объектов из БД
+    @see DSStoreDataProvidingProtocol
+ */
 @interface DSLocalSQLDatabase : NSObject <DSStreamingEventExecutorProtocol, DSStoreDataProvidingProtocol>
 
 
@@ -32,21 +39,5 @@
 //TODO: make Pull Request
 
 
-#pragma mark - ENTITIES Factory
-// Фабрика "адаптированных" объектов (представляющих реальные объекты на контексте)
-
-@property (strong, nonatomic, readonly) DSAdaptedObjectsFactory *modelsFactory;
-
-
-#pragma mark - LOAD AND GET Objects
-// Получение объектов из Базы данных
-
-- (NSArray<DSBaseLoggedService*>*)getAllServices;
-- (NSArray<DSJournal*>*)getAllJournals;
-- (NSArray<DSJournalRecord*>*)getAllRecords;
-
-- (DSJournal*)getJournalForName:(NSString*)journalName;
-- (DSBaseLoggedService*)getServiceByTypeID:(NSNumber*)serviceTypeID orByClass:(NSString*)serviceClass;
-
-
 @end
+

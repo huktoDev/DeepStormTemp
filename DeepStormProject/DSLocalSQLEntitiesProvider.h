@@ -7,23 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DSEntityKeys.h"
 
 @class NSEntityDescription;
 
+
+/**
+    @class DSLocalSQLEntitiesProvider
+    @author HuktoDev
+    @updated 28.08.2016
+    @abstract Вспомогательный статический класс, предоставляющий набор сущностей для CoreData
+    @discussion
+    Является заменой классической модели данных (DataModel). Предоставляет 4 основные сущности БД, и несколько правил взаимодействия между ними.
+    @note
+    Класс является чисто  статическим
+ */
 @interface DSLocalSQLEntitiesProvider : NSObject
 
-+ (NSString*)serviceEntityName;
-+ (NSString*)journalEntityName;
-+ (NSString*)recordEntityName;
-+ (NSString*)errorEntityName;
-
-+ (NSEntityDescription*)serviceEntity;
-+ (NSEntityDescription*)journalEntity;
-+ (NSEntityDescription*)recordEntity;
-+ (NSEntityDescription*)errorEntity;
-
-+ (void)setRelationsBetweenService:(NSEntityDescription*)serviceEntity andJournal:(NSEntityDescription*)journalEntity;
-+ (void)setRelationsBetweenService:(NSEntityDescription*)serviceEntity andError:(NSEntityDescription*)errorEntity;
-+ (void)setRelationsBetweenJournal:(NSEntityDescription*)journalEntity andRecord:(NSEntityDescription*)recordEntity;
++ (NSEntityDescription*)entityForKey:(DSEntityKey)entityKey;
++ (void)setAllEntitiesRelations;
 
 @end
