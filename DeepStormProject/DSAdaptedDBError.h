@@ -9,6 +9,20 @@
 #import <CoreData/CoreData.h>
 @class DSAdaptedDBService;
 
+
+/**
+    @class DSAdaptedDBError
+    @author HuktoDev
+    @updated 21.07.2016
+    @abstract Внутренняя модель ошибки сервиса для работы с БД и CoreData
+    @discussion
+    Содержит практически аналогичные поля, что и обычный сервис.
+    Все поля этой модели содержатся в базе.
+    Презентация обыкновенной NSError ошибки в БД
+ 
+    @note
+    Ошибка ассоциируется с каким-то конкретным сервисом, в котором она произошла
+ */
 @interface DSAdaptedDBError : NSManagedObject
 
 @property (copy, nonatomic) NSNumber *code;

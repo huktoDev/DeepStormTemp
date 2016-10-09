@@ -9,6 +9,21 @@
 #import <CoreData/CoreData.h>
 @class DSAdaptedDBService;
 
+/**
+    @class DSAdaptedDBJournal
+    @author HuktoDev
+    @updated 21.07.2016
+    @abstract Внутренняя модель журнала для работы с БД и CoreData
+    @discussion
+    Содержит практически аналогичные поля, что и обычный журнал.
+    Все поля этой модели содержатся в базе.
+ 
+    @note
+    - Может иметь родительский сервис (ассоциироваться с конкретным сервисом)
+    - Содержит основные данные - дочерние записи журнала
+ 
+    @see DSJournal
+ */
 @interface DSAdaptedDBJournal : NSManagedObject
 
 @property (copy, nonatomic) NSString *journalName;

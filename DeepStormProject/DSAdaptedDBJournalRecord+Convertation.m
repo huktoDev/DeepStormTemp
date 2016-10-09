@@ -7,8 +7,7 @@
 //
 
 #import "DSAdaptedDBJournalRecord+Convertation.h"
-
-#import "DSJournal.h"
+#import "DSJournalRecord.h"
 
 @implementation DSAdaptedDBJournalRecord (Convertation)
 

@@ -11,6 +11,21 @@
 
 @class DSAdaptedDBJournal;
 
+
+/**
+    @class DSAdaptedDBJournalRecord
+    @author HuktoDev
+    @updated 21.07.2016
+    @abstract Внутренняя модель записи журнала для работы с БД и CoreData
+    @discussion
+    Содержит практически аналогичные поля, что и обычный сервис.
+    Все поля этой модели содержатся в базе.
+ 
+    @note
+    - Каждая запись может содержаться только в одном экземпляре журнале, поэтому запись должна иметь свойство родительского журнала
+ 
+    @see DSJournalRecord
+ */
 @interface DSAdaptedDBJournalRecord : NSManagedObject
 
 @property (copy, nonatomic) NSNumber *number;
