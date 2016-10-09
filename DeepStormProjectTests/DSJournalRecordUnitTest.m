@@ -8,32 +8,53 @@
 
 #import <XCTest/XCTest.h>
 
-@interface DSJournalRecordUnitTest : XCTestCase
+#import "DSJournalRecord.h"
+#import "DSEntityProtocol.h"
 
+@interface DSJournalRecordUnitTest : XCTestCase
 @end
+
 
 @implementation DSJournalRecordUnitTest
 
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+- (void)testOnDeepStormEntity{
+    
+    DSJournalRecord *recordUnderTest = [DSJournalRecord new];
+    
+    XCTAssertNoThrow(recordUnderTest.entityKey, @"%@ can implement %@ property", recordUnderTest, NSStringFromSelector(@selector(entityKey)));
+    
+    BOOL isRightKey = (recordUnderTest.entityKey == DSEntityRecordKey);
+    XCTAssertTrue(isRightKey, @"Key for this entity isn't match with right Key");
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
+- (void)testOnRightProperties{
+    
+    DSJournalRecord *recordUnderTest = [DSJournalRecord new];
+    
+    [self checkExistPropertyWithGetter:@selector(recordNumber) inObject:recordUnderTest];
+    [self checkExistPropertyWithGetter:@selector(recordDescription) inObject:recordUnderTest];
+    [self checkExistPropertyWithGetter:@selector(recordDate) inObject:recordUnderTest];
+    [self checkExistPropertyWithGetter:@selector(recordInfo) inObject:recordUnderTest];
+    [self checkExistPropertyWithGetter:@selector(recordLogLevel) inObject:recordUnderTest];
 }
 
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+- (void)testOnLogDescription{
+    
+    BOOL isRightInfoDescription = [DSLogLevelDescription(DSRecordLogLevelInfo) isEqualToString:@"INFO"];
+    BOOL isRightWarningDescription = [DSLogLevelDescription(DSRecordLogLevelWarning) isEqualToString:@"WARNING"];
+    XCTAssertTrue(isRightInfoDescription && isRightWarningDescription, @"Incorrect LogLevel Description. See DSLogLevelDescription() function");
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
-        // Put the code you want to measure the time of here.
-    }];
+- (void)checkExistPropertyWithGetter:(SEL)getterSelector inObject:(id)checkingObj{
+    
+    NSString *getterString = NSStringFromSelector(getterSelector);
+    NSString *setterString = [NSString stringWithFormat:@"set%@%@:", [[getterString substringToIndex:1] uppercaseString], [getterString substringFromIndex:1]];
+    
+    SEL setterSelector = NSSelectorFromString(setterString);
+    
+    BOOL haveTwoWayProperty = [checkingObj respondsToSelector:getterSelector] && [checkingObj respondsToSelector:setterSelector];
+    XCTAssertTrue(haveTwoWayProperty, @"Object %@ must have property %@", checkingObj, getterString);
 }
+
 
 @end
