@@ -38,77 +38,14 @@ NSString * const DSRecordLogLevelParamKey = @"DSRecordLogLevelParamKey";
     return self;
 }
 
-#pragma mark - Manipulate Records
-
-/**
-    @abstract Добавление новой записи в журнал
-    @discussion
-    Создает новую запись из переданной информации, затем синхронизированно добавляет в журнал
-    Присваивает записи идентификатор (порядковый номер)
- 
-    @note в userInfo может содержаться
- 
-    @note Если включен в коде режим потокового логгирования DSJOURNAL_LOG_STREAMING - логгирует записи в консоль сразу при добавлении (еще требуется, чтобы outputLoggingDisabled = NO )
-    
-    @note Если записей становится слишком много - очищает записи порциями
- 
-    @param logString        Логгируемая строка (содержащая описание записи)
-    @param userInfo         Дополнительная информация к записи (словарь)
- */
-- (void)addLogRecord:(nonnull NSString*)logString withInfo:(nullable NSDictionary*)userInfo {
-    
-    DSJournalRecord *newRecord = [DSJournalRecord new];
-    newRecord.recordDescription = logString;
-    newRecord.recordDate = [NSDate date];
-    
-    // Добавить уровень логгирования, если имеется
-    if(userInfo){
-        
-        NSMutableDictionary *filteredUserInfo = [[NSMutableDictionary alloc] initWithDictionary:userInfo];
-        NSNumber *logLevel = userInfo[DSRecordLogLevelParamKey];
-        if(logLevel){
-            // Проверка log Level Value
-            NSAssert([logLevel isKindOfClass:[NSNumber class]], @"Log Level is incorrect Type (not NSNumber)");
-            
-            DSRecordLogLevel recordLogLevel = [logLevel unsignedIntegerValue];
-            NSAssert((recordLogLevel >= DSRecordLogLevelInfo && recordLogLevel <= DSRecordLogLevelError), @"Log Level Value is incorrect");
-            
-            [filteredUserInfo removeObjectForKey:DSRecordLogLevelParamKey];
-            newRecord.recordLogLevel = recordLogLevel;
-        }
-        newRecord.recordInfo = (filteredUserInfo.count > 0) ? filteredUserInfo : nil;
-        
-    }else{
-        newRecord.recordLogLevel = DSRecordLogLevelDefault;
-        newRecord.recordInfo = userInfo;
+- (NSString *)journalName{
+    if(_journalName.length > 0){
+        return [_journalName copy];
     }
-    
-    @synchronized(records) {
-        
-        // Присваивает записи порядковый номер
-        DSJournalRecord *lastRecord = [records lastObject];
-        NSUInteger newRecordNumber = lastRecord ? ([lastRecord.recordNumber unsignedIntegerValue] + 1) : 1;
-        newRecord.recordNumber = @(newRecordNumber);
-        
-        //очищает записи порциями
-        if(records.count >= self.maxCountStoredRecords){
-            [records removeObjectsInRange:NSMakeRange(0, 100)];
-        }
-        [records addObject:newRecord];
-    }
-    
-    /*
-#if DSJOURNAL_LOG_STREAMING == 1
-    
-    // Если не отключено потоковое логгирование - вывести запись в консоль
-    if(! self.outputLoggingDisabled){
-        
-        NSString *recordDescription = [newRecord shortTypeDescription];
-        DSLOGGER_STREAM_MACRO(@"%@", recordDescription);
-    }
-#endif
-     */
+    return @"Unnamed";
 }
+
+#pragma mark - Manipulate Records
 
 /**
     @abstract Добавление  новой отформатированной записи в журнал
@@ -134,6 +71,84 @@ NSString * const DSRecordLogLevelParamKey = @"DSRecordLogLevelParamKey";
         
     }else{
         NSLog(@"Format Can Not be NIL !");
+    }
+}
+
+/**
+    @abstract Добавление новой записи в журнал
+    @discussion
+    Создает новую запись из переданной информации, затем синхронизированно добавляет в журнал
+    Присваивает записи идентификатор (порядковый номер)
+ 
+    @note в userInfo может содержаться
+ 
+    @note Если включен в коде режим потокового логгирования DSJOURNAL_LOG_STREAMING - логгирует записи в консоль сразу при добавлении (еще требуется, чтобы outputLoggingDisabled = NO )
+    
+    @note Если записей становится слишком много - очищает записи порциями
+ 
+    @param logString        Логгируемая строка (содержащая описание записи)
+    @param userInfo         Дополнительная информация к записи (словарь)
+ */
+- (void)addLogRecord:(nonnull NSString*)logString withInfo:(nullable NSDictionary*)userInfo {
+    
+    if(! logString){
+        NSAssert(NO, @"logString in LogRecord always must be not nil!");
+        return;
+    }
+    
+    DSJournalRecord *newRecord = [DSJournalRecord new];
+    newRecord.recordDescription = logString;
+    newRecord.recordDate = [NSDate date];
+    
+    // Добавить уровень логгирования, если имеется
+    if(userInfo){
+        
+        NSMutableDictionary *filteredUserInfo = [[NSMutableDictionary alloc] initWithDictionary:userInfo];
+        NSNumber *logLevel = userInfo[DSRecordLogLevelParamKey];
+        if(logLevel){
+            // Проверка log Level Value
+            NSAssert([logLevel isKindOfClass:[NSNumber class]], @"Log Level is incorrect Type (not NSNumber)");
+            
+            DSRecordLogLevel recordLogLevel = [logLevel unsignedIntegerValue];
+            NSAssert((recordLogLevel >= DSRecordLogLevelInfo && recordLogLevel <= DSRecordLogLevelError), @"Log Level Value is incorrect");
+            
+            [filteredUserInfo removeObjectForKey:DSRecordLogLevelParamKey];
+            newRecord.recordLogLevel = recordLogLevel;
+        }else{
+            newRecord.recordLogLevel = DSRecordLogLevelDefault;
+        }
+        newRecord.recordInfo = (filteredUserInfo.count > 0) ? filteredUserInfo : nil;
+        
+    }else{
+        newRecord.recordLogLevel = DSRecordLogLevelDefault;
+        newRecord.recordInfo = userInfo;
+    }
+    
+    // Добавить подготовленную запись
+    [self _privateAddLogRecord:newRecord];
+}
+
+/**
+    @abstract Приватное добавление нового объекта записи
+    @discussion
+    Вычисляется и устанавливается порядковый номер записи, обновляется очередь записей.
+    Все это делается с блокировкой к массиву во время записи (чтобы 2 потока не пытались одновременно получить доступ)
+    @param newRecord        Объект новой записи, которая будет добавлена
+ */
+- (void)_privateAddLogRecord:(DSJournalRecord*)newRecord{
+    
+    @synchronized(records) {
+        
+        // Присваивает записи порядковый номер
+        DSJournalRecord *lastRecord = [records lastObject];
+        NSUInteger newRecordNumber = lastRecord ? ([lastRecord.recordNumber unsignedIntegerValue] + 1) : 1;
+        newRecord.recordNumber = @(newRecordNumber);
+        
+        // Очищает записи порциями
+        if(records.count >= self.maxCountStoredRecords){
+            [records removeObjectAtIndex:0];
+        }
+        [records addObject:newRecord];
     }
 }
 
