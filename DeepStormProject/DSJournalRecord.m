@@ -36,4 +36,23 @@ NSString* DSLogLevelDescription(DSRecordLogLevel logLevel){
     return DSEntityRecordKey;
 }
 
+- (void)setRecordInfo:(NSDictionary *)recordInfo{
+    
+    NSMutableDictionary *adaptedDictionary = [NSMutableDictionary new];
+    for (id additionalKey in recordInfo) {
+        
+        id additionalObject = [recordInfo objectForKey:additionalKey];
+        if(! [additionalKey isKindOfClass:[NSString class]]){
+            [adaptedDictionary setObject:additionalObject forKey:[additionalKey description]];
+        }else{
+            [adaptedDictionary setObject:additionalObject forKey:additionalKey];
+        }
+    }
+    
+    if(!adaptedDictionary || adaptedDictionary.count == 0){
+        adaptedDictionary= nil;
+    }
+    _recordInfo = adaptedDictionary;
+}
+
 @end
