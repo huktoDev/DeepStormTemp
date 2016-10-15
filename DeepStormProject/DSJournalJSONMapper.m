@@ -89,6 +89,10 @@
 
 + (NSDictionary*)journalJSONRepresentation:(DSJournal*)journal{
     
+    NSMutableDictionary *journalDict = [NSMutableDictionary new];
+    [journalDict setObject:journal.journalName forKey:@"name"];
+    [journalDict setObject:@(journal.maxCountStoredRecords) forKey:@"maxRecords"];
+    
     // Добавить записи
     NSMutableArray *journalRecordsArray = [NSMutableArray new];
     [journal enumerateRecords:^(DSJournalRecord *journalRecord) {
@@ -97,15 +101,18 @@
         [journalRecordsArray addObject:recordDictionary];
     }];
     
-    NSDictionary *journalDict = @{@"journal" : journalRecordsArray};
-    return journalDict;
+    [journalDict setObject:@(journal.countRecords) forKey:@"recordsCount"];
+    [journalDict setObject:journalRecordsArray forKey:@"recordsArray"];
+    
+    NSDictionary *resultJournalDict = @{@"journal" : journalDict};
+    return resultJournalDict;
 }
 
 + (NSDictionary*)recordJSONRepresentation:(DSJournalRecord*)record{
     
     // Добавить номер записи
     NSMutableDictionary *recordInnerDict = [NSMutableDictionary new];
-    [recordInnerDict setObject:[record.recordNumber stringValue] forKey:@"number"];
+    [recordInnerDict setObject:record.recordNumber forKey:@"number"];
     
     // Добавить описание и дату записи
     NSString *dateDescription = [record.recordDate description];
@@ -114,7 +121,7 @@
     
     // Добавить userInfo записи, если есть
     if(record.recordInfo){
-        [recordInnerDict setObject:[record.recordInfo description] forKey:@"userInfo"];
+        [recordInnerDict setObject:record.recordInfo forKey:@"userInfo"];
     }
     
     NSDictionary *recordDict = @{@"record" : recordInnerDict};
