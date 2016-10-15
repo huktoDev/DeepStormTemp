@@ -10,38 +10,21 @@
 
 #import "DSJournal.h"
 #import "DSJournalRecord.h"
+#import "DSJournalBaseUnitTest.h"
 
-@interface DSJournalUnitTest : XCTestCase
+@interface DSJournalUnitTest : DSJournalBaseUnitTest
 
 @end
 
-@implementation DSJournalUnitTest
-
-- (void)setUp {
-    [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+@implementation DSJournalUnitTest{
+    @private
+    dispatch_source_t _waitingLockTimer;
 }
 
-- (void)tearDown {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
 
-/*
- @property (strong, nonatomic) NSNumber *recordNumber;
- @property (copy, nonatomic) NSString *recordDescription;
- 
- @property (copy, nonatomic) NSDate *recordDate;
- @property (copy, nonatomic) NSDictionary *recordInfo;
- 
- @property (assign, nonatomic) DSRecordLogLevel recordLogLevel;
- */
+#pragma mark - Test Methods -
 
-
-// добавление простой записи, чтобы добавлялась соотв, запись
-// проверить самые разные валидные записи
-//
-
+/// Манипуляции с пустым журналом
 - (void)testEmptyJournal{
     
     DSJournal *journalUnderTest = [DSJournal new];
@@ -65,6 +48,7 @@
     }
 }
 
+/// Манипуляции с добавлением простой записи
 - (void)testAddSimpleRecordBase{
     
     DSJournal *journalUnderTest = [DSJournal new];
@@ -94,6 +78,7 @@
     XCTAssertNil(firstJournalRecord.recordInfo, @"Record Info for very simple record can be nil always");
 }
 
+/// Манипуляции с энумерациями, когда в журнале одна запись
 - (void)testAddSimpleRecordEnumeration{
     
     DSJournal *journalUnderTest = [DSJournal new];
@@ -129,6 +114,7 @@
     }
 }
 
+/// Тест на очистку журнала с одной записью
 - (void)testJournalWithOneRecordClearing{
     
     DSJournal *journalUnderTest = [DSJournal new];
@@ -145,6 +131,7 @@
     XCTAssertFalse((zeroInEmptyJournalRecord || firstInEmptyJournalRecord || secondInEmptyJournalRecord), @"Journal have non-empty records after clearing");
 }
 
+/// Манипуляции с добавлением нескольких записей к журналу
 - (void)testJournalWithFewRecords{
     
     DSJournal *firstFulledJournal = [DSJournal new];
@@ -192,11 +179,12 @@
     }
 }
 
+/// Замер времени добавления 100т записей для журнала, неограниченного по их числу
 - (void)testUnlimitedJournalPerformance{
     
     DSJournal *journalUnderTest = [DSJournal new];
     
-    const NSUInteger iterationCount = 1000000;
+    const NSUInteger iterationCount = 100000;
     journalUnderTest.maxCountStoredRecords = UINT_MAX;
     [self measureBlock:^{
         for (NSUInteger iterationIndex = 0; iterationIndex < iterationCount; iterationIndex ++) {
@@ -205,16 +193,14 @@
     }];
     
     [journalUnderTest clearJournal];
-    
-    
 }
 
+/// Замер времени добавления 100т записей для журнала, ограниченного по числу записей (старые записи высвобождаются)
 - (void)testLimitedJournalPerformance{
     
     DSJournal *journalUnderTest = [DSJournal new];
-    // Проверить на соотв. кол-во записей
     
-    const NSUInteger iterationCount = 1000000;
+    const NSUInteger iterationCount = 100000;
     [self measureBlock:^{
         for (NSUInteger iterationIndex = 0; iterationIndex < iterationCount; iterationIndex ++) {
             [journalUnderTest addLogRecord:@"New Recordx" withInfo:nil];
@@ -224,23 +210,156 @@
     [journalUnderTest clearJournal];
 }
 
-// тест с добавлением большого количества записей, проверка вырванных из контекста записей
-// тест на очистку большого журнала
-
-// тест с добавлением миллиона записей в журнал))) (для случая с ограничением по количеству, и случая с огромным максимальным количеством)
-
-
-- (void)testExample {
-    // This is an example of a functional test case.
-    // Use XCTAssert and related functions to verify your tests produce the correct results.
+/// Тесты на очистку журнала с большим количеством записей
+- (void)testOnBigJournalClearing{
+    
+    for (NSUInteger journalIndex = 0; journalIndex < 2; journalIndex ++) {
+        
+        DSJournal *journalUnderTest = [DSJournal new];
+        if(journalIndex == 1){
+            journalUnderTest.maxCountStoredRecords = UINT_MAX;
+        }
+        
+        const NSUInteger iterationCount = 100000;
+        for (NSUInteger iterationIndex = 0; iterationIndex < iterationCount; iterationIndex ++) {
+            [self addRandomRecordToJournal:journalUnderTest];
+        }
+        [journalUnderTest clearJournal];
+        
+        BOOL haveEmptyRecords = (journalUnderTest.countRecords == 0);
+        DSJournalRecord *emptyJournalRecord1 = [journalUnderTest getRecordWithNumber:@0];
+        DSJournalRecord *emptyJournalRecord2 = [journalUnderTest getRecordWithNumber:@1];
+        DSJournalRecord *randomJournalRecord = [journalUnderTest getRecordWithNumber:@1000];
+        XCTAssertNil(emptyJournalRecord1, @"Empty journal shouldn't return Record objects");
+        XCTAssertNil(emptyJournalRecord2, @"Empty journal shouldn't return Record objects");
+        XCTAssertNil(randomJournalRecord, @"Empty journal shouldn't return Record objects");
+        XCTAssertTrue(haveEmptyRecords, @"Start Records count must be zero!");
+    }
 }
 
-- (void)testPerformanceExample {
-    // This is an example of a performance test case.
-    [self measureBlock:^{
+/// Тесты на перечисление записей для большого журнала
+- (void)testOnBigJournalEnumeration{
+    
+    for (NSUInteger journalIndex = 0; journalIndex < 2; journalIndex ++) {
         
+        DSJournal *journalUnderTest = [DSJournal new];
+        if(journalIndex == 0){
+            journalUnderTest.maxCountStoredRecords = UINT_MAX;
+        }else if(journalIndex == 1){
+            journalUnderTest.maxCountStoredRecords = 800;
+        }
         
+        const NSUInteger iterationCount = 100000;
+        for (NSUInteger iterationIndex = 0; iterationIndex < iterationCount; iterationIndex ++) {
+            [self addRandomRecordToJournal:journalUnderTest];
+        }
+        
+        DSJournalRecord *selectedRecord1 = [journalUnderTest getRecordWithNumber:@(9700)];
+        DSJournalRecord *selectedRecord2 = [journalUnderTest getRecordWithNumber:@(iterationCount - 752)];
+        
+        __block NSUInteger recordIndex = 0;
+        if(journalIndex == 1){
+            recordIndex = iterationCount - journalUnderTest.maxCountStoredRecords;
+        }
+        [journalUnderTest enumerateRecords:^(DSJournalRecord *record) {
+            
+            BOOL isRightRecord = [record.recordNumber isEqualToNumber:@(recordIndex + 1)];
+            XCTAssertTrue(isRightRecord, @"Record, when enumerating have incorrect indexes");
+            
+            if(recordIndex == (journalUnderTest.maxCountStoredRecords - 752 - 1)){
+                XCTAssertEqual(record, selectedRecord2, @"Enumerated Records don't matched");
+            }else if(recordIndex == (9700 - 1)){
+                XCTAssertEqual(record, selectedRecord1, @"Enumerated Records don't matched");
+            }
+            
+            recordIndex ++;
+        }];
+        
+        recordIndex = 0;
+        if(journalIndex == 0){
+            recordIndex = (iterationCount - 1000);
+        }else if(journalIndex == 1){
+            recordIndex = (iterationCount - journalUnderTest.maxCountStoredRecords);
+        }
+        [journalUnderTest enumerateLast:1000 records:^(DSJournalRecord *record) {
+            
+            BOOL isRightRecord = [record.recordNumber isEqualToNumber:@(recordIndex + 1)];
+            XCTAssertTrue(isRightRecord, @"Record, when enumerating have incorrect indexes");
+            
+            recordIndex ++;
+        }];
+        XCTAssertTrue((recordIndex == iterationCount), @"Incorrect enumerated Records count");
+        
+        if(journalIndex == 1){
+            journalUnderTest.maxCountStoredRecords = 800;
+            XCTAssertTrue((journalUnderTest.countRecords == journalUnderTest.maxCountStoredRecords), @"Journal successfully wasn't filled fully");
+        }
+    }
+}
+
+/// Проверка на отсутствие гонки за ресурсы журнала ежду потоками
+- (void)testOnManipulationLocking{
+    
+    DSJournal *journalUnderTest = [DSJournal new];
+    XCTestExpectation *unlockExpectation = [self expectationWithDescription:@"Action End Expectations"];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        const NSUInteger iterationCount = 100000;
+        for (NSUInteger iterationIndex = 0; iterationIndex < iterationCount; iterationIndex ++) {
+            [self addRandomRecordToJournal:journalUnderTest];
+        }
+        [unlockExpectation fulfill];
+    });
+    
+    _waitingLockTimer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
+    dispatch_source_set_timer(_waitingLockTimer, DISPATCH_TIME_NOW, 0.1f * NSEC_PER_SEC, 1ull * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(_waitingLockTimer, ^{
+        
+        if(journalUnderTest.countRecords > 50000){
+            [journalUnderTest enumerateRecords:^(DSJournalRecord *record) {}];
+        }
+    });
+    dispatch_resume(_waitingLockTimer);
+    
+    [self waitForExpectationsWithTimeout:2.0f handler:^(NSError * _Nullable error) {
+        if (error) {
+            XCTAssertNotNil(error, @"Locking problems, Timeout with error %@", error);
+        }
     }];
 }
 
+/// Стресс-тесты на большое количество записей, тесты с разными типами журналов и разными видами записей
+- (void)testOnBigRecordsCount{
+    
+    DSJournal *journalUnderTest = [DSJournal new];
+    
+    NSMutableArray *recordsSnapshotsArray = [NSMutableArray new];
+    
+    const NSUInteger iterationCount = 10000;
+    journalUnderTest.maxCountStoredRecords = UINT_MAX;
+    for (NSUInteger iterationIndex = 0; iterationIndex < iterationCount; iterationIndex ++) {
+        
+        NSUInteger recordCase = [self addRandomRecordToJournal:journalUnderTest];
+        
+        DSJournalRecord *currentAddedJournalRecord = [journalUnderTest getRecordWithNumber:@(iterationIndex+1)];
+        [self checkRecord:currentAddedJournalRecord byCase:recordCase];
+        
+        BOOL needRecordSnapshot = (arc4random() % 200 == 0);
+        if(needRecordSnapshot){
+            [recordsSnapshotsArray addObject:@{@(iterationIndex+1) : currentAddedJournalRecord}];
+        }
+    }
+    
+    for (NSDictionary *snapshotRecordPair in recordsSnapshotsArray) {
+        NSUInteger recordCheckIndex = [[[snapshotRecordPair allKeys] firstObject] unsignedIntegerValue];
+        DSJournalRecord *snapshottedRecord = [snapshotRecordPair objectForKey:@(recordCheckIndex)];
+        
+        DSJournalRecord *recordFromJournal = [journalUnderTest getRecordWithNumber:@(recordCheckIndex)];
+        XCTAssertEqual(snapshottedRecord, recordFromJournal, @"Real records and snapshotted values don't match %@ %@", snapshottedRecord, recordFromJournal);
+    }
+}
+
+
 @end
+

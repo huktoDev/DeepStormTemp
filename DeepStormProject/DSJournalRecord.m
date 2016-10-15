@@ -36,6 +36,7 @@ NSString* DSLogLevelDescription(DSRecordLogLevel logLevel){
     return DSEntityRecordKey;
 }
 
+//TODO: Вынести куда-то в другое место
 - (void)setRecordInfo:(NSDictionary *)recordInfo{
     
     NSMutableDictionary *adaptedDictionary = [NSMutableDictionary new];

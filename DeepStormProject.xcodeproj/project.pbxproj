@@ -80,6 +80,8 @@
 		6B588C1F1DAA24A700A25A58 /* DSJournalRecordUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B588C1E1DAA24A700A25A58 /* DSJournalRecordUnitTest.m */; };
 		6B588C221DAA26F100A25A58 /* DSJournalRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B588C211DAA26F100A25A58 /* DSJournalRecord.m */; };
 		6B588C241DAA498F00A25A58 /* DSJournalUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B588C231DAA498F00A25A58 /* DSJournalUnitTest.m */; };
+		6B588C261DB1308B00A25A58 /* DSEntityJSONMapperTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B588C251DB1308B00A25A58 /* DSEntityJSONMapperTest.m */; };
+		6B588C281DB204B200A25A58 /* DSJournalBaseUnitTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B588C271DB204B200A25A58 /* DSJournalBaseUnitTest.m */; };
 		6BABC7001D5B1C3200E5CAA6 /* DSWebServerReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BABC6FF1D5B1C3200E5CAA6 /* DSWebServerReporter.m */; };
 /* End PBXBuildFile section */
 
@@ -245,6 +247,9 @@
 		6B588C201DAA26F000A25A58 /* DSJournalRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSJournalRecord.h; sourceTree = "<group>"; };
 		6B588C211DAA26F100A25A58 /* DSJournalRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSJournalRecord.m; sourceTree = "<group>"; };
 		6B588C231DAA498F00A25A58 /* DSJournalUnitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSJournalUnitTest.m; sourceTree = "<group>"; };
+		6B588C251DB1308B00A25A58 /* DSEntityJSONMapperTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSEntityJSONMapperTest.m; sourceTree = "<group>"; };
+		6B588C271DB204B200A25A58 /* DSJournalBaseUnitTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSJournalBaseUnitTest.m; sourceTree = "<group>"; };
+		6B588C291DB2057700A25A58 /* DSJournalBaseUnitTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSJournalBaseUnitTest.h; sourceTree = "<group>"; };
 		6BABC6FE1D5B1C3200E5CAA6 /* DSWebServerReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSWebServerReporter.h; sourceTree = "<group>"; };
 		6BABC6FF1D5B1C3200E5CAA6 /* DSWebServerReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DSWebServerReporter.m; sourceTree = "<group>"; };
 		6BABC7011D5B269D00E5CAA6 /* DSStoreDataProvidingProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DSStoreDataProvidingProtocol.h; sourceTree = "<group>"; };
@@ -671,8 +676,11 @@
 		6B588C1D1DAA242900A25A58 /* Basic Entities Tests */ = {
 			isa = PBXGroup;
 			children = (
+				6B588C291DB2057700A25A58 /* DSJournalBaseUnitTest.h */,
+				6B588C271DB204B200A25A58 /* DSJournalBaseUnitTest.m */,
 				6B588C1E1DAA24A700A25A58 /* DSJournalRecordUnitTest.m */,
 				6B588C231DAA498F00A25A58 /* DSJournalUnitTest.m */,
+				6B588C251DB1308B00A25A58 /* DSEntityJSONMapperTest.m */,
 			);
 			name = "Basic Entities Tests";
 			sourceTree = "<group>";
@@ -920,6 +928,8 @@
 			files = (
 				6B588C161DAA23FD00A25A58 /* DeepStormProjectTests.m in Sources */,
 				6B588C241DAA498F00A25A58 /* DSJournalUnitTest.m in Sources */,
+				6B588C261DB1308B00A25A58 /* DSEntityJSONMapperTest.m in Sources */,
+				6B588C281DB204B200A25A58 /* DSJournalBaseUnitTest.m in Sources */,
 				6B588C1F1DAA24A700A25A58 /* DSJournalRecordUnitTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1124,6 +1134,7 @@
 				6B588C1C1DAA23FD00A25A58 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
